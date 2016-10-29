@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0.8">
+
+            <TextView
+                android:id="@+id/course_name"
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/course_name"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/time" />
+
+            <TextView
+                android:id="@+id/time_tv"
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/course_name"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/image_view"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/subscribed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/subscribed"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_light" />
+
+</LinearLayout>

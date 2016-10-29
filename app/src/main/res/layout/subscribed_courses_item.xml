@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="5dp"
+    card_view:cardUseCompatPadding="true"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75">
+
+            <TextView
+                android:id="@+id/course_name"
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <ImageView
+                android:id="@+id/cal_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/course_name"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/cal" />
+
+            <TextView
+                android:id="@+id/date"
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/cal_img"
+                android:layout_below="@+id/course_name"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/cal_img"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_small" />
+
+            <ImageView
+                android:id="@+id/progress_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/progress" />
+
+            <TextView
+                android:id="@+id/status"
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/progress_img"
+                android:layout_below="@+id/date"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/progress_img"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_small" />
+
+            <Button
+                android:id="@+id/update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/status"
+                android:text="@string/update"
+                android:textAllCaps="false"
+                android:textSize="@dimen/text_xsmall"
+                android:textColor="@color/colorPrimary"
+                style="?android:attr/borderlessButtonStyle"/>
+
+
+        </RelativeLayout>
+
+        <com.app.studymanager.util.Circle
+            android:id="@+id/circle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.25" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

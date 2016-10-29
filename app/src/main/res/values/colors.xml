@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#06B089</color>
+    <color name="colorPrimaryDark">#009880</color>
+    <color name="colorPrimaryDarkest">#007D56</color>
+    <color name="colorAccent">#06B089</color>
+    <color name="blue">#2196F3</color>
+    <color name="gray_light">#C0C0C0</color>
+    <color name="gray_lighest">#EEEEEE</color>
+    <color name="gray_dark">#424242</color>
+    <color name="default_tv_color">#515151</color>
+    <color name="bottom_bar">#FAFAFA</color>
+    <color name="light_green">#8BC34A</color>
+</resources>

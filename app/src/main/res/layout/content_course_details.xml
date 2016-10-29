@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:id="@+id/content_course_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.app.studymanager.coursedetails.CourseDetailsActivity"
+    tools:showIn="@layout/activity_course_details">
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_xsmall"
+        android:text="@string/description"
+        fontPath="fonts/Asap-Regular.ttf"/>
+
+    <TextView
+        android:id="@+id/description_tv"
+        android:layout_below="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/default_tv_color"
+        android:textSize="@dimen/text_xsmall"
+        fontPath="fonts/Asap-Regular.ttf"/>
+
+    <View
+        android:id="@+id/view_id"
+        android:layout_below="@+id/description_tv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_light"/>
+
+    <TextView
+        android:id="@+id/text_view2"
+        android:layout_below="@+id/view_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_xsmall"
+        android:text="@string/recommended"
+        fontPath="fonts/Asap-Regular.ttf" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_below="@+id/text_view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/check_subscription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="courseSubscription"
+        android:textAllCaps="false"
+        android:textSize="@dimen/text_xsmall"
+        android:textColor="@color/colorPrimary"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

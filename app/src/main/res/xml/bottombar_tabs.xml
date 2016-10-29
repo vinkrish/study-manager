@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        icon="@drawable/home_active"
+        title="Home" />
+    <tab
+        id="@+id/tab_courses"
+        icon="@drawable/courses_active"
+        title="Courses" />
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/profile_active"
+        title="Profile" />
+</tabs>
