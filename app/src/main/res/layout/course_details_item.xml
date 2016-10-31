@@ -15,7 +15,7 @@
         android:id="@+id/book_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:gravity="center"
         android:textColor="@color/default_tv_color"/>
 
 </LinearLayout>

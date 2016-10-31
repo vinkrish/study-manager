@@ -55,9 +55,11 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
 
         response = SharedPreferenceUtil.getUserToken(this);
         presenter = new CourseDetailsPresenterImpl(this, new CourseDetailsInteractorImpl());
-        recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),3);
+        //layoutManager.setAutoMeasureEnabled(true);
         recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.setNestedScrollingEnabled(false);
+        //recyclerView.setHasFixedSize(true);
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.grid_spacing);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, spacingInPixels, false));
     }

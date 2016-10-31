@@ -1,14 +1,19 @@
 package com.app.studymanager.subscribedcourses;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -82,7 +87,7 @@ public class SubscribedCoursesFragment extends Fragment implements SubscribedCou
             viewEmpty.setVisibility(View.VISIBLE);
         } else {
             viewList.setVisibility(View.VISIBLE);
-            recyclerView.setAdapter(new SubscribedCoursesAdapter(subscribedCourses));
+            recyclerView.setAdapter(new SubscribedCoursesAdapter(getActivity(), subscribedCourses));
         }
     }
 

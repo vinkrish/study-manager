@@ -6,7 +6,7 @@
     <color name="colorAccent">#06B089</color>
     <color name="blue">#2196F3</color>
     <color name="gray_light">#C0C0C0</color>
-    <color name="gray_lighest">#EEEEEE</color>
+    <color name="default_color">#FAFAFA</color>
     <color name="gray_dark">#424242</color>
     <color name="default_tv_color">#515151</color>
     <color name="bottom_bar">#FAFAFA</color>

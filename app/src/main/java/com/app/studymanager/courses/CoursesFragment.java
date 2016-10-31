@@ -31,7 +31,6 @@ public class CoursesFragment extends Fragment implements CoursesView {
     private String authToken;
 
     private CoursesPresenter presenter;
-    private CoursesAdapter coursesAdapter;
 
     public CoursesFragment() {}
 

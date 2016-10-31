@@ -2,7 +2,6 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
 
     <!-- Text Sizes -->
     <dimen name="text_tiny">12sp</dimen>
@@ -14,4 +13,7 @@
     <dimen name="text_xlarge">25sp</dimen>
 
     <dimen name="grid_spacing">25dp</dimen>
+    <dimen name="mTitleSize">16dp</dimen>
+    <dimen name="mSubTitleSize">12dp</dimen>
+    <dimen name="title_subtitle_space">10dp</dimen>
 </resources>

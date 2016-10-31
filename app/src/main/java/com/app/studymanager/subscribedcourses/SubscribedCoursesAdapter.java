@@ -1,5 +1,6 @@
 package com.app.studymanager.subscribedcourses;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +21,15 @@ import java.util.List;
 
 public class SubscribedCoursesAdapter extends RecyclerView.Adapter<SubscribedCoursesAdapter.ViewHolder> {
     private List<Course> items;
+    private float mTitleSize;
+    private float mSubTitleSize;
+    private float titleSubtitleSpace;
 
-    public SubscribedCoursesAdapter(List<Course> items){
+    public SubscribedCoursesAdapter(Context context, List<Course> items){
         this.items = items;
+        mTitleSize = context.getResources().getDimensionPixelSize(R.dimen.mTitleSize);
+        mSubTitleSize = context.getResources().getDimensionPixelSize(R.dimen.mSubTitleSize);
+        titleSubtitleSpace = context.getResources().getDimensionPixelSize(R.dimen.title_subtitle_space);
     }
 
     @Override
@@ -37,6 +44,9 @@ public class SubscribedCoursesAdapter extends RecyclerView.Adapter<SubscribedCou
         holder.courseName.setText(course.getDescription());
         holder.date.setText(course.getEndDate());
         holder.status.setText(course.getCurrentStatus());
+        holder.circle.setmTitleSize(mTitleSize);
+        holder.circle.setmSubtitleSize(mSubTitleSize);
+        holder.circle.setmTitleSubtitleSpace(titleSubtitleSpace);
         CircleAnimation animation = new CircleAnimation(holder.circle, 180);
         animation.setDuration(1000);
         holder.circle.startAnimation(animation);

@@ -14,7 +14,7 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("Asap-Regular.ttf")
+                .setDefaultFontPath("fonts/Asap-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );

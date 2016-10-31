@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.studymanager.subscribedcourses.SubscribedCoursesFragment">
+    tools:context="com.app.studymanager.subscribedcourses.SubscribedCoursesFragment"
+    tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:id="@+id/view_empty"
@@ -52,10 +53,11 @@
         android:visibility="invisible">
 
         <TextView
+            fontPath="fonts/Asap-Bold.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/subscribed_courses"
-            android:textSize="@dimen/text_xsmall"
+            android:textSize="@dimen/text_small"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textColor="@color/colorPrimaryDark"/>
@@ -63,8 +65,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="3dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:scrollbars="vertical" />
 
     </LinearLayout>
