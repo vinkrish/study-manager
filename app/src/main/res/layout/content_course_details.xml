@@ -72,7 +72,23 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
             android:onClick="courseSubscription"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_xsmall" />
+
+        <Button
+            android:id="@+id/course_settings"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_view"
+            android:layout_toRightOf="@+id/check_subscription"
+            android:layout_alignBaseline="@+id/check_subscription"
+            android:layout_marginLeft="30dp"
+            android:text="@string/title_activity_course_settings"
+            android:visibility="gone"
+            android:onClick="courseSettings"
+            android:textAllCaps="true"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_xsmall" />
 

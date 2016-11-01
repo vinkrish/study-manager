@@ -1,55 +1,60 @@
 package com.app.studymanager.coursedetails;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.studymanager.R;
+import com.app.studymanager.coursesettings.CourseSettingsActivity;
 import com.app.studymanager.models.Course;
-import com.app.studymanager.models.LoginResponse;
+import com.app.studymanager.models.Credentials;
 import com.app.studymanager.util.GridSpacingItemDecoration;
 import com.app.studymanager.util.SharedPreferenceUtil;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CourseDetailsActivity extends AppCompatActivity implements CourseDetailsView {
+    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.progress) ProgressBar progressBar;
     @BindView(R.id.description_tv) TextView description;
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
     @BindView(R.id.check_subscription) Button checkSubscription;
+    @BindView(R.id.course_settings) Button courseSettings;
     @BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
 
     private CourseDetailsPresenter presenter;
-    private LoginResponse response;
+    private Credentials response;
+    private Course course;
     private long courseId;
     private boolean subscriptionStatus;
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
+        ButterKnife.bind(this);
 
-        courseId = getIntent().getLongExtra("courseId", 0);
-        subscriptionStatus = getIntent().getBooleanExtra("subscribed", false);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            courseId = getIntent().getLongExtra("courseId", 0);
+            subscriptionStatus = getIntent().getBooleanExtra("subscribed", false);
+        }
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ButterKnife.bind(this);
 
         subscriptionStatus();
 
@@ -65,6 +70,11 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
     }
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -76,6 +86,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
 
     @Override
     public void setCourse(Course course) {
+        this.course = course;
         toolbar.setTitle(course.getTitle());
         description.setText(course.getDescription());
         recyclerView.setAdapter(new CourseDetailsAdapter(this, course.getBookList()));
@@ -84,8 +95,10 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
     private void subscriptionStatus(){
         if(subscriptionStatus){
             checkSubscription.setText(getString(R.string.unsubscribe));
+            courseSettings.setVisibility(View.VISIBLE);
         } else {
             checkSubscription.setText(getString(R.string.subscribe));
+            courseSettings.setVisibility(View.GONE);
         }
     }
 
@@ -95,6 +108,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
                 .show();
         subscriptionStatus = true;
         subscriptionStatus();
+        courseSettings.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -103,6 +117,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
                 .show();
         subscriptionStatus = false;
         subscriptionStatus();
+        courseSettings.setVisibility(View.GONE);
     }
 
     @Override
@@ -119,10 +134,20 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
         }
     }
 
+    public void courseSettings(View view) {
+        Intent intent = new Intent(this, CourseSettingsActivity.class);
+        Bundle args = new Bundle();
+        if(course != null){
+            args.putSerializable("course", course);
+        }
+        intent.putExtras(args);
+        startActivity(intent);
+    }
 
     @Override
     public void onResume() {
         super.onResume();
         presenter.onResume(response.getUserId(), response.getAuthToken(), courseId);
     }
+
 }

@@ -2,6 +2,7 @@ package com.app.studymanager.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Created by Vinay on 27-10-2016.
  */
 
-public class Course {
+public class Course implements Serializable{
     private long id;
     private String title;
     private String description;

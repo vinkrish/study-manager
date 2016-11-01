@@ -35,10 +35,19 @@
         <activity
             android:name=".coursedetails.CourseDetailsActivity"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".bottombar.BottomBarActivity" />
+        </activity>
+        <activity
+            android:name=".coursesettings.CourseSettingsActivity"
+            android:label="@string/title_activity_course_settings"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.studymanager.coursedetails.CourseDetailsActivity" />
         </activity>
     </application>
 

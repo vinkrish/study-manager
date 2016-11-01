@@ -1,6 +1,6 @@
 package com.app.studymanager.rest;
 
-import com.app.studymanager.models.LoginResponse;
+import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.CommonResponse;
 
 import java.util.HashMap;
@@ -20,6 +20,6 @@ public interface AuthApi {
 
     @Headers("content-type: application/json")
     @POST("user/login")
-    Call<LoginResponse> login(@Body HashMap<String,String> body);
+    Call<Credentials> login(@Body HashMap<String,String> body);
 
 }

@@ -35,6 +35,11 @@
     <string name="subscription_error">Error while requesting</string>
     <string name="update">UPDATE</string>
     <string name="recommended">RECOMMENDED BOOKS</string>
+    <string name="title">TITLE</string>
+    <string name="target_date">TARGET DATE</string>
+    <string name="setting_saved">Successfully saved settings</string>
+    <string name="change">Change</string>
+    <string name="save">save</string>
     <string name="copyright">COPYRIGHT &amp; DISCLAIMER NOTICE</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -52,6 +57,7 @@
         pass the PMP Certification exam. No such guarantees or warranties are implied or expressed
         by &lt;Company Name&gt;
     </string>
-    <string name="title_activity_course_details">CourseDetailsActivity</string>
+    <string name="title_activity_course_details">Course Details</string>
+    <string name="title_activity_course_settings">Course Settings</string>
 
 </resources>

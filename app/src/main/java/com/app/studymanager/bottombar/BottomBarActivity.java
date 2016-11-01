@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.app.studymanager.R;
 import com.app.studymanager.courses.CoursesFragment;
-import com.app.studymanager.models.LoginResponse;
+import com.app.studymanager.models.Credentials;
 import com.app.studymanager.subscribedcourses.SubscribedCoursesFragment;
 import com.app.studymanager.profile.ProfileFragment;
 import com.app.studymanager.util.SharedPreferenceUtil;
@@ -19,7 +19,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class BottomBarActivity extends AppCompatActivity implements BottomBarView {
-    LoginResponse response;
+    Credentials response;
     BottomBar bottomBar;
 
     @Override

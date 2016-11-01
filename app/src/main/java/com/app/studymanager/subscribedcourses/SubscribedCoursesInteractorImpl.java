@@ -1,9 +1,7 @@
 package com.app.studymanager.subscribedcourses;
 
 import com.app.studymanager.models.Course;
-import com.app.studymanager.models.LoginResponse;
 import com.app.studymanager.rest.ApiClient;
-import com.app.studymanager.rest.AuthApi;
 import com.app.studymanager.rest.UserCourseApi;
 
 import java.util.HashMap;

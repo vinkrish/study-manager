@@ -1,10 +1,12 @@
 package com.app.studymanager.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Vinay on 27-10-2016.
  */
 
-public class Book {
+public class Book implements Serializable {
     private long id;
     private String title;
     private String description;

@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 
 import com.app.studymanager.bottombar.BottomBarActivity;
 import com.app.studymanager.R;
-import com.app.studymanager.models.LoginResponse;
+import com.app.studymanager.models.Credentials;
 import com.app.studymanager.singup.SignupActivity;
 import com.app.studymanager.util.EditTextWatcher;
 import com.app.studymanager.util.SharedPreferenceUtil;
@@ -80,8 +80,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void saveUserToken(LoginResponse loginResponse) {
-        SharedPreferenceUtil.saveUserToken(this, loginResponse);
+    public void saveUserToken(Credentials credentials) {
+        SharedPreferenceUtil.saveUserToken(this, credentials);
     }
 
     @Override

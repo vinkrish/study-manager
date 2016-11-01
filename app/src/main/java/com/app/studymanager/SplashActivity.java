@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.app.studymanager.bottombar.BottomBarActivity;
 import com.app.studymanager.login.LoginActivity;
-import com.app.studymanager.models.LoginResponse;
+import com.app.studymanager.models.Credentials;
 import com.app.studymanager.util.SharedPreferenceUtil;
 
 public class SplashActivity extends AppCompatActivity {
@@ -16,8 +16,8 @@ public class SplashActivity extends AppCompatActivity {
         setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
 
-        LoginResponse loginResponse = SharedPreferenceUtil.getUserToken(this);
-        if(loginResponse.getAuthToken().equals("")) {
+        Credentials credentials = SharedPreferenceUtil.getUserToken(this);
+        if(credentials.getAuthToken().equals("")) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();

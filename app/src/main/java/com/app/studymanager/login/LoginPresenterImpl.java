@@ -1,8 +1,6 @@
 package com.app.studymanager.login;
 
-import android.util.Log;
-
-import com.app.studymanager.models.LoginResponse;
+import com.app.studymanager.models.Credentials;
 
 /**
  * Created by Vinay on 23-10-2016.
@@ -64,9 +62,9 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     }
 
     @Override
-    public void onSuccess(LoginResponse loginResponse) {
+    public void onSuccess(Credentials credentials) {
         if(loginView != null) {
-            loginView.saveUserToken(loginResponse);
+            loginView.saveUserToken(credentials);
             loginView.hideProgress();
             loginView.navigateToHome();
         }

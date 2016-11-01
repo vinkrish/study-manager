@@ -3,7 +3,7 @@ package com.app.studymanager.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.app.studymanager.models.LoginResponse;
+import com.app.studymanager.models.Credentials;
 
 /**
  * Created by Vinay on 26-10-2016.
@@ -11,7 +11,7 @@ import com.app.studymanager.models.LoginResponse;
 
 public class SharedPreferenceUtil {
 
-    public static void saveUserToken(Context context, LoginResponse response) {
+    public static void saveUserToken(Context context, Credentials response) {
         SharedPreferences sharedPref = context.getSharedPreferences("user_token", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt("userId", response.getUserId());
@@ -19,9 +19,9 @@ public class SharedPreferenceUtil {
         editor.apply();
     }
 
-    public static LoginResponse getUserToken(Context context){
+    public static Credentials getUserToken(Context context){
         SharedPreferences sharedPref = context.getSharedPreferences("user_token", Context.MODE_PRIVATE);
-        LoginResponse response = new LoginResponse();
+        Credentials response = new Credentials();
         response.setUserId(sharedPref.getInt("userId", 0));
         response.setAuthToken(sharedPref.getString("authToken", ""));
         return response;
