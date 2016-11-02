@@ -40,6 +40,21 @@
     <string name="setting_saved">Successfully saved settings</string>
     <string name="change">Change</string>
     <string name="save">save</string>
+    <string name="input_hours">INPUT HOURS</string>
+    <string name="input_hours_text">Enter the number of hours you can spend studying on a regular
+        basis for this course.
+    </string>
+    <string name="prep_time">PREPARATION TIME</string>
+    <string name="easy">Easy</string>
+    <string name="normal">Normal</string>
+    <string name="difficult">Difficult</string>
+    <string name="plan_date">PLANNED COMPLETION DATE</string>
+    <string name="m">M</string>
+    <string name="t">T</string>
+    <string name="w">W</string>
+    <string name="f">F</string>
+    <string name="s">S</string>
+    <string name="input_hours_error">At least one of the input hours should be non zero.</string>
     <string name="copyright">COPYRIGHT &amp; DISCLAIMER NOTICE</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

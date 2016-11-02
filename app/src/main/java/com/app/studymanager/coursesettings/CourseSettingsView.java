@@ -15,5 +15,7 @@ public interface CourseSettingsView {
 
     void showSaved();
 
+    void showInputError();
+
     void showError();
 }

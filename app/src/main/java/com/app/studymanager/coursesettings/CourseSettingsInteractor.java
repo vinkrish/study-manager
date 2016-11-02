@@ -20,4 +20,5 @@ public interface CourseSettingsInteractor {
 
     void saveCourseSettings(Credentials credentials, CourseSettings courseSettings, long courseId,
                             CourseSettingsInteractor.OnFinishedListener listener);
+
 }

@@ -13,12 +13,16 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 
 import com.app.studymanager.R;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.CourseSettings;
 import com.app.studymanager.models.Credentials;
+import com.app.studymanager.models.WeeklyHours;
+import com.app.studymanager.util.CommonDialogUtil;
 import com.app.studymanager.util.DatePickerFragment;
 import com.app.studymanager.util.SharedPreferenceUtil;
 
@@ -70,6 +74,12 @@ public class CourseSettingsActivity extends AppCompatActivity
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        presenter.onResume(credentials, courseId);
+    }
+
+    @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
@@ -87,15 +97,18 @@ public class CourseSettingsActivity extends AppCompatActivity
     @Override
     public void setCourseSettings(CourseSettings courseSettings) {
         this.courseSettings = courseSettings;
-        viewPager.setAdapter(new CourseSettingsPagerAdapter(getSupportFragmentManager(),
-                course, this.courseSettings));
-        tabLayout.setupWithViewPager(viewPager);
+        setViewPager();
     }
 
     @Override
     public void showSaved() {
         Snackbar.make(coordinatorLayout, getString(R.string.setting_saved), Snackbar.LENGTH_LONG)
                 .show();
+    }
+
+    @Override
+    public void showInputError() {
+        CommonDialogUtil.displayAlertDialog(this, getString(R.string.input_hours_error));
     }
 
     @Override
@@ -132,10 +145,12 @@ public class CourseSettingsActivity extends AppCompatActivity
         presenter.onSave(credentials, courseSettings , courseId);
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        presenter.onResume(credentials, courseId);
+    public void saveDifficultySettings(WeeklyHours weeklyHours){
+        courseSettings.setWeeklyHours(weeklyHours);
+        CourseSettings newCourseSettings = new CourseSettings();
+        newCourseSettings.setWeeklyHours(weeklyHours);
+        newCourseSettings.setProficiency(courseSettings.getProficiency());
+        presenter.onSave(credentials, newCourseSettings , courseId);
     }
 
     @Override
@@ -145,6 +160,37 @@ public class CourseSettingsActivity extends AppCompatActivity
         cal.set(year, month, dayOfMonth);
         Date date = cal.getTime();
         courseSettings.setTargetDate(dateFormat.format(date));
+        setViewPager();
+    }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        switch (view.getId()) {
+            case R.id.radio_easy:
+                if (checked){
+                    courseSettings.setProficiency("EASY");
+                    setViewPager();
+                    viewPager.setCurrentItem(2);
+                }
+                break;
+            case R.id.radio_moderate:
+                if (checked){
+                    courseSettings.setProficiency("NORMAL");
+                    setViewPager();
+                    viewPager.setCurrentItem(2);
+                }
+                break;
+            case R.id.radio_aggressive:
+                if (checked){
+                    courseSettings.setProficiency("DIFFICULT");
+                    setViewPager();
+                    viewPager.setCurrentItem(2);
+                }
+                break;
+        }
+    }
+
+    private void setViewPager() {
         viewPager.setAdapter(new CourseSettingsPagerAdapter(getSupportFragmentManager(),
                 course, courseSettings));
         tabLayout.setupWithViewPager(viewPager);

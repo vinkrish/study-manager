@@ -57,6 +57,8 @@ public class CourseSettingsInteractorImpl implements CourseSettingsInteractor {
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
                 if(response.body().isSuccess()){
                     listener.onSaved();
+                }else{
+                    listener.onError();
                 }
             }
 
@@ -66,4 +68,5 @@ public class CourseSettingsInteractorImpl implements CourseSettingsInteractor {
             }
         });
     }
+
 }

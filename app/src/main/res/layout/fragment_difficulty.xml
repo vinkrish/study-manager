@@ -1,7 +1,356 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myScrollingContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.studymanager.coursesettings.fragment.difficulty.DifficultyFragment">
+    android:layout_gravity="fill_vertical"
+    android:paddingBottom="10dp"
+    android:scrollbars="none"
+    tools:context="com.app.studymanager.coursesettings.fragment.difficulty.DifficultyFragment"
+    tools:ignore="MissingPrefix">
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            fontPath="fonts/Asap-Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/title"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_small" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            fontPath="fonts/Asap-Regular.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:lineSpacingExtra="3dp"
+            android:textColor="@color/default_tv_color"
+            android:textSize="@dimen/text_xsmall" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_light" />
+
+        <TextView
+            fontPath="fonts/Asap-Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/input_hours"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_small" />
+
+        <TextView
+            fontPath="fonts/Asap-Regular.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/input_hours_text"
+            android:textColor="@color/default_tv_color"
+            android:textSize="@dimen/text_xsmall" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/m"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/t"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/w"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/t"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/f"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/s"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/s"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/mon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <EditText
+                android:id="@+id/tue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <EditText
+                android:id="@+id/wed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <EditText
+                android:id="@+id/thu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <EditText
+                android:id="@+id/fri"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <EditText
+                android:id="@+id/sat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <EditText
+                android:id="@+id/sun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_light" />
+
+        <TextView
+            fontPath="fonts/Asap-Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/prep_time"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_small" />
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_easy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/easy"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+
+            <RadioButton
+                android:id="@+id/radio_moderate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/normal"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+
+            <RadioButton
+                android:id="@+id/radio_aggressive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/difficult"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_light" />
+
+        <TextView
+            fontPath="fonts/Asap-Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/plan_date"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_small" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/cal" />
+
+            <TextView
+                android:id="@+id/planned_date_tv"
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_light" />
+
+        <TextView
+            fontPath="fonts/Asap-Bold.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/description"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_small" />
+
+        <TextView
+            android:id="@+id/description_tv"
+            fontPath="fonts/Asap-Regular.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:lineSpacingExtra="3dp"
+            android:textColor="@color/default_tv_color"
+            android:textSize="@dimen/text_xsmall" />
+
+
+        <Button
+            android:id="@+id/save_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:onClick="saveDifficulty"
+            android:text="@string/save"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_xsmall" />
+
+    </LinearLayout>
+
+</ScrollView>
+
