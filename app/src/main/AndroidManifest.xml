@@ -35,8 +35,8 @@
         <activity
             android:name=".coursedetails.CourseDetailsActivity"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".bottombar.BottomBarActivity" />
@@ -48,6 +48,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.app.studymanager.coursedetails.CourseDetailsActivity" />
+        </activity>
+        <activity
+            android:name=".courseupdate.CourseUpdateActivity"
+            android:label="@string/title_activity_course_update"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".bottombar.BottomBarActivity" />
         </activity>
     </application>
 

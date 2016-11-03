@@ -26,7 +26,7 @@ public interface UserCourseApi {
     Call<List<Course>> getSubscribedCourses(@HeaderMap Map<String,String> headers);
 
     @Headers("content-type: application/json")
-    @GET("api/course/subscribedCourse/{id}")
+    @GET("api/subscribedCourse/{id}")
     Call<Course> getSubscribedCourseDetails(@HeaderMap Map<String,String> headers,
                                   @Path("id") long courseId);
 

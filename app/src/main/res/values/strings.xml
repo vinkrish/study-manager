@@ -55,6 +55,8 @@
     <string name="f">F</string>
     <string name="s">S</string>
     <string name="input_hours_error">At least one of the input hours should be non zero.</string>
+    <string name="books">Books</string>
+    <string name="pages_completed">Pages Completed :</string>
     <string name="copyright">COPYRIGHT &amp; DISCLAIMER NOTICE</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -74,5 +76,6 @@
     </string>
     <string name="title_activity_course_details">Course Details</string>
     <string name="title_activity_course_settings">Course Settings</string>
+    <string name="title_activity_course_update">Course Update</string>
 
 </resources>

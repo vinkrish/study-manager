@@ -1,34 +1,29 @@
 package com.app.studymanager.subscribedcourses;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.app.studymanager.R;
-import com.app.studymanager.bottombar.BottomBarActivity;
-import com.app.studymanager.courses.CoursesFragment;
+import com.app.studymanager.courseupdate.CourseUpdateActivity;
 import com.app.studymanager.models.Course;
+import com.app.studymanager.util.AdapterCallback;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class SubscribedCoursesFragment extends Fragment implements SubscribedCoursesView {
+public class SubscribedCoursesFragment extends Fragment
+        implements SubscribedCoursesView, AdapterCallback {
+
     @BindView(R.id.progress) ProgressBar progressBar;
     @BindView(R.id.view_list) LinearLayout viewList;
     @BindView(R.id.view_empty) LinearLayout viewEmpty;
@@ -38,6 +33,7 @@ public class SubscribedCoursesFragment extends Fragment implements SubscribedCou
     private static final String ARG_PARAM2 = "param2";
     private int userId;
     private String authToken;
+    private AdapterCallback adapterCallback;
 
     private SubscribedCoursesPresenter presenter;
 
@@ -68,6 +64,7 @@ public class SubscribedCoursesFragment extends Fragment implements SubscribedCou
         ButterKnife.bind(this, view);
         presenter = new SubscribedCoursesPresenterImpl(this, new SubscribedCoursesInteractorImpl());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapterCallback = this;
         return view;
     }
 
@@ -87,7 +84,7 @@ public class SubscribedCoursesFragment extends Fragment implements SubscribedCou
             viewEmpty.setVisibility(View.VISIBLE);
         } else {
             viewList.setVisibility(View.VISIBLE);
-            recyclerView.setAdapter(new SubscribedCoursesAdapter(getActivity(), subscribedCourses));
+            recyclerView.setAdapter(new SubscribedCoursesAdapter(getActivity(), subscribedCourses, adapterCallback));
         }
     }
 
@@ -97,4 +94,11 @@ public class SubscribedCoursesFragment extends Fragment implements SubscribedCou
         presenter.onResume(userId, authToken);
     }
 
+    @Override
+    public void onMethodCallback(long id, String date) {
+        Intent intent = new Intent(getActivity(), CourseUpdateActivity.class);
+        intent.putExtra("courseId", id);
+        intent.putExtra("date", date);
+        startActivity(intent);
+    }
 }

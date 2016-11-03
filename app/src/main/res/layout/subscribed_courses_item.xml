@@ -27,62 +27,75 @@
                 fontPath="fonts/Asap-Regular.ttf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:lineSpacingExtra="3dp"
                 android:textColor="@color/default_tv_color"
                 android:textSize="@dimen/text_medium" />
 
-            <ImageView
-                android:id="@+id/cal_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/course_name"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/cal" />
-
-            <TextView
-                android:id="@+id/date"
-                fontPath="fonts/Asap-Regular.ttf"
+            <LinearLayout
+                android:id="@+id/layout_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/cal_img"
                 android:layout_below="@+id/course_name"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/cal_img"
-                android:textColor="@color/default_tv_color"
-                android:textSize="@dimen/text_small" />
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/progress_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/date"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/progress" />
+                <ImageView
+                    android:id="@+id/cal_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/cal" />
 
-            <TextView
-                android:id="@+id/status"
-                fontPath="fonts/Asap-Regular.ttf"
+                <TextView
+                    android:id="@+id/date"
+                    fontPath="fonts/Asap-Regular.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/default_tv_color"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/progress_img"
-                android:layout_below="@+id/date"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/progress_img"
-                android:textColor="@color/default_tv_color"
-                android:textSize="@dimen/text_small" />
+                android:layout_below="@+id/layout_1"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/progress_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/progress" />
+
+                <TextView
+                    android:id="@+id/status"
+                    fontPath="fonts/Asap-Regular.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/default_tv_color"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/update"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/status"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/layout_2"
                 android:text="@string/update"
                 android:textAllCaps="false"
-                android:textSize="@dimen/text_xsmall"
                 android:textColor="@color/colorPrimary"
-                style="?android:attr/borderlessButtonStyle"/>
+                android:textSize="@dimen/text_xsmall" />
 
 
         </RelativeLayout>
