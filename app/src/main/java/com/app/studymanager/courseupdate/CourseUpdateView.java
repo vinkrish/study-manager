@@ -15,5 +15,7 @@ public interface CourseUpdateView {
 
     void setUpdate();
 
+    void whileUnscribed();
+
     void showError();
 }

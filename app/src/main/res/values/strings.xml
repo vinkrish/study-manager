@@ -29,7 +29,7 @@
     <string name="available_courses">AVAILABLE COURSES</string>
     <string name="description">DESCRIPTION</string>
     <string name="subscribe">SUBSCRIBE</string>
-    <string name="unsubscribe">UNSUBSCRIBE</string>
+    <string name="unsubscribe">Unsubscribe</string>
     <string name="subscribed">Successfully subscribed to course.</string>
     <string name="unsubscribed">Unsubscribed from course.</string>
     <string name="subscription_error">Error while requesting</string>

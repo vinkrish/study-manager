@@ -71,4 +71,31 @@ public class CourseUpdateInteractorImpl implements CourseUpdateInteractor {
             }
         });
     }
+
+    @Override
+    public void unSubscribeToCourse(Credentials credentials, long courseId,
+                                    final OnFinishedListener listener) {
+        UserCourseApi api = ApiClient.getClient().create(UserCourseApi.class);
+
+        HashMap<String,String> headers = new HashMap<>();
+        headers.put("user-id", credentials.getUserId()+"");
+        headers.put("auth-token", credentials.getAuthToken());
+
+        Call<CommonResponse> unsubscribeCourse = api.unSubscribeCourse(headers, courseId);
+        unsubscribeCourse.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                if(response.body().isSuccess()){
+                    listener.onUnSubscribed();
+                } else {
+                    listener.onError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                listener.onError();
+            }
+        });
+    }
 }

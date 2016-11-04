@@ -3,6 +3,7 @@ package com.app.studymanager.courseupdate;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,6 +25,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.studymanager.R;
+import com.app.studymanager.bottombar.BottomBarActivity;
+import com.app.studymanager.coursesettings.CourseSettingsActivity;
 import com.app.studymanager.models.Book;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
@@ -49,6 +54,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
     private CourseUpdatePresenter presenter;
     private Credentials credentials;
     private long courseId;
+    private Course course;
     private String endDate;
     private int pages;
 
@@ -57,6 +63,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_update);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.showOverflowMenu();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -80,6 +87,32 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.update_overflow, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.course_settings:
+                Intent intent = new Intent(this, CourseSettingsActivity.class);
+                Bundle args = new Bundle();
+                if(course != null){
+                    args.putSerializable("course", course);
+                }
+                intent.putExtras(args);
+                startActivity(intent);
+                return true;
+            case R.id.unsubscribe_settings:
+                presenter.unsubscribeCourse(credentials, courseId);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -111,6 +144,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
 
     @Override
     public void setCourse(Course course) {
+        this.course = course;
         title.setText(course.getTitle());
         date.setText(getTargetDate(endDate));
         target.setText(String.format("Read %s pages today to stay on track", course.getTodayGoal()));
@@ -126,6 +160,11 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
     @Override
     public void setUpdate() {
         presenter.onResume(credentials, courseId);
+    }
+
+    @Override
+    public void whileUnscribed() {
+        startActivity(new Intent(this, BottomBarActivity.class));
     }
 
     @Override

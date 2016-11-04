@@ -14,6 +14,8 @@ public interface CourseUpdateInteractor {
 
         void onUpdated();
 
+        void onUnSubscribed();
+
         void onError();
     }
 
@@ -23,4 +25,7 @@ public interface CourseUpdateInteractor {
     void updateSubscribedCourse(Credentials credentials, long courseId,
                                 Book book,
                                 CourseUpdateInteractor.OnFinishedListener listener);
+
+    void unSubscribeToCourse(Credentials credentials, long courseId,
+                             CourseUpdateInteractor.OnFinishedListener listener);
 }

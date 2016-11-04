@@ -36,6 +36,14 @@ public class CourseUpdatePresenterImpl implements CourseUpdatePresenter,
     }
 
     @Override
+    public void unsubscribeCourse(Credentials credentials, long courseId) {
+        if(updateView != null) {
+            updateView.showProgress();
+            interactor.unSubscribeToCourse(credentials, courseId, this);
+        }
+    }
+
+    @Override
     public void onDestroy() {
         updateView = null;
     }
@@ -53,6 +61,14 @@ public class CourseUpdatePresenterImpl implements CourseUpdatePresenter,
         if(updateView != null) {
             updateView.setUpdate();
             updateView.hideProgess();
+        }
+    }
+
+    @Override
+    public void onUnSubscribed() {
+        if(updateView != null){
+            updateView.hideProgess();
+            updateView.whileUnscribed();
         }
     }
 
