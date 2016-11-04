@@ -29,9 +29,7 @@ public class CoursesFragment extends Fragment implements CoursesView {
     private static final String ARG_PARAM2 = "param2";
     private int userId;
     private String authToken;
-
     private CoursesPresenter presenter;
-
     public CoursesFragment() {}
 
     public static CoursesFragment newInstance(int param1, String param2) {

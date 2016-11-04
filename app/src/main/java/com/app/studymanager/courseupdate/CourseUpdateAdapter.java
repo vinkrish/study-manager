@@ -9,22 +9,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.studymanager.R;
+import com.app.studymanager.courses.CoursesAdapter;
 import com.app.studymanager.models.Book;
+import com.app.studymanager.models.Course;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Vinay on 03-11-2016.
  */
 
 public class CourseUpdateAdapter extends RecyclerView.Adapter<CourseUpdateAdapter.ViewHolder> {
+
+    public interface OnItemClickListener {
+        void onItemClick(Book book);
+    }
+
     private Context context;
     private List<Book> items;
+    private final OnItemClickListener listener;
 
-    public CourseUpdateAdapter(Context context, List<Book> items) {
+    public CourseUpdateAdapter(Context context, List<Book> items, OnItemClickListener listener) {
         this.context = context;
         this.items = items;
+        this.listener = listener;
     }
 
     @Override
@@ -35,14 +45,7 @@ public class CourseUpdateAdapter extends RecyclerView.Adapter<CourseUpdateAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Book book = items.get(position);
-        holder.bookName.setText(book.getTitle());
-        holder.pages.setText(String.format("%s / %s", book.getNoOfPagesRead(), book.getNoOfPages()));
-        Picasso.with(context)
-                .load("http://vinkrish.info/bookcover.jpg")
-                .placeholder(R.drawable.placeholder_image)
-                .error(R.drawable.placeholder_image)
-                .into(holder.bookImage);
+        holder.bind(items.get(position), listener);
     }
 
     @Override
@@ -60,6 +63,23 @@ public class CourseUpdateAdapter extends RecyclerView.Adapter<CourseUpdateAdapte
             this.bookName = (TextView) view.findViewById(R.id.book_name);
             this.pages = (TextView) view.findViewById(R.id.pages);
             this.bookImage = (ImageView) view.findViewById(R.id.book_image);
+        }
+
+        public void bind(final Book book, final OnItemClickListener listener) {
+
+            bookName.setText(book.getTitle());
+            pages.setText(String.format("%s / %s", book.getNoOfPagesRead(), book.getNoOfPages()));
+            Picasso.with(context)
+                    .load("http://vinkrish.info/bookcover.jpg")
+                    .placeholder(R.drawable.placeholder_image)
+                    .error(R.drawable.placeholder_image)
+                    .into(bookImage);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(book);
+                }
+            });
         }
     }
 

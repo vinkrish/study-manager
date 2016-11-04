@@ -1,5 +1,6 @@
 package com.app.studymanager.courseupdate;
 
+import com.app.studymanager.models.Book;
 import com.app.studymanager.models.Credentials;
 
 /**
@@ -9,6 +10,8 @@ import com.app.studymanager.models.Credentials;
 public interface CourseUpdatePresenter {
 
     void onResume(Credentials credentials, long courseId);
+
+    void onUpdate(Credentials credentials, long courseId, Book book);
 
     void onDestroy();
 }

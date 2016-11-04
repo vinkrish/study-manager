@@ -1,5 +1,6 @@
 package com.app.studymanager.courseupdate;
 
+import com.app.studymanager.models.Book;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 
@@ -27,6 +28,14 @@ public class CourseUpdatePresenterImpl implements CourseUpdatePresenter,
     }
 
     @Override
+    public void onUpdate(Credentials credentials, long courseId, Book book) {
+        if(updateView != null) {
+            updateView.showProgress();
+            interactor.updateSubscribedCourse(credentials, courseId, book, this);
+        }
+    }
+
+    @Override
     public void onDestroy() {
         updateView = null;
     }
@@ -35,6 +44,14 @@ public class CourseUpdatePresenterImpl implements CourseUpdatePresenter,
     public void onFinished(Course course) {
         if(updateView != null) {
             updateView.setCourse(course);
+            updateView.hideProgess();
+        }
+    }
+
+    @Override
+    public void onUpdated() {
+        if(updateView != null) {
+            updateView.setUpdate();
             updateView.hideProgess();
         }
     }

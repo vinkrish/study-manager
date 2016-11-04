@@ -22,7 +22,7 @@ public class CourseSettingsInteractorImpl implements CourseSettingsInteractor {
                                     final CourseSettingsInteractor.OnFinishedListener listener) {
         CourseSettingsApi api = ApiClient.getClient().create(CourseSettingsApi.class);
 
-        HashMap<String,String> headers = new HashMap<String, String>();
+        HashMap<String,String> headers = new HashMap<>();
         headers.put("user-id", credentials.getUserId()+"");
         headers.put("auth-token", credentials.getAuthToken());
 
@@ -47,7 +47,7 @@ public class CourseSettingsInteractorImpl implements CourseSettingsInteractor {
                                    final OnFinishedListener listener) {
         CourseSettingsApi api = ApiClient.getClient().create(CourseSettingsApi.class);
 
-        HashMap<String,String> headers = new HashMap<String, String>();
+        HashMap<String,String> headers = new HashMap<>();
         headers.put("user-id", credentials.getUserId()+"");
         headers.put("auth-token", credentials.getAuthToken());
 

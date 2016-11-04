@@ -1,6 +1,10 @@
 package com.app.studymanager.courseupdate;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -10,10 +14,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.studymanager.R;
+import com.app.studymanager.models.Book;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.util.DividerItemDecoration;
@@ -41,6 +50,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
     private Credentials credentials;
     private long courseId;
     private String endDate;
+    private int pages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,13 +115,76 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
         date.setText(getTargetDate(endDate));
         target.setText(String.format("Read %s pages today to stay on track", course.getTodayGoal()));
         progress.setText(String.format("Today's progress"));
-        recyclerView.setAdapter(new CourseUpdateAdapter(this, course.getBookList()));
+        recyclerView.setAdapter(new CourseUpdateAdapter(this, course.getBookList(), new CourseUpdateAdapter.OnItemClickListener(){
+            @Override
+            public void onItemClick(Book book) {
+                displayUpdateDialog(book);
+            }
+        }));
+    }
+
+    @Override
+    public void setUpdate() {
+        presenter.onResume(credentials, courseId);
     }
 
     @Override
     public void showError() {
         Snackbar.make(coordinatorLayout, getString(R.string.subscription_error), Snackbar.LENGTH_LONG)
                 .show();
+    }
+
+    public Dialog displayUpdateDialog(final Book book) {
+        final Dialog dialog = new Dialog(this, R.style.DialogFadeAnim);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_course_update);
+
+        final TextView pagesRead = (TextView) dialog.findViewById(R.id.pages_tv);
+        pages = book.getNoOfPagesRead();
+
+        ((TextView) dialog.findViewById(R.id.book_tv)).setText(book.getTitle());
+        pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
+        ((TextView) dialog.findViewById(R.id.total_pages_tv)).setText(String.format("%s", book.getNoOfPages()));
+
+        (dialog.findViewById(R.id.decrement)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pages>0){
+                    pages -= 1;
+                    pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
+                }
+            }
+        });
+
+        (dialog.findViewById(R.id.increment)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pages += 1;
+                pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
+            }
+        });
+
+        (dialog.findViewById(R.id.save_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                book.setNoOfPagesRead(pages);
+                presenter.onUpdate(credentials, courseId, book);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+        //Grab the window of the dialog, and change the width
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = dialog.getWindow();
+        lp.copyFrom(window.getAttributes());
+
+        //This makes the dialog take up the full width
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+        return dialog;
     }
 
     @Override

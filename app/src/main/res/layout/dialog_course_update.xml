@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:ignore="MissingPrefix">
+
+    <TextView
+        fontPath="fonts/Asap-Bold.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:drawableRight="@drawable/delete"
+        android:text="@string/update_progress"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_small" />
+
+    <TextView
+        android:id="@+id/book_tv"
+        fontPath="fonts/Asap-Regular.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/default_tv_color"
+        android:textSize="@dimen/text_xmedium" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <TextView
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.7"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/page_no"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/decrement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/subtraction" />
+
+                <TextView
+                    android:id="@+id/pages_tv"
+                    fontPath="fonts/Asap-Regular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="@color/default_tv_color"
+                    android:textSize="@dimen/text_xsmall" />
+
+                <ImageView
+                    android:id="@+id/increment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/addition" />
+
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.7"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/total_pages"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+
+            <TextView
+                android:id="@+id/total_pages_tv"
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_light" />
+
+    <TextView
+        fontPath="fonts/Asap-Regular.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:drawableRight="@drawable/subscribed"
+        android:text="@string/rev_completed"
+        android:textColor="@color/default_tv_color"
+        android:textSize="@dimen/text_xsmall" />
+
+    <Button
+        android:id="@+id/save_btn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:onClick="saveSettings"
+        android:text="@string/save"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_xsmall" />
+
+</LinearLayout>

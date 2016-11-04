@@ -13,5 +13,7 @@ public interface CourseUpdateView {
 
     void setCourse(Course course);
 
+    void setUpdate();
+
     void showError();
 }
