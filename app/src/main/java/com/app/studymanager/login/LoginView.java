@@ -11,12 +11,6 @@ public interface LoginView {
 
     void hideProgress();
 
-    void setEmailError();
-
-    void setValidEmailError();
-
-    void setPasswordError();
-
     void setLoginFailed();
 
     void navigateToSignup();

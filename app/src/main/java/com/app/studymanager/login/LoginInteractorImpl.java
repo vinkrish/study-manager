@@ -21,18 +21,7 @@ import retrofit2.Response;
 public class LoginInteractorImpl implements LoginInteractor {
     @Override
     public void login(String email, String password, final OnLoginFinishedListener listener) {
-        if(TextUtils.isEmpty(email)){
-            listener.onEmailError();
-            return;
-        }
-        if(!validateEmail(email)){
-            listener.onValidEmailError();
-            return;
-        }
-        if(TextUtils.isEmpty(password)){
-            listener.onPasswordError();
-            return;
-        }
+
         AuthApi authApi = ApiClient.getClient().create(AuthApi.class);
 
         HashMap<String,String> body = new HashMap<String, String>();
@@ -55,14 +44,5 @@ public class LoginInteractorImpl implements LoginInteractor {
                 listener.onLoginFailed();
             }
         });
-    }
-
-     private boolean validateEmail(String email) {
-        String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
-        if (matcher.matches()) {
-            return true;
-        } else return false;
     }
 }

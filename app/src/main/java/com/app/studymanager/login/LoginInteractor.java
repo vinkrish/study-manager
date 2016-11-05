@@ -9,11 +9,6 @@ import com.app.studymanager.models.Credentials;
 public interface LoginInteractor {
 
     interface OnLoginFinishedListener{
-        void onEmailError();
-
-        void onValidEmailError();
-
-        void onPasswordError();
 
         void onLoginFailed();
 

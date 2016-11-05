@@ -53,21 +53,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void setEmailError() {
-        emailLayout.setError(getString(R.string.email_error));
-    }
-
-    @Override
-    public void setValidEmailError() {
-        emailLayout.setError(getString(R.string.valid_email));
-    }
-
-    @Override
-    public void setPasswordError() {
-        passwordLayout.setError(getString(R.string.password_error));
-    }
-
-    @Override
     public void setLoginFailed() {
         Snackbar.make(coordinatorLayout, getString(R.string.login_failed), Snackbar.LENGTH_LONG)
                 .show();
@@ -92,12 +77,32 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @OnClick(R.id.login_btn)
     public void login(View view) {
-        presenter.validateCredentials(email.getText().toString(), password.getText().toString());
+        if(validate()){
+            presenter.validateCredentials(email.getText().toString(), password.getText().toString());
+        }
     }
 
     @OnClick(R.id.signup_btn)
     public void signup(View view){
         navigateToSignup();
+    }
+
+    public boolean validate(){
+        boolean valid = true;
+
+        if(email.getText().toString().isEmpty()){
+            valid = false;
+            emailLayout.setError(getString(R.string.email_error));
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+            emailLayout.setError(getString(R.string.valid_email));
+            valid = false;
+        }else if (password.getText().toString().isEmpty() ||
+                password.getText().toString().length() < 8) {
+            passwordLayout.setError(getString(R.string.valid_password));
+            valid = false;
+        }
+
+        return valid;
     }
 
 }

@@ -30,30 +30,6 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     }
 
     @Override
-    public void onEmailError() {
-        if(loginView != null) {
-            loginView.hideProgress();
-            loginView.setEmailError();
-        }
-    }
-
-    @Override
-    public void onValidEmailError() {
-        if(loginView != null) {
-            loginView.hideProgress();
-            loginView.setValidEmailError();
-        }
-    }
-
-    @Override
-    public void onPasswordError() {
-        if(loginView != null) {
-            loginView.hideProgress();
-            loginView.setPasswordError();
-        }
-    }
-
-    @Override
     public void onLoginFailed() {
         if(loginView != null) {
             loginView.hideProgress();
