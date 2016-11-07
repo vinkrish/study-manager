@@ -255,7 +255,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/normal"
+                android:text="@string/moderate"
                 android:textColor="@color/default_tv_color"
                 android:textSize="@dimen/text_xsmall" />
 

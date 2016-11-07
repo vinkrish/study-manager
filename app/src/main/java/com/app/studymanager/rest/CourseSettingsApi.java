@@ -19,12 +19,12 @@ import retrofit2.http.Path;
 
 public interface CourseSettingsApi {
     @Headers("content-type: application/json")
-    @GET("api/course/{id}/settings")
+    @GET("api/subscribedCourse/{id}/settings")
     Call<CourseSettings> getCourseSettings(@HeaderMap Map<String,String> headers,
                                            @Path("id") long courseId);
 
     @Headers("content-type: application/json")
-    @POST("api/course/{id}/settings")
+    @POST("api/subscribedCourse/{id}/settings")
     Call<CommonResponse> saveCourseSettings(@HeaderMap Map<String,String> headers,
                                             @Body CourseSettings body,
                                             @Path("id") long courseId);

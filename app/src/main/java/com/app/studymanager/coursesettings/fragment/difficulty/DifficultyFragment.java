@@ -126,7 +126,7 @@ public class DifficultyFragment extends Fragment {
             case "EASY":
                 radioEasy.setChecked(true);
                 break;
-            case "NORMAL":
+            case "MODERATE":
                 radioModerate.setChecked(true);
                 break;
             case "DIFFICULT":

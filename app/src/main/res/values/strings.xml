@@ -46,7 +46,7 @@
     </string>
     <string name="prep_time">PREPARATION TIME</string>
     <string name="easy">Easy</string>
-    <string name="normal">Normal</string>
+    <string name="moderate">Moderate</string>
     <string name="difficult">Difficult</string>
     <string name="plan_date">PLANNED COMPLETION DATE</string>
     <string name="m">M</string>
@@ -61,6 +61,9 @@
     <string name="page_no">Page Number</string>
     <string name="total_pages">Total Pages</string>
     <string name="rev_completed">Revision Completed</string>
+    <string name="prof_info">PROFILE INFORMATION</string>
+    <string name="name">Name</string>
+    <string name="logout">LOGOUT</string>
     <string name="copyright">COPYRIGHT &amp; DISCLAIMER NOTICE</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

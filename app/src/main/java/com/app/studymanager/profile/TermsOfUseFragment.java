@@ -37,28 +37,4 @@ public class TermsOfUseFragment extends Fragment {
         return view;
     }
 
-    private boolean isViewVisible2(View view) {
-        Rect scrollBounds = new Rect();
-        //scrollView.getHitRect(scrollBounds);
-        if (view.getLocalVisibleRect(scrollBounds)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean isViewVisible1(View view) {
-        Rect scrollBounds = new Rect();
-        //scrollView.getDrawingRect(scrollBounds);
-
-        float top = view.getY();
-        float bottom = top + view.getHeight();
-
-        if (scrollBounds.top < top && scrollBounds.bottom > bottom) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 }

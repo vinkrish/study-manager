@@ -27,4 +27,11 @@ public class SharedPreferenceUtil {
         return response;
     }
 
+    public static void logout(Context context){
+        SharedPreferences sharedPref = context.getSharedPreferences("user_token", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("authToken", "");
+        editor.apply();
+    }
+
 }

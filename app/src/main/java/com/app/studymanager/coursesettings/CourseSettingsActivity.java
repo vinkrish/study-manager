@@ -175,7 +175,7 @@ public class CourseSettingsActivity extends AppCompatActivity
                 break;
             case R.id.radio_moderate:
                 if (checked){
-                    courseSettings.setProficiency("NORMAL");
+                    courseSettings.setProficiency("MODERATE");
                     setViewPager();
                     viewPager.setCurrentItem(2);
                 }

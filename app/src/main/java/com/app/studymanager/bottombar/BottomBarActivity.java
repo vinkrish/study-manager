@@ -1,6 +1,7 @@
 package com.app.studymanager.bottombar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.View;
 
 import com.app.studymanager.R;
 import com.app.studymanager.courses.CoursesFragment;
+import com.app.studymanager.login.LoginActivity;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.subscribedcourses.SubscribedCoursesFragment;
 import com.app.studymanager.profile.ProfileFragment;
@@ -72,5 +74,11 @@ public class BottomBarActivity extends AppCompatActivity implements BottomBarVie
 
     public void browseCourses(View view){
         bottomBar.selectTabAtPosition(1);
+    }
+
+    public void logout(View view){
+        SharedPreferenceUtil.logout(this);
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 }
