@@ -25,7 +25,7 @@ public class Circle extends View {
     private static int DEFAULT_TITLE_COLOR = R.color.colorPrimary;
     private static int DEFAULT_SUBTITLE_COLOR = R.color.colorPrimary;
 
-    private static String DEFAULT_TITLE = "50%";
+    private static String DEFAULT_TITLE = "0%";
     private static String DEFAULT_SUBTITLE = "COMPLETE";
 
     private static boolean DEFAULT_SHOW_TITLE = true;

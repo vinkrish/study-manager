@@ -2,6 +2,7 @@ package com.app.studymanager.subscribedcourses;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.app.studymanager.util.AdapterCallback;
 import com.app.studymanager.util.Circle;
 import com.app.studymanager.util.CircleAnimation;
 
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -55,7 +57,10 @@ public class SubscribedCoursesAdapter extends RecyclerView.Adapter<SubscribedCou
         holder.circle.setmTitleSize(mTitleSize);
         holder.circle.setmSubtitleSize(mSubTitleSize);
         holder.circle.setmTitleSubtitleSpace(titleSubtitleSpace);
-        CircleAnimation animation = new CircleAnimation(holder.circle, 180);
+        int progress = course.getCompletionRate().setScale(0, RoundingMode.DOWN).intValueExact();
+        int circularProgress = (int)((progress/100.00)*360);
+        holder.circle.setmTitleText(String.format(Locale.ENGLISH, "%s %%", Integer.toString(progress)));
+        CircleAnimation animation = new CircleAnimation(holder.circle, circularProgress);
         animation.setDuration(1000);
         holder.circle.startAnimation(animation);
         holder.update.setOnClickListener(new View.OnClickListener() {
