@@ -36,7 +36,7 @@
             fontPath="fonts/Asap-Regular.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
             android:lineSpacingExtra="3dp"
@@ -57,16 +57,18 @@
             android:orientation="horizontal">
 
             <Button
+                fontPath="fonts/Asap-Bold.ttf"
                 android:id="@+id/save_btn"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
                 android:textAllCaps="true"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_xsmall" />
 
             <Button
+                fontPath="fonts/Asap-Bold.ttf"
                 android:id="@+id/logout_btn"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
@@ -75,7 +77,7 @@
                 android:layout_marginLeft="15dp"
                 android:text="@string/logout"
                 android:textAllCaps="true"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_xsmall" />
 
         </LinearLayout>

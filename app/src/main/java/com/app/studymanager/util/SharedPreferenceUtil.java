@@ -2,7 +2,9 @@ package com.app.studymanager.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
+import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 
 /**
@@ -32,6 +34,22 @@ public class SharedPreferenceUtil {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("authToken", "");
         editor.apply();
+    }
+
+    public static void saveCourse(Context context, Course course) {
+        SharedPreferences sharedPref = context.getSharedPreferences("course", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putLong("id", course.getId());
+        editor.putString("endDate", course.getEndDate());
+        editor.apply();
+    }
+
+    public static Course getCourse(Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences("course", Context.MODE_PRIVATE);
+        Course response = new Course();
+        response.setId(sharedPref.getLong("id", 0));
+        response.setEndDate(sharedPref.getString("endDate", ""));
+        return response;
     }
 
 }

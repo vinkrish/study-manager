@@ -94,7 +94,7 @@
                 android:layout_below="@+id/layout_2"
                 android:text="@string/update"
                 android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_xsmall" />
 
 

@@ -1,5 +1,6 @@
 package com.app.studymanager.rest;
 
+import com.app.studymanager.models.Book;
 import com.app.studymanager.models.CommonResponse;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.UpdateBook;
@@ -30,6 +31,13 @@ public interface UserCourseApi {
     @GET("api/subscribedCourse/{id}")
     Call<Course> getSubscribedCourseDetails(@HeaderMap Map<String,String> headers,
                                   @Path("id") long courseId);
+
+    @Headers("content-type: application/json")
+    @POST("api/subscribedCourse/{id}/addCustomBook")
+    Call<CommonResponse> addCustomBook(@HeaderMap Map<String,String> headers,
+                                                @Body Book book,
+                                                @Path("id")long courseId);
+
 
     @Headers("content-type: application/json")
     @POST("api/updateSubscribedCourse/{id}")

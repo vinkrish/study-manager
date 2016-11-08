@@ -73,7 +73,7 @@
             android:layout_marginTop="15dp"
             android:onClick="courseSubscription"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_xsmall" />
 
         <Button
@@ -89,7 +89,7 @@
             android:visibility="gone"
             android:onClick="courseSettings"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_xsmall" />
 
         <ProgressBar

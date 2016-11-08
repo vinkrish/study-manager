@@ -119,13 +119,13 @@
         <Button
             android:id="@+id/save_btn"
             style="?android:attr/borderlessButtonStyle"
+            fontPath="fonts/Asap-Bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left|center_vertical"
             android:onClick="saveSettings"
             android:text="@string/save"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_xsmall" />
 
     </LinearLayout>

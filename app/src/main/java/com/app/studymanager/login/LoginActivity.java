@@ -75,11 +75,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         finish();
     }
 
-    @OnClick(R.id.login_btn)
     public void login(View view) {
         if(validate()){
             presenter.validateCredentials(email.getText().toString(), password.getText().toString());
         }
+    }
+
+    public void forgotPassword(View view){
+        finish();
     }
 
     @OnClick(R.id.signup_btn)

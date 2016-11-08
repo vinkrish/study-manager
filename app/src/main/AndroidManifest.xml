@@ -57,6 +57,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".bottombar.BottomBarActivity" />
         </activity>
+        <activity
+            android:name=".pwdrecovery.PwdRecoveryActivity"
+            android:label="@string/title_activity_pwd_recovery"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".custombook.CustomBookActivity"
+            android:label="@string/title_activity_custom_book"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".courseupdate.CourseUpdateActivity"/>
+        </activity>
     </application>
 
 </manifest>

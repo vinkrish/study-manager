@@ -12,7 +12,7 @@
         fontPath="fonts/Asap-Bold.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
         android:drawableRight="@drawable/delete"
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:stretchColumns="1">
 
         <TableRow>
@@ -43,7 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.7"
+                android:layout_weight="0.6"
                 android:lineSpacingExtra="3dp"
                 android:text="@string/page_no"
                 android:textColor="@color/default_tv_color"
@@ -53,7 +53,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.3"
+                android:layout_weight="0.4"
                 android:gravity="center">
 
                 <ImageView
@@ -61,6 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:padding="10dp"
                     android:clickable="true"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/subtraction" />
@@ -82,6 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:padding="10dp"
                     android:clickable="true"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/addition" />
@@ -99,7 +101,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.7"
+                android:layout_weight="0.6"
                 android:lineSpacingExtra="3dp"
                 android:text="@string/total_pages"
                 android:textColor="@color/default_tv_color"
@@ -111,7 +113,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.3"
+                android:layout_weight="0.4"
                 android:gravity="center"
                 android:lineSpacingExtra="3dp"
                 android:textColor="@color/default_tv_color"
@@ -143,7 +145,6 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left|center_vertical"
         android:onClick="saveSettings"
         android:text="@string/save"
         android:textAllCaps="true"

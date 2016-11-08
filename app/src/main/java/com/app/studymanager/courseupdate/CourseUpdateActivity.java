@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.app.studymanager.R;
 import com.app.studymanager.bottombar.BottomBarActivity;
 import com.app.studymanager.coursesettings.CourseSettingsActivity;
+import com.app.studymanager.custombook.CustomBookActivity;
 import com.app.studymanager.models.Book;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
@@ -69,8 +70,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
 
         ButterKnife.bind(this);
 
-        courseId = getIntent().getLongExtra("courseId", 0);
-        endDate = getIntent().getStringExtra("date");
+        getInitValues();
 
         credentials = SharedPreferenceUtil.getUserToken(this);
 
@@ -83,8 +83,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(CourseUpdateActivity.this, CustomBookActivity.class));
             }
         });
     }
@@ -224,6 +223,12 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(lp);
         return dialog;
+    }
+
+    private void getInitValues(){
+        Course initCourse = SharedPreferenceUtil.getCourse(this);
+        courseId = initCourse.getId();
+        endDate = initCourse.getEndDate();
     }
 
     @Override

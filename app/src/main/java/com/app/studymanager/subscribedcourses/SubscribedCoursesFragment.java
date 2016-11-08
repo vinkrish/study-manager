@@ -15,6 +15,7 @@ import com.app.studymanager.R;
 import com.app.studymanager.courseupdate.CourseUpdateActivity;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.util.AdapterCallback;
+import com.app.studymanager.util.SharedPreferenceUtil;
 
 import java.util.List;
 
@@ -96,9 +97,10 @@ public class SubscribedCoursesFragment extends Fragment
 
     @Override
     public void onMethodCallback(long id, String date) {
-        Intent intent = new Intent(getActivity(), CourseUpdateActivity.class);
-        intent.putExtra("courseId", id);
-        intent.putExtra("date", date);
-        startActivity(intent);
+        Course course = new Course();
+        course.setId(id);
+        course.setEndDate(date);
+        SharedPreferenceUtil.saveCourse(getActivity(), course);
+        startActivity(new Intent(getActivity(), CourseUpdateActivity.class));
     }
 }
