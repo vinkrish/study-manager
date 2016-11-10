@@ -67,7 +67,15 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".courseupdate.CourseUpdateActivity"/>
+                android:value=".courseupdate.CourseUpdateActivity" />
+        </activity>
+        <activity
+            android:name=".customcourse.CustomCourseActivity"
+            android:label="@string/title_activity_custom_course"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".bottombar.BottomBarActivity" />
         </activity>
     </application>
 

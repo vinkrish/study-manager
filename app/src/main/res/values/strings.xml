@@ -28,6 +28,7 @@
         your studies.
     </string>
     <string name="available_courses">AVAILABLE COURSES</string>
+    <string name="custom_course">Add Custom Course</string>
     <string name="description">DESCRIPTION</string>
     <string name="subscribe">SUBSCRIBE</string>
     <string name="unsubscribe">Unsubscribe</string>
@@ -65,6 +66,8 @@
     <string name="book_title">Book Title</string>
     <string name="no_pages">Number of pages</string>
     <string name="author">Author</string>
+    <string name="course_title">Course title</string>
+    <string name="descript">Description</string>
     <string name="prof_info">PROFILE INFORMATION</string>
     <string name="name">Name</string>
     <string name="logout">LOGOUT</string>
@@ -90,5 +93,6 @@
     <string name="title_activity_course_update">Course Update</string>
     <string name="title_activity_pwd_recovery">PwdRecoveryActivity</string>
     <string name="title_activity_custom_book">Add Custom Book</string>
+    <string name="title_activity_custom_course">CustomCourseActivity</string>
 
 </resources>

@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.app.studymanager.R;
 import com.app.studymanager.courses.CoursesFragment;
+import com.app.studymanager.customcourse.CustomCourseActivity;
 import com.app.studymanager.login.LoginActivity;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.subscribedcourses.SubscribedCoursesFragment;
@@ -74,6 +75,10 @@ public class BottomBarActivity extends AppCompatActivity implements BottomBarVie
 
     public void browseCourses(View view){
         bottomBar.selectTabAtPosition(1);
+    }
+
+    public void addCourse(View view) {
+        startActivity(new Intent(this, CustomCourseActivity.class));
     }
 
     public void logout(View view){

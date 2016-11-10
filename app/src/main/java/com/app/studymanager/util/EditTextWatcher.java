@@ -30,6 +30,7 @@ public class EditTextWatcher implements TextWatcher {
     public void afterTextChanged(Editable editable) {
         if(editable.length() > 0) {
             ((TextInputLayout)view).setError(null);
+            ((TextInputLayout)view).setErrorEnabled(false);
         }
     }
 }

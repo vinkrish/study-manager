@@ -32,4 +32,19 @@
         android:layout_below="@+id/text_view"
         android:scrollbars="vertical" />
 
+    <Button
+        android:id="@+id/check_subscription"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_view"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:onClick="addCourse"
+        android:textAllCaps="true"
+        android:text="@string/custom_course"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_xsmall" />
+
 </RelativeLayout>

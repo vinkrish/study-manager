@@ -33,11 +33,15 @@ public interface UserCourseApi {
                                   @Path("id") long courseId);
 
     @Headers("content-type: application/json")
+    @POST("api/addCustomCourse")
+    Call<CommonResponse> addCustomCourse(@HeaderMap Map<String,String> headers,
+                                       @Body Course course);
+
+    @Headers("content-type: application/json")
     @POST("api/subscribedCourse/{id}/addCustomBook")
     Call<CommonResponse> addCustomBook(@HeaderMap Map<String,String> headers,
                                                 @Body Book book,
                                                 @Path("id")long courseId);
-
 
     @Headers("content-type: application/json")
     @POST("api/updateSubscribedCourse/{id}")
