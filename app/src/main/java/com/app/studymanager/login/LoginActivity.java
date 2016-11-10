@@ -1,5 +1,6 @@
 package com.app.studymanager.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import com.app.studymanager.util.SharedPreferenceUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
     @BindView(R.id.email_et) EditText email;
@@ -40,6 +42,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         email.addTextChangedListener(new EditTextWatcher(emailLayout));
         password.addTextChangedListener(new EditTextWatcher(passwordLayout));
         presenter = new LoginPresenterImpl(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override

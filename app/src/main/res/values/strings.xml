@@ -20,6 +20,7 @@
     <string name="verification">Verification mail has been sent to your mail id.
         Please confirm before login
     </string>
+    <string name="course">COURSE</string>
     <string name="browse_courses">BROWSE COURSES</string>
     <string name="subscribed_courses">SUBSCRIBED COURSES</string>
     <string name="signup_failed">Sign-up failed</string>
@@ -93,6 +94,6 @@
     <string name="title_activity_course_update">Course Update</string>
     <string name="title_activity_pwd_recovery">PwdRecoveryActivity</string>
     <string name="title_activity_custom_book">Add Custom Book</string>
-    <string name="title_activity_custom_course">CustomCourseActivity</string>
+    <string name="title_activity_custom_course">Custom Course</string>
 
 </resources>

@@ -54,6 +54,8 @@ public class CustomBookActivity extends AppCompatActivity implements CustomBookV
         presenter = new CustomBookPresenterImpl(this, new CustomBookInteractorImpl());
     }
 
+
+
     public void createBook(View view) {
         if(validate()) {
             Book book = new Book();

@@ -1,5 +1,6 @@
 package com.app.studymanager.customcourse;
 
+import android.content.Context;
 import android.content.Intent;
 import android.icu.math.BigDecimal;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CustomCourseActivity extends AppCompatActivity implements CustomCourseView {
     @BindView(R.id.progress) ProgressBar progressBar;
@@ -34,6 +36,11 @@ public class CustomCourseActivity extends AppCompatActivity implements CustomCou
     @BindView(R.id.description_et) EditText description;
     @BindView(R.id.title) TextInputLayout titleInputLayout;
     @BindView(R.id.description) TextInputLayout descriptionLayout;
+    @BindView(R.id.title_book_et) EditText titleBook;
+    @BindView(R.id.pages_et) EditText pages;
+    @BindView(R.id.author_et) EditText author;
+    @BindView(R.id.title_book) TextInputLayout titleBookLayout;
+    @BindView(R.id.pages) TextInputLayout pagesInputLayout;
 
     private Credentials credentials;
     private CustomCoursePresenter presenter;
@@ -50,11 +57,18 @@ public class CustomCourseActivity extends AppCompatActivity implements CustomCou
 
         title.addTextChangedListener(new EditTextWatcher(titleInputLayout));
         description.addTextChangedListener(new EditTextWatcher(descriptionLayout));
+        titleBook.addTextChangedListener(new EditTextWatcher(titleBookLayout));
+        pages.addTextChangedListener(new EditTextWatcher(pagesInputLayout));
 
         credentials = SharedPreferenceUtil.getUserToken(this);
 
         presenter = new CustomCoursePresenterImpl(this, new CustomCourseInteractorImpl());
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
@@ -84,6 +98,12 @@ public class CustomCourseActivity extends AppCompatActivity implements CustomCou
             course.setPreparationTimeInWeeks(0);
             course.setCurrentStatus("");
             List<Book> books = new ArrayList<>();
+            Book book = new Book();
+            book.setTitle(titleBook.getText().toString());
+            book.setNoOfPages(Integer.parseInt(pages.getText().toString()));
+            book.setAuthor(author.getText().toString());
+            book.setType("CUSTOM");
+            books.add(book);
             course.setBookList(books);
             presenter.onAdd(credentials, course);
         }
@@ -95,6 +115,12 @@ public class CustomCourseActivity extends AppCompatActivity implements CustomCou
             return false;
         } else if(description.getText().toString().isEmpty()) {
             descriptionLayout.setError("Description cannot be empty");
+            return false;
+        }else if(titleBook.getText().toString().isEmpty()) {
+            titleBookLayout.setError("Title cannot be empty");
+            return false;
+        } else if(pages.getText().toString().isEmpty()) {
+            pagesInputLayout.setError("Pages cannot be empty");
             return false;
         } else return true;
     }

@@ -1,5 +1,6 @@
 package com.app.studymanager.singup;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,7 @@ import com.app.studymanager.util.EditTextWatcher;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SignupActivity extends AppCompatActivity implements SignupView {
     @BindView(R.id.email_et) EditText email;
@@ -38,6 +40,11 @@ public class SignupActivity extends AppCompatActivity implements SignupView {
         email.addTextChangedListener(new EditTextWatcher(emailLayout));
         password.addTextChangedListener(new EditTextWatcher(passwordLayout));
         presenter = new SignupPresenterImpl(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
