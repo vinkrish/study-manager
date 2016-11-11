@@ -40,7 +40,6 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
             android:lineSpacingExtra="3dp"
-            android:text="vinaykrishna1989@gmail.com"
             android:textColor="@color/default_tv_color"
             android:textSize="@dimen/text_xsmall" />
 
@@ -52,7 +51,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
@@ -62,6 +61,7 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="@string/save"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimaryDark"
@@ -73,9 +73,23 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:onClick="logout"
-                android:layout_marginLeft="15dp"
                 android:text="@string/logout"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_xsmall" />
+
+            <Button
+                fontPath="fonts/Asap-Bold.ttf"
+                android:id="@+id/reset_btn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:onClick="pwdReset"
+                android:text="@string/reset_password"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_xsmall" />

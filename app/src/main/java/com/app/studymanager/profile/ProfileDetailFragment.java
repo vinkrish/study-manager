@@ -3,41 +3,33 @@ package com.app.studymanager.profile;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.app.studymanager.R;
+import com.app.studymanager.models.Credentials;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProfileDetailFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.name_et) EditText profileName;
+    @BindView(R.id.email_tv) TextView emailId;
 
-    private String mParam1;
-    private String mParam2;
-
-
-    public ProfileDetailFragment() {}
-
-    public static ProfileDetailFragment newInstance(String param1, String param2) {
-        ProfileDetailFragment fragment = new ProfileDetailFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private String name;
+    private String email;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            name = getArguments().getString("name");
+            email = getArguments().getString("email");
         }
     }
 
@@ -46,6 +38,8 @@ public class ProfileDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_detail, container, false);
         ButterKnife.bind(this, view);
+        profileName.setText(name);
+        emailId.setText(email);
         return view;
     }
 

@@ -4,9 +4,11 @@ import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.CommonResponse;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -27,7 +29,12 @@ public interface AuthApi {
     Call<CommonResponse> newPassword(@Body HashMap<String,String> body);
 
     @Headers("content-type: application/json")
+    @POST("api/updateUserProfile")
+    Call<CommonResponse> updateUserProfile(@Body HashMap<String,String> body);
+
+    @Headers("content-type: application/json")
     @POST("api/resetPassword")
-    Call<CommonResponse> resetPassword(@Body HashMap<String,String> body);
+    Call<CommonResponse> resetPassword(@HeaderMap Map<String,String> headers,
+                                       @Body HashMap<String,String> body);
 
 }

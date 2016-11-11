@@ -93,6 +93,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void saveUserToken(Credentials credentials) {
         SharedPreferenceUtil.saveUserToken(this, credentials);
+        SharedPreferenceUtil.saveEmail(this, email.getText().toString());
     }
 
     @Override

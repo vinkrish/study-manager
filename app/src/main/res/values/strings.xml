@@ -3,7 +3,10 @@
     <string name="sm">SM</string>
     <string name="login">Login</string>
     <string name="signup">Signup</string>
+    <string name="reg_email">Registered email</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="reset_password">Reset password</string>
+    <string name="new_pwd">New password</string>
     <string name="not_a_member">Not on Study Tracker?</string>
     <string name="signup_here">Signup here</string>
     <string name="enter_email">Enter your email ID</string>
@@ -92,7 +95,7 @@
     <string name="title_activity_course_details">Course Details</string>
     <string name="title_activity_course_settings">Course Settings</string>
     <string name="title_activity_course_update">Course Update</string>
-    <string name="title_activity_pwd_recovery">PwdRecoveryActivity</string>
+    <string name="title_activity_pwd_recovery">Reset Password</string>
     <string name="title_activity_custom_book">Add Custom Book</string>
     <string name="title_activity_custom_course">Custom Course</string>
 

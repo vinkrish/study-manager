@@ -36,6 +36,18 @@ public class SharedPreferenceUtil {
         editor.apply();
     }
 
+    public static void saveEmail(Context context, String email) {
+        SharedPreferences sharedPref = context.getSharedPreferences("user_token", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("email", email);
+        editor.apply();
+    }
+
+    public static String getEmail(Context context){
+        SharedPreferences sharedPref = context.getSharedPreferences("user_token", Context.MODE_PRIVATE);
+        return sharedPref.getString("email", "");
+    }
+
     public static void saveCourse(Context context, Course course) {
         SharedPreferences sharedPref = context.getSharedPreferences("course", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

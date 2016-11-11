@@ -13,6 +13,7 @@ import com.app.studymanager.courses.CoursesFragment;
 import com.app.studymanager.customcourse.CustomCourseActivity;
 import com.app.studymanager.login.LoginActivity;
 import com.app.studymanager.models.Credentials;
+import com.app.studymanager.pwdrecovery.PwdRecoveryActivity;
 import com.app.studymanager.subscribedcourses.SubscribedCoursesFragment;
 import com.app.studymanager.profile.ProfileFragment;
 import com.app.studymanager.util.SharedPreferenceUtil;
@@ -85,5 +86,9 @@ public class BottomBarActivity extends AppCompatActivity implements BottomBarVie
         SharedPreferenceUtil.logout(this);
         startActivity(new Intent(this, LoginActivity.class));
         finish();
+    }
+
+    public void pwdReset(View view) {
+        startActivity(new Intent(this, PwdRecoveryActivity.class));
     }
 }

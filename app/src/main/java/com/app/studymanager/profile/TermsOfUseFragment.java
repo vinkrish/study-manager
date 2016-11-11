@@ -17,13 +17,6 @@ import butterknife.ButterKnife;
 
 public class TermsOfUseFragment extends Fragment {
 
-    public TermsOfUseFragment() {}
-
-    public static TermsOfUseFragment newInstance() {
-        TermsOfUseFragment fragment = new TermsOfUseFragment();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +25,7 @@ public class TermsOfUseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_terms_of_use, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+        return inflater.inflate(R.layout.fragment_terms_of_use, container, false);
     }
 
 }
