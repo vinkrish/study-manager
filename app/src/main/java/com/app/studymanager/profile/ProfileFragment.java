@@ -3,17 +3,24 @@ package com.app.studymanager.profile;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.app.studymanager.R;
+import com.app.studymanager.models.Credentials;
+import com.app.studymanager.models.Profile;
 import com.app.studymanager.util.SharedPreferenceUtil;
 
-public class ProfileFragment extends Fragment {
-    private Bundle bundle;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class ProfileFragment extends Fragment {
     private FragmentTabHost mTabHost;
+
+    private View rootView;
 
     public ProfileFragment() {}
 
@@ -24,21 +31,20 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bundle = new Bundle();
-        bundle.putString("email", SharedPreferenceUtil.getEmail(getActivity()));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        ButterKnife.bind(this, rootView);
 
         mTabHost = (FragmentTabHost)rootView.findViewById(android.R.id.tabhost);
         mTabHost.setup(getActivity(), getChildFragmentManager(), android.R.id.tabcontent);
-
         mTabHost.addTab(mTabHost.newTabSpec("PROFILE").setIndicator("PROFILE"),
-                ProfileDetailFragment.class, bundle);
+                ProfileDetailFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("TERMS_OF_USE").setIndicator("TERMS OF USE"),
                 TermsOfUseFragment.class, null);
 
@@ -47,7 +53,5 @@ public class ProfileFragment extends Fragment {
 
         return mTabHost;
     }
-
-
 
 }

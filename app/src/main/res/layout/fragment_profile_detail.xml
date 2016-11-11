@@ -25,11 +25,20 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_small" />
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
         <EditText
             android:id="@+id/name_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name" />
+            android:hint="@string/name"
+            android:inputType="text" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:id="@+id/email_tv"
@@ -95,6 +104,13 @@
                 android:textSize="@dimen/text_xsmall" />
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
     </LinearLayout>
 

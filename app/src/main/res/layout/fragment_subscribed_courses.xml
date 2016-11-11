@@ -1,74 +1,83 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myScrollingContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.app.studymanager.subscribedcourses.SubscribedCoursesFragment"
     tools:ignore="MissingPrefix">
 
-    <LinearLayout
-        android:id="@+id/view_empty"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="30dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="invisible">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/view_empty"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/subscribed_empty"
-            android:textSize="@dimen/text_medium"
-            android:lineSpacingExtra="5dp"
-            android:textColor="@color/gray_dark"/>
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible">
 
-        <Button
-            android:id="@+id/browse_courses_btn"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="5dp"
+                android:text="@string/subscribed_empty"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/text_medium" />
+
+            <Button
+                android:id="@+id/browse_courses_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/green_border_btn"
+                android:drawablePadding="20dp"
+                android:onClick="browseCourses"
+                android:text="@string/browse_courses"
+                android:textColor="@drawable/green_btn_txt"
+                android:textSize="@dimen/text_medium" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/view_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/browse_courses"
-            android:onClick="browseCourses"
-            android:background="@drawable/green_border_btn"
-            android:textColor="@drawable/green_btn_txt"
-            android:textSize="@dimen/text_medium"
-            android:drawablePadding="20dp"/>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:visibility="invisible">
 
-    </LinearLayout>
+            <TextView
+                fontPath="fonts/Asap-Bold.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="@string/subscribed_courses"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_small" />
 
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp" />
 
-    <LinearLayout
-        android:id="@+id/view_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="vertical"
-        android:visibility="invisible">
+        </LinearLayout>
 
-        <TextView
-            fontPath="fonts/Asap-Bold.ttf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/subscribed_courses"
-            android:textSize="@dimen/text_small"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:textColor="@color/colorPrimaryDark"/>
+    </FrameLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:scrollbars="vertical" />
-
-    </LinearLayout>
-
-</FrameLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -25,7 +25,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
         AuthApi authApi = ApiClient.getClient().create(AuthApi.class);
 
-        HashMap<String,String> body = new HashMap<String, String>();
+        HashMap<String,String> body = new HashMap<>();
         body.put("email", email);
         body.put("password", password);
 
