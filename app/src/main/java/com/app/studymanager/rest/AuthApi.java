@@ -22,4 +22,12 @@ public interface AuthApi {
     @POST("user/login")
     Call<Credentials> login(@Body HashMap<String,String> body);
 
+    @Headers("content-type: application/json")
+    @POST("user/sendNewPassword")
+    Call<CommonResponse> newPassword(@Body HashMap<String,String> body);
+
+    @Headers("content-type: application/json")
+    @POST("api/resetPassword")
+    Call<CommonResponse> resetPassword(@Body HashMap<String,String> body);
+
 }

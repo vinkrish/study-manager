@@ -2,6 +2,7 @@ package com.app.studymanager.login;
 
 import android.text.TextUtils;
 
+import com.app.studymanager.models.CommonResponse;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.rest.ApiClient;
 import com.app.studymanager.rest.AuthApi;
@@ -42,6 +43,31 @@ public class LoginInteractorImpl implements LoginInteractor {
             @Override
             public void onFailure(Call<Credentials> call, Throwable t) {
                 listener.onLoginFailed();
+            }
+        });
+    }
+
+    @Override
+    public void recoverPwd(String email, final OnLoginFinishedListener listener) {
+        AuthApi authApi = ApiClient.getClient().create(AuthApi.class);
+
+        HashMap<String,String> body = new HashMap<String, String>();
+        body.put("email", email);
+
+        Call<CommonResponse> sendNewPwd = authApi.newPassword(body);
+        sendNewPwd.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                if(response.body().isSuccess()){
+                    listener.onPwdRecovered();
+                } else {
+                    listener.onNoUser();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                listener.onError();
             }
         });
     }

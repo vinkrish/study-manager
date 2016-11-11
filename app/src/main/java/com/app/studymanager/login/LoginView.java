@@ -13,6 +13,12 @@ public interface LoginView {
 
     void setLoginFailed();
 
+    void setError();
+
+    void pwdRecovered();
+
+    void noUserError();
+
     void navigateToSignup();
 
     void saveUserToken(Credentials credentials);

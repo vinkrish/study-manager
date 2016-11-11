@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
@@ -15,6 +16,7 @@ import com.app.studymanager.bottombar.BottomBarActivity;
 import com.app.studymanager.R;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.singup.SignupActivity;
+import com.app.studymanager.util.CommonDialogUtil;
 import com.app.studymanager.util.EditTextWatcher;
 import com.app.studymanager.util.SharedPreferenceUtil;
 
@@ -66,6 +68,23 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
+    public void setError() {
+        Snackbar.make(coordinatorLayout, "Error while requesting, please try again", Snackbar.LENGTH_LONG)
+                .show();
+    }
+
+    @Override
+    public void pwdRecovered() {
+        CommonDialogUtil.displayAlertDialog(this, "New password has been sent to your mail");
+    }
+
+    @Override
+    public void noUserError() {
+        Snackbar.make(coordinatorLayout, "No user found for entered email", Snackbar.LENGTH_LONG)
+                .show();
+    }
+
+    @Override
     public void navigateToSignup() {
         startActivity(new Intent(this, SignupActivity.class));
         finish();
@@ -89,7 +108,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     public void forgotPassword(View view){
-        finish();
+        View v = this.getCurrentFocus();
+        if (v != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+            emailLayout.setError(getString(R.string.valid_email));
+        } else {
+            presenter.pwdRecovery(email.getText().toString());
+        }
     }
 
     @OnClick(R.id.signup_btn)

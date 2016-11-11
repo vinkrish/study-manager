@@ -13,7 +13,15 @@ public interface LoginInteractor {
         void onLoginFailed();
 
         void onSuccess(Credentials credentials);
+
+        void onPwdRecovered();
+
+        void onNoUser();
+
+        void onError();
     }
 
     void login(String email, String password, OnLoginFinishedListener listener);
+
+    void recoverPwd(String email, OnLoginFinishedListener listener);
 }

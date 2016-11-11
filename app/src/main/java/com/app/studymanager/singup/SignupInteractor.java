@@ -7,13 +7,6 @@ package com.app.studymanager.singup;
 public interface SignupInteractor {
 
     interface OnSignupFinishedListener{
-        void onEmailError();
-
-        void onValidEmailError();
-
-        void onPasswordError();
-
-        void onValidPasswordError();
 
         void onEmailExist();
 

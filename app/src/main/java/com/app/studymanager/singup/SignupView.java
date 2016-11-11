@@ -9,14 +9,6 @@ public interface SignupView {
 
     void hideProgress();
 
-    void setEmailError();
-
-    void setValidEmailError();
-
-    void setPasswordError();
-
-    void setValidPasswordError();
-
     void setEmailExist();
 
     void showSignupSuccesful();

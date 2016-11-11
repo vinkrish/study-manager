@@ -14,38 +14,6 @@ public class SignupPresenterImpl implements SignupPresenter, SignupInteractor.On
     }
 
     @Override
-    public void onEmailError() {
-        if(signupView != null) {
-            signupView.hideProgress();
-            signupView.setEmailError();
-        }
-    }
-
-    @Override
-    public void onValidEmailError() {
-        if(signupView != null) {
-            signupView.hideProgress();
-            signupView.setValidEmailError();
-        }
-    }
-
-    @Override
-    public void onPasswordError() {
-        if(signupView != null) {
-            signupView.hideProgress();
-            signupView.setPasswordError();
-        }
-    }
-
-    @Override
-    public void onValidPasswordError() {
-        if(signupView != null) {
-            signupView.hideProgress();
-            signupView.setValidPasswordError();
-        }
-    }
-
-    @Override
     public void onEmailExist() {
         if(signupView != null) {
             signupView.hideProgress();

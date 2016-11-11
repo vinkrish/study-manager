@@ -7,5 +7,7 @@ package com.app.studymanager.login;
 public interface LoginPresenter {
     void validateCredentials(String email, String password);
 
+    void pwdRecovery(String email);
+
     void onDestroy();
 }

@@ -9,19 +9,27 @@ import com.app.studymanager.models.Credentials;
 public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLoginFinishedListener {
 
     private LoginView loginView;
-    private LoginInteractor loginInteractor;
+    private LoginInteractor interactor;
 
     public LoginPresenterImpl(LoginView loginView) {
         this.loginView = loginView;
-        this.loginInteractor = new LoginInteractorImpl();
+        this.interactor = new LoginInteractorImpl();
     }
 
     @Override
     public void validateCredentials(String email, String password) {
         if(loginView != null) {
             loginView.showProgress();
+            interactor.login(email, password, this);
         }
-        loginInteractor.login(email, password, this);
+    }
+
+    @Override
+    public void pwdRecovery(String email) {
+        if(loginView != null) {
+            loginView.showProgress();
+            interactor.recoverPwd(email, this);
+        }
     }
 
     @Override
@@ -43,6 +51,30 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
             loginView.saveUserToken(credentials);
             loginView.hideProgress();
             loginView.navigateToHome();
+        }
+    }
+
+    @Override
+    public void onPwdRecovered() {
+        if(loginView != null) {
+            loginView.hideProgress();
+            loginView.pwdRecovered();
+        }
+    }
+
+    @Override
+    public void onNoUser() {
+        if(loginView != null) {
+            loginView.hideProgress();
+            loginView.noUserError();
+        }
+    }
+
+    @Override
+    public void onError() {
+        if(loginView != null) {
+            loginView.hideProgress();
+            loginView.setError();
         }
     }
 }
