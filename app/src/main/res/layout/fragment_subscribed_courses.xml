@@ -1,26 +1,25 @@
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myScrollingContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:paddingBottom="60dp"
+    android:scrollbars="none"
     tools:context="com.app.studymanager.subscribedcourses.SubscribedCoursesFragment"
     tools:ignore="MissingPrefix">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/view_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="30dp"
+            android:padding="30dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
@@ -56,16 +55,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <TextView
                 fontPath="fonts/Asap-Bold.ttf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="15dp"
                 android:text="@string/subscribed_courses"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_small" />
@@ -80,4 +78,4 @@
 
     </FrameLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>

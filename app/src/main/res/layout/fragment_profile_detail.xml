@@ -1,17 +1,16 @@
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myScrollingContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:paddingBottom="60dp"
+    android:scrollbars="none"
     tools:context="com.app.studymanager.profile.ProfileDetailFragment"
     tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="15dp">
 
@@ -31,12 +30,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp">
 
-        <EditText
-            android:id="@+id/name_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name"
-            android:inputType="text" />
+            <EditText
+                android:id="@+id/name_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -65,9 +64,9 @@
             android:orientation="horizontal">
 
             <Button
-                fontPath="fonts/Asap-Bold.ttf"
                 android:id="@+id/save_btn"
                 style="?android:attr/borderlessButtonStyle"
+                fontPath="fonts/Asap-Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -77,9 +76,9 @@
                 android:textSize="@dimen/text_xsmall" />
 
             <Button
-                fontPath="fonts/Asap-Bold.ttf"
                 android:id="@+id/logout_btn"
                 style="?android:attr/borderlessButtonStyle"
+                fontPath="fonts/Asap-Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -90,13 +89,13 @@
                 android:textSize="@dimen/text_xsmall" />
 
             <Button
-                fontPath="fonts/Asap-Bold.ttf"
                 android:id="@+id/reset_btn"
                 style="?android:attr/borderlessButtonStyle"
+                fontPath="fonts/Asap-Bold.ttf"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center"
+                android:layout_weight="1"
                 android:onClick="pwdReset"
                 android:text="@string/reset_password"
                 android:textAllCaps="true"
@@ -114,4 +113,4 @@
 
     </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>
