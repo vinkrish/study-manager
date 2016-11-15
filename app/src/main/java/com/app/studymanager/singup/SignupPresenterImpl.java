@@ -25,7 +25,7 @@ public class SignupPresenterImpl implements SignupPresenter, SignupInteractor.On
     public void onSuccess() {
         if(signupView != null){
             signupView.hideProgress();
-            signupView.showSignupSuccesful();
+            signupView.showSignupSuccessful();
         }
     }
 

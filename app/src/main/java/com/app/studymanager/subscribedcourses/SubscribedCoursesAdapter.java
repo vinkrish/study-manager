@@ -2,7 +2,6 @@ package com.app.studymanager.subscribedcourses;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.app.studymanager.R;
-import com.app.studymanager.coursedetails.CourseDetailsAdapter;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.util.AdapterCallback;
 import com.app.studymanager.util.Circle;
@@ -51,7 +49,7 @@ public class SubscribedCoursesAdapter extends RecyclerView.Adapter<SubscribedCou
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Course course = items.get(position);
-        holder.courseName.setText(course.getDescription());
+        holder.courseName.setText(course.getTitle());
         holder.date.setText(getDate(course.getEndDate()));
         holder.status.setText(course.getCurrentStatus());
         holder.circle.setmTitleSize(mTitleSize);

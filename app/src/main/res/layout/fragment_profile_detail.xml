@@ -1,116 +1,147 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/myScrollingContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="60dp"
-    android:scrollbars="none"
+    android:paddingBottom="5dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     tools:context="com.app.studymanager.profile.ProfileDetailFragment"
     tools:ignore="MissingPrefix">
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/myScrollingContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp">
-
-        <TextView
-            fontPath="fonts/Asap-Bold.ttf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/prof_info"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text_small" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
-
-            <EditText
-                android:id="@+id/name_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/name"
-                android:inputType="text" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <TextView
-            android:id="@+id/email_tv"
-            fontPath="fonts/Asap-Regular.ttf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="20dp"
-            android:lineSpacingExtra="3dp"
-            android:textColor="@color/default_tv_color"
-            android:textSize="@dimen/text_xsmall" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray_light" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/save_btn"
-                style="?android:attr/borderlessButtonStyle"
+            <TextView
                 fontPath="fonts/Asap-Bold.ttf"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/save"
-                android:textAllCaps="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/prof_info"
                 android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_small" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/email_tv"
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/default_tv_color"
                 android:textSize="@dimen/text_xsmall" />
 
-            <Button
-                android:id="@+id/logout_btn"
-                style="?android:attr/borderlessButtonStyle"
-                fontPath="fonts/Asap-Bold.ttf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:onClick="logout"
-                android:text="@string/logout"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text_xsmall" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_light" />
 
-            <Button
-                android:id="@+id/reset_btn"
-                style="?android:attr/borderlessButtonStyle"
+            <TextView
                 fontPath="fonts/Asap-Bold.ttf"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:onClick="pwdReset"
-                android:text="@string/reset_password"
-                android:textAllCaps="true"
+                android:layout_marginTop="30dp"
+                android:text="@string/subscribed_courses"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text_xsmall" />
+                android:textSize="@dimen/text_small" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_light" />
 
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progress"
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/save_btn"
+            style="?android:attr/borderlessButtonStyle"
+            fontPath="fonts/Asap-Bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone" />
+            android:text="@string/save"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_xsmall" />
+
+        <Button
+            android:id="@+id/logout_btn"
+            style="?android:attr/borderlessButtonStyle"
+            fontPath="fonts/Asap-Bold.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="logout"
+            android:text="@string/logout"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_xsmall" />
+
+        <Button
+            android:id="@+id/reset_btn"
+            style="?android:attr/borderlessButtonStyle"
+            fontPath="fonts/Asap-Bold.ttf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="pwdReset"
+            android:text="@string/reset_password"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_xsmall" />
 
     </LinearLayout>
 
-</ScrollView>
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

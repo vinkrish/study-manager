@@ -1,13 +1,16 @@
 package com.app.studymanager.profile;
 
 import com.app.studymanager.models.CommonResponse;
+import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.Profile;
 import com.app.studymanager.rest.ApiClient;
 import com.app.studymanager.rest.AuthApi;
 import com.app.studymanager.rest.UserCourseApi;
+import com.app.studymanager.subscribedcourses.SubscribedCoursesInteractor;
 
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,4 +75,27 @@ public class ProfileInteractorImpl implements ProfileInteractor {
             }
         });
     }
+
+    @Override
+    public void fetchSubscribedCourses(Credentials credentials, final OnFinishedListener listener) {
+        UserCourseApi api = ApiClient.getClient().create(UserCourseApi.class);
+
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put("user-id", credentials.getUserId()+"");
+        hashMap.put("auth-token", credentials.getAuthToken());
+
+        Call<List<Course>> subscribedCourses = api.getSubscribedCourses(hashMap);
+        subscribedCourses.enqueue(new Callback<List<Course>>() {
+            @Override
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                listener.onFinished(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                listener.onError();
+            }
+        });
+    }
+
 }

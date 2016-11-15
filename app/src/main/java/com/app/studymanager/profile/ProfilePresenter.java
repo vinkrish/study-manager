@@ -9,6 +9,8 @@ import com.app.studymanager.models.Credentials;
 public interface ProfilePresenter {
     void onResume(Credentials credentials);
 
+    void onCoursesResume(Credentials credentials);
+
     void onUpdate(Credentials credentials, String name);
 
     void onDestroy();

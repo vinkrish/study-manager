@@ -3,6 +3,7 @@ package com.app.studymanager.profile;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.Profile;
+import com.app.studymanager.subscribedcourses.SubscribedCoursesInteractor;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ public interface ProfileInteractor {
     interface OnFinishedListener {
         void onFinished(Profile profile);
 
+        void onFinished(List<Course> courses);
+
         void onSuccess();
 
         void onError();
@@ -22,4 +25,6 @@ public interface ProfileInteractor {
     void getProfile(Credentials credentials, OnFinishedListener listener);
 
     void updateProfile(Credentials credentials, String name, OnFinishedListener listener);
+
+    void fetchSubscribedCourses(Credentials credentials, OnFinishedListener listener);
 }

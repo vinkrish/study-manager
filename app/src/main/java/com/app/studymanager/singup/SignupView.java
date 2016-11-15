@@ -11,7 +11,7 @@ public interface SignupView {
 
     void setEmailExist();
 
-    void showSignupSuccesful();
+    void showSignupSuccessful();
 
     void showSignupFailed();
 

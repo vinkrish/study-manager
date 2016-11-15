@@ -19,17 +19,25 @@
     <string name="valid_password">Should be atleast 8 characters long</string>
     <string name="login_failed">Email &amp; Password dont match</string>
     <string name="email_exist">Email already exists</string>
+    <string name="request_error">Error while requesting, please try again.</string>
     <string name="ok">ok</string>
-    <string name="verification">Verification mail has been sent to your mail id.
-        Please confirm before login
+    <string name="verification">Verification mail has been sent to your mail.
+        Please confirm before login.
     </string>
+    <string name="home">Home</string>
+    <string name="courses">Courses</string>
+    <string name="profile">Profile</string>
     <string name="course">COURSE</string>
     <string name="browse_courses">BROWSE COURSES</string>
     <string name="subscribed_courses">SUBSCRIBED COURSES</string>
     <string name="signup_failed">Sign-up failed</string>
     <string name="title_activity_bottom_bar">BottomBarActivity</string>
-    <string name="subscribed_empty">Start your learning by adding a new course and track
-        your studies.
+    <string name="subscribed_empty">
+        <![CDATA[
+        StudyManager is now successfully installed.\n\n
+        You are now one step closer in acheiving your goal.\n\n
+        You can always create a Custom Course if you do not find what you are looking for :-)
+        ]]>
     </string>
     <string name="available_courses">AVAILABLE COURSES</string>
     <string name="custom_course">Add Custom Course</string>
@@ -79,19 +87,11 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="copyright_text">PMI and PMBOK are trademarks of the Project Management Institute,
-        Inc. Rita Mulachy Exam Prep are treademarks of RMI Learning Solutions. RMI &amp; PMI has not
-        endorsed and did not participate in the development of this Application. RMI and PMI
-        does not sponsor this publication and makes no warranty, guarantee or representation,
-        expressed or implied as to the accuracy of the Application. Every attempt has been made by
-        &lt;company Name&gt; to ensure that the information presented in this Application is
-        accurate and can serve as preparation for the PMP certification exam. However, &lt;
-        Company Name&gt; acepts no legal responsibility for the content of the recommended books.
-        This Application should be used only as a tool to assist in preparation of the subscribed
-        courses. Following the "Plan" from this document does not guarantee that the reader will
-        pass the PMP Certification exam. No such guarantees or warranties are implied or expressed
-        by &lt;Company Name&gt;
+    <string name="copyright_text">
+        The Project Management Professional (PMP)® is the most important industry-recognized certification for project managers.\n
+        Offered by the Project Management Institute.
     </string>
+    <string name="more_info"><a href="https://www.pmi.org/certifications/types/project-management-pmp">Get more info</a></string>
     <string name="title_activity_course_details">Course Details</string>
     <string name="title_activity_course_settings">Course Settings</string>
     <string name="title_activity_course_update">Course Update</string>

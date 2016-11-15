@@ -3,10 +3,14 @@ package com.app.studymanager.bottombar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.app.studymanager.R;
 import com.app.studymanager.courses.CoursesFragment;
@@ -17,35 +21,45 @@ import com.app.studymanager.pwdrecovery.PwdRecoveryActivity;
 import com.app.studymanager.subscribedcourses.SubscribedCoursesFragment;
 import com.app.studymanager.profile.ProfileFragment;
 import com.app.studymanager.util.SharedPreferenceUtil;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class BottomBarActivity extends AppCompatActivity implements BottomBarView {
+public class BottomBarActivity extends AppCompatActivity implements BottomBarView{
+    @BindView(R.id.home) LinearLayout home;
+    @BindView(R.id.courses) LinearLayout courses;
+    @BindView(R.id.profile) LinearLayout profile;
+    @BindView(R.id.home_img) ImageView homeImg;
+    @BindView(R.id.courses_img) ImageView coursesImg;
+    @BindView(R.id.profile_img) ImageView profileImg;
+    @BindView(R.id.home_tv) TextView homeTv;
+    @BindView(R.id.courses_tv) TextView coursesTv;
+    @BindView(R.id.profile_tv) TextView profileTv;
+
+    private String selectedTab = "home";
     Credentials response;
-    BottomBar bottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_bar);
+        ButterKnife.bind(this);
 
         response = SharedPreferenceUtil.getUserToken(this);
 
-        bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
-                if (tabId == R.id.tab_home) {
-                    navigateToSubscribedCourses();
-                } else if (tabId == R.id.tab_courses) {
-                    navigateToCourses();
-                } else if(tabId == R.id.tab_profile) {
-                    navigateToProfile();
-                }
-            }
-        });
+        home.setOnClickListener(homeClickListener);
+        courses.setOnClickListener(coursesClickListener);
+        profile.setOnClickListener(profileClickListener);
+
+        if(selectedTab.equals("home")) {
+            navigateToSubscribedCourses();
+        } else if (selectedTab.equals("courses")) {
+            navigateToCourses();
+        } else if(selectedTab.equals("profile")) {
+            navigateToProfile();
+        }
+
     }
 
     @Override
@@ -53,8 +67,39 @@ public class BottomBarActivity extends AppCompatActivity implements BottomBarVie
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+    View.OnClickListener homeClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(!selectedTab.equals("home")){
+                navigateToSubscribedCourses();
+            }
+        }
+    };
+
+    View.OnClickListener coursesClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(!selectedTab.equals("courses")){
+                navigateToCourses();
+            }
+        }
+    };
+
+    View.OnClickListener profileClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(!selectedTab.equals("profile")){
+                navigateToProfile();
+            }
+        }
+    };
+
     @Override
     public void navigateToSubscribedCourses() {
+        selectedTab = "home";
+        clearTabs();
+        homeImg.setActivated(true);
+        homeTv.setActivated(true);
         Fragment firstFragment = SubscribedCoursesFragment
                 .newInstance(response.getUserId(),response.getAuthToken());
         getSupportFragmentManager().beginTransaction().replace(R.id.contentContainer, firstFragment).commit();
@@ -62,6 +107,10 @@ public class BottomBarActivity extends AppCompatActivity implements BottomBarVie
 
     @Override
     public void navigateToCourses() {
+        selectedTab = "courses";
+        clearTabs();
+        coursesImg.setActivated(true);
+        coursesTv.setActivated(true);
         Fragment secondFragment = CoursesFragment
                 .newInstance(response.getUserId(),response.getAuthToken());
         getSupportFragmentManager().beginTransaction().replace(R.id.contentContainer, secondFragment).commit();
@@ -69,13 +118,26 @@ public class BottomBarActivity extends AppCompatActivity implements BottomBarVie
 
     @Override
     public void navigateToProfile() {
+        selectedTab = "profile";
+        clearTabs();
+        profileImg.setActivated(true);
+        profileTv.setActivated(true);
         Fragment thirdFragment = ProfileFragment
                 .newInstance(response.getUserId()+"",response.getAuthToken());
         getSupportFragmentManager().beginTransaction().replace(R.id.contentContainer, thirdFragment).commit();
     }
 
+    private void clearTabs(){
+        homeImg.setActivated(false);
+        coursesImg.setActivated(false);
+        profileImg.setActivated(false);
+        homeTv.setActivated(false);
+        coursesTv.setActivated(false);
+        profileTv.setActivated(false);
+    }
+
     public void browseCourses(View view){
-        bottomBar.selectTabAtPosition(1);
+        navigateToCourses();
     }
 
     public void addCourse(View view) {
@@ -91,4 +153,5 @@ public class BottomBarActivity extends AppCompatActivity implements BottomBarVie
     public void pwdReset(View view) {
         startActivity(new Intent(this, PwdRecoveryActivity.class));
     }
+
 }

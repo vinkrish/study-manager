@@ -31,10 +31,21 @@
             fontPath="fonts/Asap-Regular.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="3dp"
+            android:lineSpacingExtra="5dp"
             android:text="@string/copyright_text"
             android:textColor="@color/default_tv_color"
             android:textSize="@dimen/text_xsmall" />
+
+        <TextView
+            android:id="@+id/moreInfo"
+            fontPath="fonts/Asap-Regular.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/more_info"
+            android:clickable="true"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_xsmall"/>
 
         <View
             android:id="@+id/view_visibility"

@@ -1,7 +1,10 @@
 package com.app.studymanager.profile;
 
+import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.Profile;
+
+import java.util.List;
 
 /**
  * Created by Vinay on 11-11-2016.
@@ -26,6 +29,14 @@ public class ProfilePresenterImpl implements ProfilePresenter, ProfileInteractor
     }
 
     @Override
+    public void onCoursesResume(Credentials credentials) {
+        if(profileView != null) {
+            profileView.showProgress();
+            interactor.fetchSubscribedCourses(credentials, this);
+        }
+    }
+
+    @Override
     public void onUpdate(Credentials credentials, String name) {
         if(profileView != null) {
             interactor.updateProfile(credentials, name, this);
@@ -39,9 +50,17 @@ public class ProfilePresenterImpl implements ProfilePresenter, ProfileInteractor
 
     @Override
     public void onFinished(Profile profile) {
-        if(profile != null) {
+        if(profileView != null) {
             profileView.hideProgess();
             profileView.setProfile(profile);
+        }
+    }
+
+    @Override
+    public void onFinished(List<Course> courses) {
+        if(profileView != null) {
+            profileView.hideProgess();
+            profileView.setSubscribedCourses(courses);
         }
     }
 

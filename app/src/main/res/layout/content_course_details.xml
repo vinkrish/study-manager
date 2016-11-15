@@ -1,76 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/myScrollingContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/default_color"
-    android:fillViewport="true"
+    android:paddingBottom="5dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.app.studymanager.coursedetails.CourseDetailsActivity"
     tools:ignore="MissingPrefix"
     tools:showIn="@layout/activity_course_details">
 
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/myScrollingContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp">
+        android:layout_above="@+id/bottom_layout"
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/text_view"
-            fontPath="fonts/Asap-Bold.ttf"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/description"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text_small" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/description_tv"
-            fontPath="fonts/Asap-Regular.ttf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/default_tv_color"
-            android:textSize="@dimen/text_xsmall" />
+            <TextView
+                android:id="@+id/text_view"
+                fontPath="fonts/Asap-Bold.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/description"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_small" />
 
-        <View
-            android:id="@+id/view_id"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/description_tv"
-            android:background="@color/gray_light" />
+            <TextView
+                android:id="@+id/description_tv"
+                fontPath="fonts/Asap-Regular.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
 
-        <TextView
-            android:id="@+id/text_view2"
-            fontPath="fonts/Asap-Bold.ttf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view_id"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/recommended"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text_small" />
+            <View
+                android:id="@+id/view_id"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_light" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view2"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <TextView
+                android:id="@+id/text_view2"
+                fontPath="fonts/Asap-Bold.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/recommended"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_small" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/check_subscription"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recycler_view"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
             android:onClick="courseSubscription"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimaryDark"
@@ -81,24 +95,22 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recycler_view"
-            android:layout_toRightOf="@+id/check_subscription"
-            android:layout_alignBaseline="@+id/check_subscription"
             android:layout_marginLeft="30dp"
-            android:text="@string/title_activity_course_settings"
-            android:visibility="gone"
+            android:layout_marginStart="30dp"
             android:onClick="courseSettings"
+            android:text="@string/title_activity_course_settings"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/text_xsmall" />
-
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:textSize="@dimen/text_xsmall"
             android:visibility="gone" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -19,4 +19,6 @@ public interface ProfileView {
     void setSuccess();
 
     void setProfile(Profile profile);
+
+    void setSubscribedCourses(List<Course> subscribedCourses);
 }

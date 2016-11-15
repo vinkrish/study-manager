@@ -2,15 +2,18 @@ package com.app.studymanager.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.app.studymanager.bottombar.BottomBarActivity;
 import com.app.studymanager.R;
@@ -34,6 +37,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
 
     private LoginPresenter presenter;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+    private void showSnackbar(String message) {
+        snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        View snackBarView = snackbar.getView();
+        snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.bottom_bar));
+        TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.RED);
+        snackbar.show();
+    }
+
     @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
@@ -63,13 +76,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void setLoginFailed() {
-        Snackbar.make(coordinatorLayout, getString(R.string.login_failed), Snackbar.LENGTH_LONG)
-                .show();
+        showSnackbar(getString(R.string.login_failed));
     }
 
     @Override
     public void setError() {
-        Snackbar.make(coordinatorLayout, "Error while requesting, please try again", Snackbar.LENGTH_LONG)
+        Snackbar.make(coordinatorLayout, getString(R.string.request_error), Snackbar.LENGTH_LONG)
                 .show();
     }
 
@@ -80,8 +92,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void noUserError() {
-        Snackbar.make(coordinatorLayout, "No user found for entered email", Snackbar.LENGTH_LONG)
-                .show();
+        showSnackbar("No user found for entered email");
     }
 
     @Override

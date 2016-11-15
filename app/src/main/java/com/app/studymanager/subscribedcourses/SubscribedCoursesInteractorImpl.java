@@ -20,7 +20,7 @@ public class SubscribedCoursesInteractorImpl implements SubscribedCoursesInterac
     public void fetchSubscribedCourses(int userId, String authToken, final OnFinishedListener listener) {
         UserCourseApi api = ApiClient.getClient().create(UserCourseApi.class);
 
-        HashMap<String,String> hashMap = new HashMap<String, String>();
+        HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("user-id", userId+"");
         hashMap.put("auth-token", authToken);
 
