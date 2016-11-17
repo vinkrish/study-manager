@@ -1,7 +1,5 @@
 package com.app.studymanager.models;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 /**
@@ -9,10 +7,11 @@ import java.io.Serializable;
  */
 
 public class CourseSettings implements Serializable {
-    @SerializedName("weeklyHours")
     private WeeklyHours weeklyHours;
     private String proficiency;
     private String targetDate;
+    private String defaultView;
+    private ProficiencyValue proficiencyValue;
 
     public WeeklyHours getWeeklyHours() {
         return weeklyHours;
@@ -36,5 +35,21 @@ public class CourseSettings implements Serializable {
 
     public void setTargetDate(String targetDate) {
         this.targetDate = targetDate;
+    }
+
+    public String getDefaultView() {
+        return defaultView;
+    }
+
+    public void setDefaultView(String defaultView) {
+        this.defaultView = defaultView;
+    }
+
+    public ProficiencyValue getProficiencyValue() {
+        return proficiencyValue;
+    }
+
+    public void setProficiencyValue(ProficiencyValue proficiencyValue) {
+        this.proficiencyValue = proficiencyValue;
     }
 }

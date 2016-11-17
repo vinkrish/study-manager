@@ -52,7 +52,6 @@ public class SharedPreferenceUtil {
         SharedPreferences sharedPref = context.getSharedPreferences("course", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putLong("id", course.getId());
-        editor.putString("endDate", course.getEndDate());
         editor.apply();
     }
 
@@ -60,7 +59,6 @@ public class SharedPreferenceUtil {
         SharedPreferences sharedPref = context.getSharedPreferences("course", Context.MODE_PRIVATE);
         Course response = new Course();
         response.setId(sharedPref.getLong("id", 0));
-        response.setEndDate(sharedPref.getString("endDate", ""));
         return response;
     }
 

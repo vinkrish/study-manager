@@ -14,15 +14,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.studymanager.R;
 import com.app.studymanager.bottombar.BottomBarActivity;
@@ -56,8 +64,8 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
     private Credentials credentials;
     private long courseId;
     private Course course;
-    private String endDate;
     private int pages;
+    private boolean revision;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +153,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
     public void setCourse(Course course) {
         this.course = course;
         title.setText(course.getTitle());
-        date.setText(getTargetDate(endDate));
+        date.setText(getTargetDate(course.getEndDate()));
         target.setText(String.format("Read %s pages today to stay on track", course.getTodayGoal()));
         progress.setText(String.format("Today's progress"));
         recyclerView.setAdapter(new CourseUpdateAdapter(this, course.getBookList(), new CourseUpdateAdapter.OnItemClickListener(){
@@ -175,31 +183,59 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
     public Dialog displayUpdateDialog(final Book book) {
         final Dialog dialog = new Dialog(this, R.style.DialogFadeAnim);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        //dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_course_update);
 
-        final TextView pagesRead = (TextView) dialog.findViewById(R.id.pages_tv);
-        pages = book.getNoOfPagesRead();
+        pages = 0;
 
+        final EditText pagesRead = (EditText) dialog.findViewById(R.id.pages_et);
+        pagesRead.addTextChangedListener(new PagesTextWatcher());
         ((TextView) dialog.findViewById(R.id.book_tv)).setText(book.getTitle());
         pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
         ((TextView) dialog.findViewById(R.id.total_pages_tv)).setText(String.format("%s", book.getNoOfPages()));
 
-        (dialog.findViewById(R.id.decrement)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(pages>0){
-                    pages -= 1;
+        ImageView decrement = (ImageView) dialog.findViewById(R.id.decrement);
+        ImageView increment = (ImageView) dialog.findViewById(R.id.increment);
+
+        final CheckBox revisionBox = (CheckBox) dialog.findViewById(R.id.checkbox_revision);
+
+        LinearLayout revisionLayout = (LinearLayout) dialog.findViewById(R.id.revision_layout);
+
+        if(book.getNoOfPages() == book.getNoOfPagesRead()){
+            pagesRead.setKeyListener(null);
+            pagesRead.setEnabled(false);
+            decrement.setClickable(false);
+            increment.setClickable(false);
+            revisionLayout.setVisibility(View.VISIBLE);
+            if(book.isRevisionCompleted()){
+                revisionBox.setChecked(true);
+            }
+        } else {
+            (dialog.findViewById(R.id.decrement)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(pages>0){
+                        pages -= 1;
+                        pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
+                    }
+                }
+            });
+
+            (dialog.findViewById(R.id.increment)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pages += 1;
                     pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
                 }
-            }
-        });
-
-        (dialog.findViewById(R.id.increment)).setOnClickListener(new View.OnClickListener() {
+            });
+        }
+        revisionBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                pages += 1;
-                pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    revision = true;
+                }
             }
         });
 
@@ -207,6 +243,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
             @Override
             public void onClick(View v) {
                 book.setNoOfPagesRead(pages);
+                book.setRevisionCompleted(revision);
                 presenter.onUpdate(credentials, courseId, book);
                 dialog.dismiss();
             }
@@ -225,10 +262,27 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
         return dialog;
     }
 
+    class PagesTextWatcher implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            if(editable.toString().equals("")){
+                pages = 0;
+            } else {
+                pages = Integer.parseInt(editable.toString());
+            }
+        }
+    }
+
+
     private void getInitValues(){
         Course initCourse = SharedPreferenceUtil.getCourse(this);
         courseId = initCourse.getId();
-        endDate = initCourse.getEndDate();
     }
 
     @Override

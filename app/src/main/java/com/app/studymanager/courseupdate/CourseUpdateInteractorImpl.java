@@ -53,6 +53,7 @@ public class CourseUpdateInteractorImpl implements CourseUpdateInteractor {
         UpdateBook updateBook = new UpdateBook();
         updateBook.setBookId(book.getId());
         updateBook.setNoOfPagesRead(book.getNoOfPagesRead());
+        updateBook.setRevisionCompleted(book.isRevisionCompleted());
 
         Call<CommonResponse> updateCourse = api.updateSubscribedCourse(headers, updateBook, courseId);
         updateCourse.enqueue(new Callback<CommonResponse>() {

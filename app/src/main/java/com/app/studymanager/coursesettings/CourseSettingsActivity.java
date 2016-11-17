@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.app.studymanager.R;
 import com.app.studymanager.models.Course;
@@ -50,6 +51,7 @@ public class CourseSettingsActivity extends AppCompatActivity
     private Course course;
     private CourseSettings courseSettings;
     private long courseId;
+    private Toast myToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +119,14 @@ public class CourseSettingsActivity extends AppCompatActivity
                 .show();
     }
 
+    private void showToast(String msg){
+        if(myToast != null){
+            myToast.cancel();
+        }
+        myToast = Toast.makeText(this, msg,Toast.LENGTH_LONG);
+        myToast.show();
+    }
+
     public void changeDate(View view) {
         SimpleDateFormat defaultFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = new Date();
@@ -161,6 +171,7 @@ public class CourseSettingsActivity extends AppCompatActivity
         Date date = cal.getTime();
         courseSettings.setTargetDate(dateFormat.format(date));
         setViewPager();
+        viewPager.setCurrentItem(0);
     }
 
     public void onRadioButtonClicked(View view) {
@@ -170,21 +181,24 @@ public class CourseSettingsActivity extends AppCompatActivity
                 if (checked){
                     courseSettings.setProficiency("EASY");
                     setViewPager();
-                    viewPager.setCurrentItem(2);
+                    showToast(String.format(Locale.ENGLISH, "Revised no of pages/hour for this course is %d",
+                            courseSettings.getProficiencyValue().getEasy()));
                 }
                 break;
             case R.id.radio_moderate:
                 if (checked){
                     courseSettings.setProficiency("MODERATE");
                     setViewPager();
-                    viewPager.setCurrentItem(2);
+                    showToast(String.format(Locale.ENGLISH, "Revised no of pages/hour for this course is %d",
+                            courseSettings.getProficiencyValue().getModerate()));
                 }
                 break;
             case R.id.radio_aggressive:
                 if (checked){
                     courseSettings.setProficiency("DIFFICULT");
                     setViewPager();
-                    viewPager.setCurrentItem(2);
+                    showToast(String.format(Locale.ENGLISH, "Revised no of pages/hour for this course is %d",
+                            courseSettings.getProficiencyValue().getDifficult()));
                 }
                 break;
         }
@@ -194,5 +208,11 @@ public class CourseSettingsActivity extends AppCompatActivity
         viewPager.setAdapter(new CourseSettingsPagerAdapter(getSupportFragmentManager(),
                 course, courseSettings));
         tabLayout.setupWithViewPager(viewPager);
+        if(courseSettings.getDefaultView().equals("DIFFICULTY")){
+            viewPager.setCurrentItem(1);
+        } else {
+            viewPager.setCurrentItem(0);
+        }
+
     }
 }

@@ -99,7 +99,6 @@ public class SubscribedCoursesFragment extends Fragment
     public void onMethodCallback(long id, String date) {
         Course course = new Course();
         course.setId(id);
-        course.setEndDate(date);
         SharedPreferenceUtil.saveCourse(getActivity(), course);
         startActivity(new Intent(getActivity(), CourseUpdateActivity.class));
     }

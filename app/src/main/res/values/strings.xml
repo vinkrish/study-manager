@@ -33,11 +33,9 @@
     <string name="signup_failed">Sign-up failed</string>
     <string name="title_activity_bottom_bar">BottomBarActivity</string>
     <string name="subscribed_empty">
-        <![CDATA[
-        StudyManager is now successfully installed.\n\n
-        You are now one step closer in acheiving your goal.\n\n
+        StudyManager is now successfully installed.\n
+        You are now one step closer in acheiving your goal.\n
         You can always create a Custom Course if you do not find what you are looking for :-)
-        ]]>
     </string>
     <string name="available_courses">AVAILABLE COURSES</string>
     <string name="custom_course">Add Custom Course</string>
@@ -50,6 +48,7 @@
     <string name="update">UPDATE</string>
     <string name="recommended">RECOMMENDED BOOKS</string>
     <string name="title">TITLE</string>
+    <string name="start_date">START DATE</string>
     <string name="target_date">TARGET DATE</string>
     <string name="setting_saved">Successfully saved settings</string>
     <string name="change">Change</string>
@@ -58,7 +57,7 @@
     <string name="input_hours_text">Enter the number of hours you can spend studying on a regular
         basis for this course.
     </string>
-    <string name="prep_time">PREPARATION TIME</string>
+    <string name="prep_time">PROFICIENCY LEVEL</string>
     <string name="easy">Easy</string>
     <string name="moderate">Moderate</string>
     <string name="difficult">Difficult</string>
@@ -68,8 +67,10 @@
     <string name="w">W</string>
     <string name="f">F</string>
     <string name="s">S</string>
+    <string name="max_hours">*Maximum of 16 study hours per day</string>
     <string name="input_hours_error">At least one of the input hours should be non zero.</string>
     <string name="books">Books</string>
+    <string name="add_book">ADD BOOK</string>
     <string name="pages_completed">Pages Completed :</string>
     <string name="update_progress">UPDATE PROGRESS</string>
     <string name="page_no">Page Number</string>
@@ -78,7 +79,7 @@
     <string name="book_title">Book Title</string>
     <string name="no_pages">Number of pages</string>
     <string name="author">Author</string>
-    <string name="course_title">Course title</string>
+    <string name="course_title">Course Name</string>
     <string name="descript">Description</string>
     <string name="prof_info">PROFILE INFORMATION</string>
     <string name="name">Name</string>
@@ -90,6 +91,20 @@
     <string name="copyright_text">
         The Project Management Professional (PMP)® is the most important industry-recognized certification for project managers.\n
         Offered by the Project Management Institute.
+    </string>
+    <string name="tou">
+        PMI and PMBOK are trademarks of the Project Management Institute,
+        Inc. Rita Mulachy Exam Prep are treademarks of RMI Learning Solutions. RMI &amp; PMI has not
+        endorsed and did not participate in the development of this Application. RMI and PMI
+        does not sponsor this publication and makes no warranty, guarantee or representation,
+        expressed or implied as to the accuracy of the Application. Every attempt has been made by
+        &lt;company Name&gt; to ensure that the information presented in this Application is
+        accurate and can serve as preparation for the PMP certification exam. However, &lt;
+        Company Name&gt; acepts no legal responsibility for the content of the recommended books.
+        This Application should be used only as a tool to assist in preparation of the subscribed
+        courses. Following the "Plan" from this document does not guarantee that the reader will
+        pass the PMP Certification exam. No such guarantees or warranties are implied or expressed
+        by &lt;Company Name&gt;
     </string>
     <string name="more_info"><a href="https://www.pmi.org/certifications/types/project-management-pmp">Get more info</a></string>
     <string name="title_activity_course_details">Course Details</string>

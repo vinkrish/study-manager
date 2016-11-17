@@ -70,7 +70,7 @@ public class CourseUpdateAdapter extends RecyclerView.Adapter<CourseUpdateAdapte
             bookName.setText(book.getTitle());
             pages.setText(String.format("%s / %s", book.getNoOfPagesRead(), book.getNoOfPages()));
             Picasso.with(context)
-                    .load("http://vinkrish.info/bookcover.jpg")
+                    .load(book.getImageUrl())
                     .placeholder(R.drawable.placeholder_image)
                     .error(R.drawable.placeholder_image)
                     .into(bookImage);

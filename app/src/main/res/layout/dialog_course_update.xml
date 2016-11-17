@@ -8,17 +8,34 @@
     android:padding="15dp"
     tools:ignore="MissingPrefix">
 
-    <TextView
-        fontPath="fonts/Asap-Bold.ttf"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
-        android:drawableRight="@drawable/delete"
-        android:text="@string/update_progress"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/text_small" />
+        android:layout_marginTop="10dp">
+
+        <TextView
+            fontPath="fonts/Asap-Bold.ttf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:text="@string/update_progress"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_small" />
+
+        <ImageView
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/delete"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/book_tv"
@@ -61,20 +78,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:padding="10dp"
-                    android:clickable="true"
                     android:contentDescription="@string/app_name"
+                    android:padding="10dp"
                     android:src="@drawable/subtraction" />
 
-                <TextView
-                    android:id="@+id/pages_tv"
+                <EditText
+                    android:id="@+id/pages_et"
                     fontPath="fonts/Asap-Regular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:lineSpacingExtra="3dp"
+                    android:background="@drawable/edittext_bottom_line"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:minWidth="25dp"
+                    android:padding="10dp"
                     android:textColor="@color/default_tv_color"
                     android:textSize="@dimen/text_xsmall" />
 
@@ -83,9 +101,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:padding="10dp"
-                    android:clickable="true"
                     android:contentDescription="@string/app_name"
+                    android:padding="10dp"
                     android:src="@drawable/addition" />
 
             </LinearLayout>
@@ -126,19 +143,32 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/gray_light" />
 
-    <TextView
-        fontPath="fonts/Asap-Regular.ttf"
+    <LinearLayout
+        android:id="@+id/revision_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="15dp"
-        android:drawableRight="@drawable/subscribed"
-        android:text="@string/rev_completed"
-        android:textColor="@color/default_tv_color"
-        android:textSize="@dimen/text_xsmall" />
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            fontPath="fonts/Asap-Regular.ttf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:text="@string/rev_completed"
+            android:textColor="@color/default_tv_color"
+            android:textSize="@dimen/text_xsmall" />
+
+        <CheckBox
+            android:id="@+id/checkbox_revision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/save_btn"

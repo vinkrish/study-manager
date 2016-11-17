@@ -2,7 +2,10 @@ package com.app.studymanager.coursesettings.fragment.difficulty;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +34,6 @@ import butterknife.ButterKnife;
 public class DifficultyFragment extends Fragment {
     @BindView(R.id.title_tv) TextView title;
     @BindView(R.id.description_tv) TextView description;
-    @BindView(R.id.planned_date_tv) TextView plannedDate;
     @BindView(R.id.radio_easy) RadioButton radioEasy;
     @BindView(R.id.radio_moderate) RadioButton radioModerate;
     @BindView(R.id.radio_aggressive) RadioButton radioAggressive;
@@ -42,6 +44,7 @@ public class DifficultyFragment extends Fragment {
     @BindView(R.id.fri) EditText fri;
     @BindView(R.id.sat) EditText sat;
     @BindView(R.id.sun) EditText sun;
+    @BindView(R.id.max_hours) TextView maxHours;
     @BindView(R.id.save_btn) Button save;
 
     private Course course;
@@ -77,19 +80,20 @@ public class DifficultyFragment extends Fragment {
         description.setText(course.getDescription());
         setInputHours(courseSettings.getWeeklyHours());
         setPrepTime(courseSettings.getProficiency());
-        plannedDate.setText(getTargetDate(courseSettings.getTargetDate()));
+        setHoursWatcher();
+        //plannedDate.setText(getTargetDate(courseSettings.getTargetDate()));
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WeeklyHours weeklyHours = courseSettings.getWeeklyHours();
+                WeeklyHours weeklyHours = new WeeklyHours();
                 int monHours = Integer.parseInt(mon.getText().toString());
-                int tueHours = Integer.parseInt(mon.getText().toString());
-                int wedHours = Integer.parseInt(mon.getText().toString());
-                int thuHours = Integer.parseInt(mon.getText().toString());
-                int friHours = Integer.parseInt(mon.getText().toString());
-                int satHours = Integer.parseInt(mon.getText().toString());
-                int sunHours = Integer.parseInt(mon.getText().toString());
+                int tueHours = Integer.parseInt(tue.getText().toString());
+                int wedHours = Integer.parseInt(wed.getText().toString());
+                int thuHours = Integer.parseInt(thu.getText().toString());
+                int friHours = Integer.parseInt(fri.getText().toString());
+                int satHours = Integer.parseInt(sat.getText().toString());
+                int sunHours = Integer.parseInt(sun.getText().toString());
 
                 weeklyHours.setMonday(monHours);
                 weeklyHours.setTuesday(tueHours);
@@ -98,6 +102,7 @@ public class DifficultyFragment extends Fragment {
                 weeklyHours.setFriday(friHours);
                 weeklyHours.setSaturday(satHours);
                 weeklyHours.setSunday(sunHours);
+
                 int hours = monHours + tueHours + wedHours + thuHours + friHours + satHours + sunHours;
                 if (hours >= 1) {
                     ((CourseSettingsActivity)getActivity()).saveDifficultySettings(weeklyHours);
@@ -109,6 +114,16 @@ public class DifficultyFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void setHoursWatcher(){
+        mon.addTextChangedListener(new HoursTextWatcher());
+        tue.addTextChangedListener(new HoursTextWatcher());
+        wed.addTextChangedListener(new HoursTextWatcher());
+        thu.addTextChangedListener(new HoursTextWatcher());
+        fri.addTextChangedListener(new HoursTextWatcher());
+        sat.addTextChangedListener(new HoursTextWatcher());
+        sun.addTextChangedListener(new HoursTextWatcher());
     }
 
     private void setInputHours(WeeklyHours week) {
@@ -147,6 +162,29 @@ public class DifficultyFragment extends Fragment {
             e.printStackTrace();
         }
         return displayFormat.format(date);
+    }
+
+    class HoursTextWatcher implements TextWatcher {
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            if(!editable.toString().equals("") && Integer.parseInt(editable.toString()) > 16){
+                maxHours.setVisibility(View.VISIBLE);
+                editable.replace(0, editable.length(), 16+"");
+            } else {
+                //maxHours.setVisibility(View.GONE);
+            }
+        }
     }
 
 }

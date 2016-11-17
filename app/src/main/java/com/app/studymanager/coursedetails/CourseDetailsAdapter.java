@@ -40,7 +40,7 @@ public class CourseDetailsAdapter extends RecyclerView.Adapter<CourseDetailsAdap
         Book book = items.get(position);
         holder.bookName.setText(book.getTitle());
         Picasso.with(context)
-                .load("http://vinkrish.info/bookcover.jpg")
+                .load(book.getImageUrl())
                 .placeholder(R.drawable.placeholder_image)
                 .error(R.drawable.placeholder_image)
                 .into(holder.bookImage);

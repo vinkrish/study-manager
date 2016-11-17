@@ -171,12 +171,12 @@ public class Circle extends View {
 
         canvas.drawText(mTitleText,
                 xPos,
-                yPos - 20,
+                yPos - 5,
                 mTitleTextPaint);
 
         canvas.drawText(mSubtitleText,
                 xPos,
-                yPos + mTitleSubtitleSpace,
+                yPos + mTitleSubtitleSpace + 5,
                 mSubTextPaint);
 
         //canvas.drawBitmap(bitmap, xPos, yPos + 50, null);

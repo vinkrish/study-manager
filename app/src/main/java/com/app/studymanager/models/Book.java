@@ -15,6 +15,8 @@ public class Book implements Serializable {
     private int noOfPages;
     private int noOfPagesRead;
     private int noOfPagesUnRead;
+    private boolean revisionCompleted;
+    private String imageUrl;
 
     public long getId() {
         return id;
@@ -78,5 +80,21 @@ public class Book implements Serializable {
 
     public void setNoOfPagesUnRead(int noOfPagesUnRead) {
         this.noOfPagesUnRead = noOfPagesUnRead;
+    }
+
+    public boolean isRevisionCompleted() {
+        return revisionCompleted;
+    }
+
+    public void setRevisionCompleted(boolean revisionCompleted) {
+        this.revisionCompleted = revisionCompleted;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

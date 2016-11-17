@@ -57,7 +57,7 @@ public class SubscribedCoursesAdapter extends RecyclerView.Adapter<SubscribedCou
         holder.circle.setmTitleSubtitleSpace(titleSubtitleSpace);
         int progress = course.getCompletionRate().setScale(0, RoundingMode.DOWN).intValueExact();
         int circularProgress = (int)((progress/100.00)*360);
-        holder.circle.setmTitleText(String.format(Locale.ENGLISH, "%s %%", Integer.toString(progress)));
+        holder.circle.setmTitleText(String.format(Locale.ENGLISH, "%s%%", Integer.toString(progress)));
         CircleAnimation animation = new CircleAnimation(holder.circle, circularProgress);
         animation.setDuration(1000);
         holder.circle.startAnimation(animation);
