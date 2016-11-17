@@ -1,11 +1,9 @@
 package com.app.studymanager.courseupdate;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -22,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -30,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.studymanager.R;
 import com.app.studymanager.bottombar.BottomBarActivity;
@@ -278,7 +274,6 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
             }
         }
     }
-
 
     private void getInitValues(){
         Course initCourse = SharedPreferenceUtil.getCourse(this);
