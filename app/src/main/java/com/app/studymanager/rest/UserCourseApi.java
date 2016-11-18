@@ -10,6 +10,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
@@ -57,4 +58,10 @@ public interface UserCourseApi {
     @POST("api/unSubscribeCourse/{id}")
     Call<CommonResponse> unSubscribeCourse(@HeaderMap Map<String,String> headers,
                               @Path("id") long courseId);
+
+    @Headers("content-type: application/json")
+    @DELETE("api/subscribedCourse/{courseId}/book/{bookId}")
+    Call<CommonResponse> deleteBook(@HeaderMap Map<String,String> headers,
+                                    @Path("courseId") long courseId,
+                                    @Path("bookId") long bookId);
 }

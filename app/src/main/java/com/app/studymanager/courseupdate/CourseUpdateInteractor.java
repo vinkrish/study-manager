@@ -16,6 +16,10 @@ public interface CourseUpdateInteractor {
 
         void onUnSubscribed();
 
+        void onDeleted();
+
+        void onCantDelete();
+
         void onError();
     }
 
@@ -28,4 +32,7 @@ public interface CourseUpdateInteractor {
 
     void unSubscribeToCourse(Credentials credentials, long courseId,
                              CourseUpdateInteractor.OnFinishedListener listener);
+
+    void deleteBook(Credentials credentials, long courseId, long bookId,
+                    CourseUpdateInteractor.OnFinishedListener listener);
 }

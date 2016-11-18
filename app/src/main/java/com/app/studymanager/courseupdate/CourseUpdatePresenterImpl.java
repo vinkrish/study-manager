@@ -44,6 +44,14 @@ public class CourseUpdatePresenterImpl implements CourseUpdatePresenter,
     }
 
     @Override
+    public void deleteBook(Credentials credentials, long courseId, long bookId) {
+        if(updateView != null) {
+            updateView.showProgress();
+            interactor.deleteBook(credentials, courseId, bookId, this);
+        }
+    }
+
+    @Override
     public void onDestroy() {
         updateView = null;
     }
@@ -69,6 +77,22 @@ public class CourseUpdatePresenterImpl implements CourseUpdatePresenter,
         if(updateView != null){
             updateView.hideProgess();
             updateView.whileUnscribed();
+        }
+    }
+
+    @Override
+    public void onDeleted() {
+        if(updateView != null){
+            updateView.setDeleted();
+            updateView.hideProgess();
+        }
+    }
+
+    @Override
+    public void onCantDelete() {
+        if(updateView != null){
+            updateView.hideProgess();
+            updateView.cantDelete();
         }
     }
 

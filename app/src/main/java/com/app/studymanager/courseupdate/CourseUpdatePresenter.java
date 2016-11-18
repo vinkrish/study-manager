@@ -15,5 +15,7 @@ public interface CourseUpdatePresenter {
 
     void unsubscribeCourse(Credentials credentials, long courseId);
 
+    void deleteBook(Credentials credentials, long courseId, long bookId);
+
     void onDestroy();
 }

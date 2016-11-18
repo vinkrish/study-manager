@@ -73,6 +73,7 @@
     <string name="add_book">ADD BOOK</string>
     <string name="pages_completed">Pages Completed :</string>
     <string name="update_progress">UPDATE PROGRESS</string>
+    <string name="cant_delete">Cannot delete last book in course</string>
     <string name="page_no">Page Number</string>
     <string name="total_pages">Total Pages</string>
     <string name="rev_completed">Revision Completed</string>

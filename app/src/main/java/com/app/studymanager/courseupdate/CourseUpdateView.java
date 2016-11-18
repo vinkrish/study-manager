@@ -17,5 +17,9 @@ public interface CourseUpdateView {
 
     void whileUnscribed();
 
+    void setDeleted();
+
+    void cantDelete();
+
     void showError();
 }

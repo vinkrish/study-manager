@@ -14,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -171,6 +170,17 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
     }
 
     @Override
+    public void setDeleted() {
+        presenter.onResume(credentials, courseId);
+    }
+
+    @Override
+    public void cantDelete() {
+        Snackbar.make(coordinatorLayout, getString(R.string.cant_delete), Snackbar.LENGTH_LONG)
+                .show();
+    }
+
+    @Override
     public void showError() {
         Snackbar.make(coordinatorLayout, getString(R.string.subscription_error), Snackbar.LENGTH_LONG)
                 .show();
@@ -182,6 +192,14 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
         //dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_course_update);
+
+        (dialog.findViewById(R.id.delete_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                presenter.deleteBook(credentials, courseId, book.getId());
+            }
+        });
 
         pages = 0;
 
