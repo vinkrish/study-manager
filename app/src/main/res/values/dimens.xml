@@ -13,7 +13,8 @@
     <dimen name="text_xlarge">25sp</dimen>
 
     <dimen name="grid_spacing">25dp</dimen>
-    <dimen name="mTitleSize">16dp</dimen>
+    <dimen name="circle_stroke_width">3dp</dimen>
+    <dimen name="mTitleSize">18dp</dimen>
     <dimen name="mSubTitleSize">12dp</dimen>
     <dimen name="title_subtitle_space">10dp</dimen>
     <dimen name="fab_margin">16dp</dimen>

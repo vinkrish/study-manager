@@ -20,11 +20,9 @@ public class SplashActivity extends AppCompatActivity {
         if(credentials.getAuthToken().equals("")) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-            finish();
         } else {
             Intent intent = new Intent(this, BottomBarActivity.class);
             startActivity(intent);
-            finish();
         }
 
     }

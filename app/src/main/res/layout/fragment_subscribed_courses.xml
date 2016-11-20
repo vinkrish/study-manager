@@ -55,13 +55,41 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
+                <LinearLayout
+                    android:id="@+id/top_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/logo" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/welcome_msg"
+                    fontPath="fonts/Asap-Regular.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="@color/default_tv_color"
+                    android:textSize="@dimen/text_medium" />
+
                 <TextView
                     fontPath="fonts/Asap-Bold.ttf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:text="@string/subscribed_courses"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/text_small" />

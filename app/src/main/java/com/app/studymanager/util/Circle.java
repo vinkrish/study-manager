@@ -31,9 +31,9 @@ public class Circle extends View {
     private static boolean DEFAULT_SHOW_TITLE = true;
     private static boolean DEFAULT_SHOW_SUBTITLE = true;
 
-    private static float DEFAULT_TITLE_SIZE = 50f;
-    private static float DEFAULT_SUBTITLE_SIZE = 40f;
-    private static float DEFAULT_TITLE_SUBTITLE_SPACE = 25f;
+    private static float DEFAULT_TITLE_SIZE = 18f;
+    private static float DEFAULT_SUBTITLE_SIZE = 12f;
+    private static float DEFAULT_TITLE_SUBTITLE_SPACE = 10f;
 
     private static int DEFAULT_STROKE_COLOR = R.color.colorPrimary;
     private static int DEFAULT_BACKGROUND_COLOR = Color.WHITE;
@@ -81,6 +81,7 @@ public class Circle extends View {
     public Circle(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        mStrokeWidth = context.getResources().getDimensionPixelSize(R.dimen.circle_stroke_width);
         init(attrs, 0);
     }
 
@@ -105,13 +106,15 @@ public class Circle extends View {
 
         //Initial Angle (optional, it can be zero)
         angle = 0;
+        mTitleColor = ContextCompat.getColor(context, R.color.light_green);
+        mSubtitleColor = ContextCompat.getColor(context, R.color.light_green);
 
         mTitleTextPaint = new TextPaint();
         mTitleTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         mTitleTextPaint.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         mTitleTextPaint.setTextAlign(Paint.Align.CENTER);
         mTitleTextPaint.setLinearText(true);
-        mTitleTextPaint.setColor(ContextCompat.getColor(context, R.color.light_green));
+        mTitleTextPaint.setColor(mTitleColor);
         mTitleTextPaint.setTextSize(mTitleSize);
 
         mSubTextPaint = new TextPaint();
@@ -119,7 +122,7 @@ public class Circle extends View {
         mSubTextPaint.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         mSubTextPaint.setTextAlign(Paint.Align.CENTER);
         mSubTextPaint.setLinearText(true);
-        mSubTextPaint.setColor(ContextCompat.getColor(context, R.color.light_green));
+        mSubTextPaint.setColor(mSubtitleColor);
         mSubTextPaint.setTextSize(mSubtitleSize);
 
         mStrokePaint = new Paint();
@@ -171,12 +174,12 @@ public class Circle extends View {
 
         canvas.drawText(mTitleText,
                 xPos,
-                yPos - 5,
+                yPos - 10,
                 mTitleTextPaint);
 
         canvas.drawText(mSubtitleText,
                 xPos,
-                yPos + mTitleSubtitleSpace + 5,
+                yPos + mTitleSubtitleSpace - 5,
                 mSubTextPaint);
 
         //canvas.drawBitmap(bitmap, xPos, yPos + 50, null);

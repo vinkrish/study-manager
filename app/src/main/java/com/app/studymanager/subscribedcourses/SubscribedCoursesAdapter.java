@@ -13,6 +13,7 @@ import com.app.studymanager.models.Course;
 import com.app.studymanager.util.AdapterCallback;
 import com.app.studymanager.util.Circle;
 import com.app.studymanager.util.CircleAnimation;
+import com.app.studymanager.util.DisplayUtil;
 
 import java.math.RoundingMode;
 import java.text.ParseException;
@@ -27,9 +28,7 @@ import java.util.Locale;
 
 public class SubscribedCoursesAdapter extends RecyclerView.Adapter<SubscribedCoursesAdapter.ViewHolder> {
     private List<Course> items;
-    private float mTitleSize;
-    private float mSubTitleSize;
-    private float titleSubtitleSpace;
+    private float mTitleSize, mSubTitleSize, titleSubtitleSpace, circleStrokeWidth;
     private AdapterCallback adapterCallback;
 
     public SubscribedCoursesAdapter(Context context, List<Course> items, AdapterCallback adapterCallback){

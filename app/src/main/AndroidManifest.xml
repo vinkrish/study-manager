@@ -10,7 +10,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
@@ -18,24 +17,27 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".singup.SignupActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".bottombar.BottomBarActivity"
             android:label="@string/title_activity_bottom_bar"
+            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".coursedetails.CourseDetailsActivity"
             android:label=""
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -44,6 +46,7 @@
         <activity
             android:name=".coursesettings.CourseSettingsActivity"
             android:label="@string/title_activity_course_settings"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -52,6 +55,7 @@
         <activity
             android:name=".courseupdate.CourseUpdateActivity"
             android:label="@string/title_activity_course_update"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -60,7 +64,8 @@
         <activity
             android:name=".pwdrecovery.PwdRecoveryActivity"
             android:label="@string/title_activity_pwd_recovery"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".bottombar.BottomBarActivity" />
@@ -69,6 +74,7 @@
             android:name=".custombook.CustomBookActivity"
             android:label="@string/title_activity_custom_book"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -78,6 +84,7 @@
             android:name=".customcourse.CustomCourseActivity"
             android:label="@string/title_activity_custom_course"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

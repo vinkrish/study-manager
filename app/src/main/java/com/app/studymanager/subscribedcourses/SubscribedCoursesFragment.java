@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.app.studymanager.R;
 import com.app.studymanager.courseupdate.CourseUpdateActivity;
@@ -18,6 +19,7 @@ import com.app.studymanager.util.AdapterCallback;
 import com.app.studymanager.util.SharedPreferenceUtil;
 
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +27,7 @@ import butterknife.ButterKnife;
 public class SubscribedCoursesFragment extends Fragment
         implements SubscribedCoursesView, AdapterCallback {
 
+    @BindView(R.id.welcome_msg) TextView welcomeMsg;
     @BindView(R.id.progress) ProgressBar progressBar;
     @BindView(R.id.view_list) LinearLayout viewList;
     @BindView(R.id.view_empty) LinearLayout viewEmpty;
@@ -33,6 +36,7 @@ public class SubscribedCoursesFragment extends Fragment
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private int userId;
+    private String name;
     private String authToken;
     private AdapterCallback adapterCallback;
 
@@ -56,6 +60,7 @@ public class SubscribedCoursesFragment extends Fragment
             userId = getArguments().getInt(ARG_PARAM1);
             authToken = getArguments().getString(ARG_PARAM2);
         }
+        name = (SharedPreferenceUtil.getEmail(getActivity()).split("@"))[0];
     }
 
     @Override
@@ -93,6 +98,7 @@ public class SubscribedCoursesFragment extends Fragment
     public void onResume() {
         super.onResume();
         presenter.onResume(userId, authToken);
+        welcomeMsg.setText(String.format(Locale.ENGLISH, "Welcome %s, You had last updated your progress in StudyManager on <backend-date>", name));
     }
 
     @Override

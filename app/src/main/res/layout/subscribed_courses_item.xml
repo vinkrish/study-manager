@@ -91,8 +91,8 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_below="@+id/layout_2"
+                android:layout_marginTop="5dp"
                 android:text="@string/update"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimaryDark"
@@ -105,7 +105,11 @@
             android:id="@+id/circle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
+            android:layout_marginEnd="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="0.25" />
 
     </LinearLayout>
