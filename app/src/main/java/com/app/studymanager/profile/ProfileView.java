@@ -2,6 +2,7 @@ package com.app.studymanager.profile;
 
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Profile;
+import com.app.studymanager.models.SubscribedCourses;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface ProfileView {
 
     void setProfile(Profile profile);
 
-    void setSubscribedCourses(List<Course> subscribedCourses);
+    void setSubscribedCourses(SubscribedCourses subscribedCourses);
 }

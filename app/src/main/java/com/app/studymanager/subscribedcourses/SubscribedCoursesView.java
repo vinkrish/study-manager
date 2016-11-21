@@ -1,6 +1,7 @@
 package com.app.studymanager.subscribedcourses;
 
 import com.app.studymanager.models.Course;
+import com.app.studymanager.models.SubscribedCourses;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ public interface SubscribedCoursesView {
 
     void hideProgess();
 
-    void setSubscribedCourses(List<Course> subscribedCourses);
+    void setSubscribedCourses(SubscribedCourses subscribedCourses);
 
 }

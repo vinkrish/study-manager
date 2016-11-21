@@ -24,6 +24,7 @@ public class Course implements Serializable{
     private String currentStatus;
     private BigDecimal completionRate;
     private Integer todayGoal;
+    private String lastUpdatedDate;
 
     public long getId() {
         return id;
@@ -119,5 +120,13 @@ public class Course implements Serializable{
 
     public void setTodayGoal(Integer todayGoal) {
         this.todayGoal = todayGoal;
+    }
+
+    public String getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(String lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
     }
 }

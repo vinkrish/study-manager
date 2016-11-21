@@ -23,7 +23,8 @@
         <activity
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar" />
+            android:theme="@style/NoActionBar" >
+        </activity>
         <activity
             android:name=".singup.SignupActivity"
             android:screenOrientation="portrait"

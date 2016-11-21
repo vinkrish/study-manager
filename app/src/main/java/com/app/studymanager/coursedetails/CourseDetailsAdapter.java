@@ -41,8 +41,8 @@ public class CourseDetailsAdapter extends RecyclerView.Adapter<CourseDetailsAdap
         holder.bookName.setText(book.getTitle());
         Picasso.with(context)
                 .load(book.getImageUrl())
-                .placeholder(R.drawable.placeholder_image)
-                .error(R.drawable.placeholder_image)
+                .placeholder(R.drawable.bookcover)
+                .error(R.drawable.bookcover)
                 .into(holder.bookImage);
     }
 

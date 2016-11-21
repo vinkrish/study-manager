@@ -1,6 +1,7 @@
 package com.app.studymanager.subscribedcourses;
 
 import com.app.studymanager.models.Course;
+import com.app.studymanager.models.SubscribedCourses;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface SubscribedCoursesInteractor {
 
     interface OnFinishedListener {
 
-        void onFinished(List<Course> courses);
+        void onFinished(SubscribedCourses courses);
 
     }
 

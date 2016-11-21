@@ -15,9 +15,13 @@ import android.widget.TextView;
 import com.app.studymanager.R;
 import com.app.studymanager.courseupdate.CourseUpdateActivity;
 import com.app.studymanager.models.Course;
+import com.app.studymanager.models.SubscribedCourses;
 import com.app.studymanager.util.AdapterCallback;
 import com.app.studymanager.util.SharedPreferenceUtil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -85,20 +89,34 @@ public class SubscribedCoursesFragment extends Fragment
     }
 
     @Override
-    public void setSubscribedCourses(List<Course> subscribedCourses) {
-        if(subscribedCourses != null && subscribedCourses.isEmpty()) {
+    public void setSubscribedCourses(SubscribedCourses subscribedCourses) {
+        if(subscribedCourses.getCourses() != null && subscribedCourses.getCourses().isEmpty()) {
             viewEmpty.setVisibility(View.VISIBLE);
         } else {
             viewList.setVisibility(View.VISIBLE);
-            recyclerView.setAdapter(new SubscribedCoursesAdapter(getActivity(), subscribedCourses, adapterCallback));
+            recyclerView.setAdapter(new SubscribedCoursesAdapter(getActivity(), subscribedCourses.getCourses(), adapterCallback));
+            welcomeMsg.setText(String.format(Locale.ENGLISH,
+                    "Welcome %s, You had last updated your progress in StudyManager on %s.",
+                    name, getDate(subscribedCourses.getLastUpdatedDate())));
         }
+    }
+
+    private String getDate(String dateString) {
+        SimpleDateFormat displayFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+        SimpleDateFormat defaultFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date date = new Date();
+        try {
+            date = defaultFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return displayFormat.format(date);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         presenter.onResume(userId, authToken);
-        welcomeMsg.setText(String.format(Locale.ENGLISH, "Welcome %s, You had last updated your progress in StudyManager on <backend-date>", name));
     }
 
     @Override

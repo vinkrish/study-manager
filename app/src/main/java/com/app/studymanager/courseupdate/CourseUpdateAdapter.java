@@ -71,8 +71,8 @@ public class CourseUpdateAdapter extends RecyclerView.Adapter<CourseUpdateAdapte
             pages.setText(String.format("%s / %s", book.getNoOfPagesRead(), book.getNoOfPages()));
             Picasso.with(context)
                     .load(book.getImageUrl())
-                    .placeholder(R.drawable.placeholder_image)
-                    .error(R.drawable.placeholder_image)
+                    .placeholder(R.drawable.bookcover)
+                    .error(R.drawable.bookcover)
                     .into(bookImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {

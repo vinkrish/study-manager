@@ -3,6 +3,7 @@ package com.app.studymanager.rest;
 import com.app.studymanager.models.Book;
 import com.app.studymanager.models.CommonResponse;
 import com.app.studymanager.models.Course;
+import com.app.studymanager.models.SubscribedCourses;
 import com.app.studymanager.models.UpdateBook;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface UserCourseApi {
 
     @Headers("content-type: application/json")
     @GET("api/subscribedCourses")
-    Call<List<Course>> getSubscribedCourses(@HeaderMap Map<String,String> headers);
+    Call<SubscribedCourses> getSubscribedCourses(@HeaderMap Map<String,String> headers);
 
     @Headers("content-type: application/json")
     @GET("api/subscribedCourse/{id}")

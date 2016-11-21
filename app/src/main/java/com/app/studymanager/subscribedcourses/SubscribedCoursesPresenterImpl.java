@@ -1,6 +1,7 @@
 package com.app.studymanager.subscribedcourses;
 
 import com.app.studymanager.models.Course;
+import com.app.studymanager.models.SubscribedCourses;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class SubscribedCoursesPresenterImpl implements
     }
 
     @Override
-    public void onFinished(List<Course> courses) {
+    public void onFinished(SubscribedCourses courses) {
         if(subscribedCoursesView != null) {
             subscribedCoursesView.setSubscribedCourses(courses);
             subscribedCoursesView.hideProgess();

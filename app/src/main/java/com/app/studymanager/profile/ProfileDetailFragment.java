@@ -22,6 +22,7 @@ import com.app.studymanager.R;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.Profile;
+import com.app.studymanager.models.SubscribedCourses;
 import com.app.studymanager.subscribedcourses.SubscribedCoursesAdapter;
 import com.app.studymanager.util.EditTextWatcher;
 import com.app.studymanager.util.SharedPreferenceUtil;
@@ -104,8 +105,8 @@ public class ProfileDetailFragment extends Fragment implements ProfileView {
     }
 
     @Override
-    public void setSubscribedCourses(List<Course> subscribedCourses) {
-        recyclerView.setAdapter(new ProfileCoursesAdapter(getActivity(), subscribedCourses));
+    public void setSubscribedCourses(SubscribedCourses subscribedCourses) {
+        recyclerView.setAdapter(new ProfileCoursesAdapter(getActivity(), subscribedCourses.getCourses()));
     }
 
     private void showToast(String msg){

@@ -13,16 +13,17 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
 
         Credentials credentials = SharedPreferenceUtil.getUserToken(this);
         if(credentials.getAuthToken().equals("")) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+            finish();
         } else {
             Intent intent = new Intent(this, BottomBarActivity.class);
             startActivity(intent);
+            finish();
         }
 
     }

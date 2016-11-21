@@ -3,6 +3,7 @@ package com.app.studymanager.profile;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.Profile;
+import com.app.studymanager.models.SubscribedCourses;
 
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class ProfilePresenterImpl implements ProfilePresenter, ProfileInteractor
     }
 
     @Override
-    public void onFinished(List<Course> courses) {
+    public void onFinished(SubscribedCourses courses) {
         if(profileView != null) {
             profileView.hideProgess();
             profileView.setSubscribedCourses(courses);

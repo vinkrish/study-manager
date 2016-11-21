@@ -1,6 +1,7 @@
 package com.app.studymanager.subscribedcourses;
 
 import com.app.studymanager.models.Course;
+import com.app.studymanager.models.SubscribedCourses;
 import com.app.studymanager.rest.ApiClient;
 import com.app.studymanager.rest.UserCourseApi;
 
@@ -24,15 +25,15 @@ public class SubscribedCoursesInteractorImpl implements SubscribedCoursesInterac
         hashMap.put("user-id", userId+"");
         hashMap.put("auth-token", authToken);
 
-        Call<List<Course>> subscribedCourses = api.getSubscribedCourses(hashMap);
-        subscribedCourses.enqueue(new Callback<List<Course>>() {
+        Call<SubscribedCourses> subscribedCourses = api.getSubscribedCourses(hashMap);
+        subscribedCourses.enqueue(new Callback<SubscribedCourses>() {
             @Override
-            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+            public void onResponse(Call<SubscribedCourses> call, Response<SubscribedCourses> response) {
                 listener.onFinished(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Course>> call, Throwable t) {
+            public void onFailure(Call<SubscribedCourses> call, Throwable t) {
 
             }
         });

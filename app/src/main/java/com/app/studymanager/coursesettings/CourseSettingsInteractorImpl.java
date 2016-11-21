@@ -31,7 +31,11 @@ public class CourseSettingsInteractorImpl implements CourseSettingsInteractor {
 
             @Override
             public void onResponse(Call<CourseSettings> call, Response<CourseSettings> response) {
-                listener.onFinished(response.body());
+                if(response.code() == 200){
+                    listener.onFinished(response.body());
+                } else {
+                    listener.onError();
+                }
             }
 
             @Override
