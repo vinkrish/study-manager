@@ -3,7 +3,9 @@ package com.app.studymanager.custombook;
 import com.app.studymanager.models.Book;
 import com.app.studymanager.models.CommonResponse;
 import com.app.studymanager.models.Credentials;
+import com.app.studymanager.rest.APIError;
 import com.app.studymanager.rest.ApiClient;
+import com.app.studymanager.rest.ErrorUtils;
 import com.app.studymanager.rest.UserCourseApi;
 
 import java.util.HashMap;
@@ -30,10 +32,15 @@ public class CustomBookInteractorImpl implements CustomBookInteractor {
         updateCourse.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onAdded();
-                }else{
-                    listener.onError();
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onAdded();
+                    }else{
+                        listener.onAPIError("Failed to add book.");
+                    }
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 

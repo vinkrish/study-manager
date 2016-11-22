@@ -13,6 +13,10 @@ public interface CoursesView {
 
     void hideProgess();
 
+    void showError();
+
+    void showAPIError(String message);
+
     void setCourses(List<Course> courses);
 
     void navigateToCourseDetails(Course course);

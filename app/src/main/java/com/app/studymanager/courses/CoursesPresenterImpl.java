@@ -31,6 +31,22 @@ public class CoursesPresenterImpl implements CoursesPresenter, CoursesInteractor
     }
 
     @Override
+    public void onError() {
+        if(coursesView != null) {
+            coursesView.hideProgess();
+            coursesView.showError();
+        }
+    }
+
+    @Override
+    public void onAPIError(String message) {
+        if(coursesView != null) {
+            coursesView.hideProgess();
+            coursesView.showAPIError(message);
+        }
+    }
+
+    @Override
     public void onFinished(List<Course> courses) {
         if(coursesView != null) {
             coursesView.setCourses(courses);

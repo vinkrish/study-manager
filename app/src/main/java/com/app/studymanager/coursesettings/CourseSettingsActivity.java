@@ -2,11 +2,13 @@ package com.app.studymanager.coursesettings;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +18,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.studymanager.R;
@@ -52,6 +55,7 @@ public class CourseSettingsActivity extends AppCompatActivity
     private CourseSettings courseSettings;
     private long courseId;
     private Toast myToast;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,8 +119,18 @@ public class CourseSettingsActivity extends AppCompatActivity
 
     @Override
     public void showError() {
-        Snackbar.make(coordinatorLayout, getString(R.string.subscription_error), Snackbar.LENGTH_LONG)
+        Snackbar.make(coordinatorLayout, getString(R.string.error_msg), Snackbar.LENGTH_LONG)
                 .show();
+    }
+
+    @Override
+    public void showAPIError(String message) {
+        snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        View snackBarView = snackbar.getView();
+        snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.bottom_bar));
+        TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.RED);
+        snackbar.show();
     }
 
     private void showToast(String msg){
@@ -208,10 +222,10 @@ public class CourseSettingsActivity extends AppCompatActivity
         viewPager.setAdapter(new CourseSettingsPagerAdapter(getSupportFragmentManager(),
                 course, courseSettings));
         tabLayout.setupWithViewPager(viewPager);
-        if(courseSettings.getDefaultView().equals("DIFFICULTY")){
-            viewPager.setCurrentItem(1);
-        } else {
+        if(courseSettings.getDefaultView()!=null && courseSettings.getDefaultView().equals("TARGETDATE")){
             viewPager.setCurrentItem(0);
+        } else {
+            viewPager.setCurrentItem(1);
         }
 
     }

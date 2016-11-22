@@ -5,8 +5,10 @@ import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.Profile;
 import com.app.studymanager.models.SubscribedCourses;
+import com.app.studymanager.rest.APIError;
 import com.app.studymanager.rest.ApiClient;
 import com.app.studymanager.rest.AuthApi;
+import com.app.studymanager.rest.ErrorUtils;
 import com.app.studymanager.rest.UserCourseApi;
 import com.app.studymanager.subscribedcourses.SubscribedCoursesInteractor;
 
@@ -37,7 +39,8 @@ public class ProfileInteractorImpl implements ProfileInteractor {
                 if(response.isSuccessful()){
                     listener.onFinished(response.body());
                 } else {
-                    listener.onError();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 
@@ -63,10 +66,15 @@ public class ProfileInteractorImpl implements ProfileInteractor {
         sendNewPwd.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onSuccess();
-                } else {
-                    listener.onError();
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onSuccess();
+                    } else {
+                        listener.onAPIError("Failed to update profile.");
+                    }
+                }else {
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 
@@ -89,7 +97,12 @@ public class ProfileInteractorImpl implements ProfileInteractor {
         subscribedCourses.enqueue(new Callback<SubscribedCourses>() {
             @Override
             public void onResponse(Call<SubscribedCourses> call, Response<SubscribedCourses> response) {
-                listener.onFinished(response.body());
+                if(response.isSuccessful()) {
+                    listener.onFinished(response.body());
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
+                }
             }
 
             @Override

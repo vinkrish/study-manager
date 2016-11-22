@@ -46,4 +46,12 @@ public class CustomBookPresenterImpl implements CustomBookPresenter,
             customBookView.showError();
         }
     }
+
+    @Override
+    public void onAPIError(String message) {
+        if(customBookView != null) {
+            customBookView.hideProgess();
+            customBookView.showAPIError(message);
+        }
+    }
 }

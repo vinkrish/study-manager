@@ -80,4 +80,12 @@ public class ProfilePresenterImpl implements ProfilePresenter, ProfileInteractor
             profileView.setError();
         }
     }
+
+    @Override
+    public void onAPIError(String message) {
+        if(profileView != null) {
+            profileView.hideProgess();
+            profileView.showAPIError(message);
+        }
+    }
 }

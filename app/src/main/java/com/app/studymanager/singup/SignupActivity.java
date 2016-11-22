@@ -33,7 +33,6 @@ public class SignupActivity extends AppCompatActivity implements SignupView {
     @BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
 
     private SignupPresenter presenter;
-    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class SignupActivity extends AppCompatActivity implements SignupView {
     }
 
     private void showSnackbar(String message) {
-        snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
         View snackBarView = snackbar.getView();
         snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.bottom_bar));
         TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
@@ -73,6 +72,11 @@ public class SignupActivity extends AppCompatActivity implements SignupView {
     @Override
     public void setEmailExist() {
         showSnackbar(getString(R.string.email_exist));
+    }
+
+    @Override
+    public void showAPIError(String message) {
+        showSnackbar(message);
     }
 
     @Override

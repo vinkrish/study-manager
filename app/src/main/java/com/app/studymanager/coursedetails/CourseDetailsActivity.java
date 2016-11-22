@@ -2,9 +2,11 @@ package com.app.studymanager.coursedetails;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,6 +42,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
     private Course course;
     private long courseId;
     private boolean subscriptionStatus;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,8 +125,18 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
 
     @Override
     public void showError() {
-        Snackbar.make(coordinatorLayout, getString(R.string.subscription_error), Snackbar.LENGTH_LONG)
+        Snackbar.make(coordinatorLayout, getString(R.string.error_msg), Snackbar.LENGTH_LONG)
                 .show();
+    }
+
+    @Override
+    public void showAPIError(String message) {
+        snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        View snackBarView = snackbar.getView();
+        snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.bottom_bar));
+        TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.RED);
+        snackbar.show();
     }
 
     public void courseSubscription(View view){

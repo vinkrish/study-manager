@@ -46,4 +46,12 @@ public class CustomCoursePresenterImpl implements CustomCoursePresenter,
             customCourseView.showError();
         }
     }
+
+    @Override
+    public void onAPIError(String message) {
+        if(customCourseView != null) {
+            customCourseView.hideProgess();
+            customCourseView.showAPIError(message);
+        }
+    }
 }

@@ -38,6 +38,14 @@ public class SignupPresenterImpl implements SignupPresenter, SignupInteractor.On
     }
 
     @Override
+    public void onAPIError(String message) {
+        if(signupView != null){
+            signupView.hideProgress();
+            signupView.showAPIError(message);
+        }
+    }
+
+    @Override
     public void validateCredentials(String email, String password) {
         if(signupView != null) {
             signupView.showProgress();

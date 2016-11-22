@@ -13,6 +13,8 @@ public interface SignupInteractor {
         void onSuccess();
 
         void onFailure();
+
+        void onAPIError(String message);
     }
 
     void signup(String email, String password, OnSignupFinishedListener listener);

@@ -11,5 +11,7 @@ public interface PwdView {
 
     void setError();
 
+    void showAPIError(String message);
+
     void setPwdReset();
 }

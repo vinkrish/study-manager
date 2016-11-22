@@ -1,17 +1,20 @@
 package com.app.studymanager.pwdrecovery;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.app.studymanager.R;
 import com.app.studymanager.models.Credentials;
@@ -70,8 +73,21 @@ public class PwdRecoveryActivity extends AppCompatActivity implements PwdView{
 
     @Override
     public void setError() {
-        Snackbar.make(coordinatorLayout, "Error while requesting, please try again", Snackbar.LENGTH_LONG)
-                .show();
+        showAPIError(getString(R.string.request_error));
+    }
+
+    @Override
+    public void showAPIError(String message) {
+        showSnackbar(message);
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        View snackBarView = snackbar.getView();
+        snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.bottom_bar));
+        TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.RED);
+        snackbar.show();
     }
 
     @Override

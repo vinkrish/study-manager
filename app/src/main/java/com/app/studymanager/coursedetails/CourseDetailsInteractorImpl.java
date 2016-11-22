@@ -2,9 +2,11 @@ package com.app.studymanager.coursedetails;
 
 import com.app.studymanager.models.CommonResponse;
 import com.app.studymanager.models.Course;
+import com.app.studymanager.rest.APIError;
 import com.app.studymanager.rest.ApiClient;
 import com.app.studymanager.rest.AuthApi;
 import com.app.studymanager.rest.CourseApi;
+import com.app.studymanager.rest.ErrorUtils;
 import com.app.studymanager.rest.UserCourseApi;
 
 import java.util.HashMap;
@@ -24,7 +26,7 @@ public class CourseDetailsInteractorImpl implements CourseDetailsInteractor {
                                    final OnFinishedListener listener) {
         CourseApi api = ApiClient.getClient().create(CourseApi.class);
 
-        HashMap<String,String> hashMap = new HashMap<String, String>();
+        HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("user-id", userId+"");
         hashMap.put("auth-token", authToken);
 
@@ -32,12 +34,17 @@ public class CourseDetailsInteractorImpl implements CourseDetailsInteractor {
         courseDetails.enqueue(new Callback<Course>() {
             @Override
             public void onResponse(Call<Course> call, Response<Course> response) {
-                listener.onFinished(response.body());
+                if(response.isSuccessful()) {
+                    listener.onFinished(response.body());
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
+                }
             }
 
             @Override
             public void onFailure(Call<Course> call, Throwable t) {
-
+                listener.onError();
             }
         });
     }
@@ -47,7 +54,7 @@ public class CourseDetailsInteractorImpl implements CourseDetailsInteractor {
                                   final OnFinishedListener listener) {
         UserCourseApi api = ApiClient.getClient().create(UserCourseApi.class);
 
-        HashMap<String,String> hashMap = new HashMap<String, String>();
+        HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("user-id", userId+"");
         hashMap.put("auth-token", authToken);
 
@@ -55,10 +62,15 @@ public class CourseDetailsInteractorImpl implements CourseDetailsInteractor {
         subscribeCourse.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onSubscribed();
+                if(response.isSuccessful()){
+                    if(response.body().isSuccess()){
+                        listener.onSubscribed();
+                    } else {
+                        listener.onAPIError("Failed to Subscribe.");
+                    }
                 } else {
-                    listener.onError();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 
@@ -74,7 +86,7 @@ public class CourseDetailsInteractorImpl implements CourseDetailsInteractor {
                                     final OnFinishedListener listener) {
         UserCourseApi api = ApiClient.getClient().create(UserCourseApi.class);
 
-        HashMap<String,String> hashMap = new HashMap<String, String>();
+        HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("user-id", userId+"");
         hashMap.put("auth-token", authToken);
 
@@ -82,10 +94,15 @@ public class CourseDetailsInteractorImpl implements CourseDetailsInteractor {
         unsubscribeCourse.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onUnSubscribed();
+                if(response.isSuccessful()){
+                    if(response.body().isSuccess()){
+                        listener.onUnSubscribed();
+                    } else {
+                        listener.onAPIError("Failed to unsubscribe.");
+                    }
                 } else {
-                    listener.onError();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 

@@ -12,6 +12,8 @@ public interface CustomCourseInteractor {
         void onAdded();
 
         void onError();
+
+        void onAPIError(String message);
     }
 
     void addCustomCourse(Credentials credentials, Course course,

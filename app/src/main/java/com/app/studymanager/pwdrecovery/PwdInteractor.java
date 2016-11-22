@@ -12,6 +12,8 @@ public interface PwdInteractor {
         void onPwdReset();
 
         void onError();
+
+        void onAPIError(String message);
     }
 
     void resetPwd(Credentials credentials, String email, String password,

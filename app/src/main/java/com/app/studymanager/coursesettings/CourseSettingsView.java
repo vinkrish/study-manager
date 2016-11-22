@@ -18,4 +18,6 @@ public interface CourseSettingsView {
     void showInputError();
 
     void showError();
+
+    void showAPIError(String message);
 }

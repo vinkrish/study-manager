@@ -89,18 +89,18 @@ public class CourseUpdatePresenterImpl implements CourseUpdatePresenter,
     }
 
     @Override
-    public void onCantDelete() {
-        if(updateView != null){
-            updateView.hideProgess();
-            updateView.cantDelete();
-        }
-    }
-
-    @Override
     public void onError() {
         if(updateView != null) {
             updateView.hideProgess();
             updateView.showError();
+        }
+    }
+
+    @Override
+    public void onAPIError(String message) {
+        if(updateView != null) {
+            updateView.hideProgess();
+            updateView.showAPIError(message);
         }
     }
 }

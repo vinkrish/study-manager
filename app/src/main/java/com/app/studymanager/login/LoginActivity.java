@@ -37,7 +37,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
 
     private LoginPresenter presenter;
-    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     private void showSnackbar(String message) {
-        snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
         View snackBarView = snackbar.getView();
         snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.bottom_bar));
         TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
@@ -81,8 +80,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void setError() {
-        Snackbar.make(coordinatorLayout, getString(R.string.request_error), Snackbar.LENGTH_LONG)
-                .show();
+        showSnackbar(getString(R.string.request_error));
+    }
+
+    @Override
+    public void showAPIError(String message) {
+        showSnackbar(message);
     }
 
     @Override

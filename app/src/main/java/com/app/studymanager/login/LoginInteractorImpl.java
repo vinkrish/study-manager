@@ -1,15 +1,13 @@
 package com.app.studymanager.login;
 
-import android.text.TextUtils;
-
 import com.app.studymanager.models.CommonResponse;
 import com.app.studymanager.models.Credentials;
+import com.app.studymanager.rest.APIError;
 import com.app.studymanager.rest.ApiClient;
 import com.app.studymanager.rest.AuthApi;
+import com.app.studymanager.rest.ErrorUtils;
 
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,16 +31,21 @@ public class LoginInteractorImpl implements LoginInteractor {
         login.enqueue(new Callback<Credentials>() {
             @Override
             public void onResponse(Call<Credentials> call, Response<Credentials> response) {
-                if(response.body().isSuccess()){
-                    listener.onSuccess(response.body());
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onSuccess(response.body());
+                    } else {
+                        listener.onLoginFailed();
+                    }
                 } else {
-                    listener.onLoginFailed();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 
             @Override
             public void onFailure(Call<Credentials> call, Throwable t) {
-                listener.onLoginFailed();
+                listener.onError();
             }
         });
     }
@@ -58,10 +61,15 @@ public class LoginInteractorImpl implements LoginInteractor {
         sendNewPwd.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onPwdRecovered();
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onPwdRecovered();
+                    } else {
+                        listener.onNoUser();
+                    }
                 } else {
-                    listener.onNoUser();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 

@@ -32,13 +32,24 @@ public class SubscribedCoursesPresenterImpl implements
     }
 
     @Override
-    public void onCourseSelected(long courseId) {
-
+    public void onDestroy() {
+        subscribedCoursesView = null;
     }
 
     @Override
-    public void onDestroy() {
-        subscribedCoursesView = null;
+    public void onError() {
+        if(subscribedCoursesView != null) {
+            subscribedCoursesView.showError();
+            subscribedCoursesView.hideProgess();
+        }
+    }
+
+    @Override
+    public void onAPIError(String message) {
+        if(subscribedCoursesView != null) {
+            subscribedCoursesView.hideProgess();
+            subscribedCoursesView.showAPIError(message);
+        }
     }
 
     @Override

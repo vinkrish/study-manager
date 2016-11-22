@@ -14,6 +14,10 @@ public interface SubscribedCoursesView {
 
     void hideProgess();
 
+    void showError();
+
+    void showAPIError(String message);
+
     void setSubscribedCourses(SubscribedCourses subscribedCourses);
 
 }

@@ -20,4 +20,6 @@ public interface CourseDetailsView {
     void showUnsubscribed();
 
     void showError();
+
+    void showAPIError(String message);
 }

@@ -79,4 +79,12 @@ public class CourseDetailsPresenterImpl implements
             courseDetailsView.showError();
         }
     }
+
+    @Override
+    public void onAPIError(String message) {
+        if(courseDetailsView != null) {
+            courseDetailsView.hideProgess();
+            courseDetailsView.showAPIError(message);
+        }
+    }
 }

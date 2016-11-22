@@ -1,7 +1,6 @@
 package com.app.studymanager.courses;
 
 import com.app.studymanager.models.Course;
-import com.app.studymanager.subscribedcourses.SubscribedCoursesInteractor;
 
 import java.util.List;
 
@@ -11,6 +10,10 @@ import java.util.List;
 
 public interface CoursesInteractor {
     interface OnFinishedListener {
+        void onError();
+
+        void onAPIError(String message);
+
         void onFinished(List<Course> courses);
     }
 

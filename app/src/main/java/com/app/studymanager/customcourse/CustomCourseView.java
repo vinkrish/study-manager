@@ -12,4 +12,6 @@ public interface CustomCourseView {
     void setAdd();
 
     void showError();
+
+    void showAPIError(String message);
 }

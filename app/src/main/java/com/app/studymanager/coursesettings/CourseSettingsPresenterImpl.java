@@ -63,4 +63,12 @@ public class CourseSettingsPresenterImpl implements CourseSettingsPresenter,
             settingsView.showError();
         }
     }
+
+    @Override
+    public void onAPIError(String message) {
+        if(settingsView != null) {
+            settingsView.hideProgess();
+            settingsView.showAPIError(message);
+        }
+    }
 }

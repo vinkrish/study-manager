@@ -2,7 +2,9 @@ package com.app.studymanager.subscribedcourses;
 
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.SubscribedCourses;
+import com.app.studymanager.rest.APIError;
 import com.app.studymanager.rest.ApiClient;
+import com.app.studymanager.rest.ErrorUtils;
 import com.app.studymanager.rest.UserCourseApi;
 
 import java.util.HashMap;
@@ -29,12 +31,17 @@ public class SubscribedCoursesInteractorImpl implements SubscribedCoursesInterac
         subscribedCourses.enqueue(new Callback<SubscribedCourses>() {
             @Override
             public void onResponse(Call<SubscribedCourses> call, Response<SubscribedCourses> response) {
-                listener.onFinished(response.body());
+                if(response.isSuccessful()) {
+                    listener.onFinished(response.body());
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
+                }
             }
 
             @Override
             public void onFailure(Call<SubscribedCourses> call, Throwable t) {
-
+                listener.onError();
             }
         });
     }

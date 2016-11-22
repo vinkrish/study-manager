@@ -12,9 +12,11 @@ import java.util.List;
 public interface SubscribedCoursesInteractor {
 
     interface OnFinishedListener {
+        void onError();
+
+        void onAPIError(String message);
 
         void onFinished(SubscribedCourses courses);
-
     }
 
     void fetchSubscribedCourses(int userId, String authToken, OnFinishedListener listener);

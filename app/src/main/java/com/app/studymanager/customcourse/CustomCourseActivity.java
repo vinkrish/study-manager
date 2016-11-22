@@ -3,6 +3,7 @@ package com.app.studymanager.customcourse;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.icu.math.BigDecimal;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -10,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -138,8 +140,21 @@ public class CustomCourseActivity extends AppCompatActivity
 
     @Override
     public void showError() {
-        Snackbar.make(coordinatorLayout, getString(R.string.subscription_error), Snackbar.LENGTH_LONG)
-                .show();
+        showAPIError(getString(R.string.error_msg));
+    }
+
+    @Override
+    public void showAPIError(String message) {
+        showSnackbar(message);
+    }
+
+    private void showSnackbar(String message){
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        View snackBarView = snackbar.getView();
+        snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.bottom_bar));
+        TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.RED);
+        snackbar.show();
     }
 
     private String getStartDate() {

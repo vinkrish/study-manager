@@ -17,6 +17,8 @@ public interface ProfileView {
 
     void setError();
 
+    void showAPIError(String message);
+
     void setSuccess();
 
     void setProfile(Profile profile);

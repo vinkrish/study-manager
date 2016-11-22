@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.app.studymanager.R;
+import com.app.studymanager.bottombar.BottomBarActivity;
 import com.app.studymanager.coursedetails.CourseDetailsActivity;
 import com.app.studymanager.models.Course;
 
@@ -68,6 +69,16 @@ public class CoursesFragment extends Fragment implements CoursesView {
     @Override
     public void hideProgess() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showError() {
+        ((BottomBarActivity)getActivity()).showAPIError(getString(R.string.error_msg));
+    }
+
+    @Override
+    public void showAPIError(String message) {
+        ((BottomBarActivity)getActivity()).showAPIError(message);
     }
 
     @Override

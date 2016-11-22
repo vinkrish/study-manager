@@ -21,6 +21,8 @@ public interface ProfileInteractor {
         void onSuccess();
 
         void onError();
+
+        void onAPIError(String message);
     }
 
     void getProfile(Credentials credentials, OnFinishedListener listener);

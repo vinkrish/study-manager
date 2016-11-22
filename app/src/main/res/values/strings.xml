@@ -19,6 +19,7 @@
     <string name="valid_password">Should be atleast 8 characters long</string>
     <string name="login_failed">Email &amp; Password dont match</string>
     <string name="email_exist">Email already exists</string>
+    <string name="error_msg">Couldn\'t connect to service.</string>
     <string name="request_error">Error while requesting, please try again.</string>
     <string name="ok">ok</string>
     <string name="verification">Verification mail has been sent to your mail.
@@ -44,7 +45,6 @@
     <string name="unsubscribe">Unsubscribe</string>
     <string name="subscribed">Successfully subscribed to course.</string>
     <string name="unsubscribed">Unsubscribed from course.</string>
-    <string name="subscription_error">Error while requesting</string>
     <string name="update">UPDATE</string>
     <string name="recommended">RECOMMENDED BOOKS</string>
     <string name="title">TITLE</string>

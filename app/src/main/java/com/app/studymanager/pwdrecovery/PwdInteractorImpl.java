@@ -2,8 +2,10 @@ package com.app.studymanager.pwdrecovery;
 
 import com.app.studymanager.models.CommonResponse;
 import com.app.studymanager.models.Credentials;
+import com.app.studymanager.rest.APIError;
 import com.app.studymanager.rest.ApiClient;
 import com.app.studymanager.rest.AuthApi;
+import com.app.studymanager.rest.ErrorUtils;
 
 import java.util.HashMap;
 
@@ -33,10 +35,15 @@ public class PwdInteractorImpl implements PwdInteractor {
         resetPwd.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onPwdReset();
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onPwdReset();
+                    } else {
+                        listener.onAPIError("Failed to reset password");
+                    }
                 } else {
-                    listener.onError();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 

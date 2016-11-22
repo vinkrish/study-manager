@@ -17,6 +17,8 @@ public interface CourseDetailsInteractor {
         void onUnSubscribed();
 
         void onError();
+
+        void onAPIError(String message);
     }
 
     void fetchCourseDetails(int userId, String authToken, long courseId,

@@ -12,6 +12,8 @@ public interface CustomBookInteractor {
         void onAdded();
 
         void onError();
+
+        void onAPIError(String message);
     }
 
     void addCustomBook(Credentials credentials, long courseId,

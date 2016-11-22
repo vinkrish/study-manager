@@ -3,8 +3,10 @@ package com.app.studymanager.coursesettings;
 import com.app.studymanager.models.CommonResponse;
 import com.app.studymanager.models.CourseSettings;
 import com.app.studymanager.models.Credentials;
+import com.app.studymanager.rest.APIError;
 import com.app.studymanager.rest.ApiClient;
 import com.app.studymanager.rest.CourseSettingsApi;
+import com.app.studymanager.rest.ErrorUtils;
 
 import java.util.HashMap;
 
@@ -34,7 +36,8 @@ public class CourseSettingsInteractorImpl implements CourseSettingsInteractor {
                 if(response.code() == 200){
                     listener.onFinished(response.body());
                 } else {
-                    listener.onError();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 
@@ -59,10 +62,15 @@ public class CourseSettingsInteractorImpl implements CourseSettingsInteractor {
         saveSettings.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onSaved();
-                }else{
-                    listener.onError();
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onSaved();
+                    }else{
+                        listener.onAPIError("Failed to save settings.");
+                    }
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 

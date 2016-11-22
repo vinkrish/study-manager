@@ -18,9 +18,9 @@ public interface CourseUpdateInteractor {
 
         void onDeleted();
 
-        void onCantDelete();
-
         void onError();
+
+        void onAPIError(String message);
     }
 
     void fetchCourseDetails(Credentials credentials, long courseId,

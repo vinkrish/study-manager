@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.studymanager.R;
+import com.app.studymanager.bottombar.BottomBarActivity;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.Profile;
@@ -90,7 +91,12 @@ public class ProfileDetailFragment extends Fragment implements ProfileView {
 
     @Override
     public void setError() {
-        showToast("Failed to update profile");
+        ((BottomBarActivity)getActivity()).showAPIError(getString(R.string.error_msg));
+    }
+
+    @Override
+    public void showAPIError(String message) {
+        ((BottomBarActivity)getActivity()).showAPIError(message);
     }
 
     @Override

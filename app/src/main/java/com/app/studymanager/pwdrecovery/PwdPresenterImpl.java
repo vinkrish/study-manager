@@ -32,6 +32,14 @@ public class PwdPresenterImpl implements PwdPresenter, PwdInteractor.OnFinishedL
     }
 
     @Override
+    public void onAPIError(String message) {
+        if(pwdView != null) {
+            pwdView.hideProgress();
+            pwdView.showAPIError(message);
+        }
+    }
+
+    @Override
     public void pwdReset(Credentials credentials, String email, String password) {
         if(pwdView != null) {
             pwdView.showProgress();

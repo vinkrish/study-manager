@@ -1,14 +1,12 @@
 package com.app.studymanager.singup;
 
-import android.text.TextUtils;
-
 import com.app.studymanager.models.CommonResponse;
+import com.app.studymanager.rest.APIError;
 import com.app.studymanager.rest.ApiClient;
 import com.app.studymanager.rest.AuthApi;
+import com.app.studymanager.rest.ErrorUtils;
 
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,10 +30,15 @@ public class SignupInteractorImpl implements SignupInteractor {
         signup.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onSuccess();
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onSuccess();
+                    } else {
+                        listener.onEmailExist();
+                    }
                 } else {
-                    listener.onEmailExist();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 

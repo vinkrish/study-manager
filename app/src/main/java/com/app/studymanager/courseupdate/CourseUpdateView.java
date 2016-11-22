@@ -19,7 +19,7 @@ public interface CourseUpdateView {
 
     void setDeleted();
 
-    void cantDelete();
-
     void showError();
+
+    void showAPIError(String message);
 }

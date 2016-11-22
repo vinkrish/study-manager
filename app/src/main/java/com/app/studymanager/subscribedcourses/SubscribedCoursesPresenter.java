@@ -7,7 +7,5 @@ package com.app.studymanager.subscribedcourses;
 public interface SubscribedCoursesPresenter {
     void onResume(int userId, String authToken);
 
-    void onCourseSelected(long courseId);
-
     void onDestroy();
 }

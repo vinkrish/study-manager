@@ -12,4 +12,6 @@ public interface CustomBookView {
     void setAdd();
 
     void showError();
+
+    void showAPIError(String message);
 }

@@ -5,7 +5,9 @@ import com.app.studymanager.models.CommonResponse;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.UpdateBook;
+import com.app.studymanager.rest.APIError;
 import com.app.studymanager.rest.ApiClient;
+import com.app.studymanager.rest.ErrorUtils;
 import com.app.studymanager.rest.UserCourseApi;
 
 import java.util.HashMap;
@@ -31,7 +33,12 @@ public class CourseUpdateInteractorImpl implements CourseUpdateInteractor {
         courseDetails.enqueue(new Callback<Course>() {
             @Override
             public void onResponse(Call<Course> call, Response<Course> response) {
-                listener.onFinished(response.body());
+                if(response.isSuccessful()) {
+                    listener.onFinished(response.body());
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
+                }
             }
 
             @Override
@@ -59,10 +66,15 @@ public class CourseUpdateInteractorImpl implements CourseUpdateInteractor {
         updateCourse.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onUpdated();
-                }else{
-                    listener.onError();
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onUpdated();
+                    }else{
+                        listener.onAPIError("Failed to update course.");
+                    }
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 
@@ -86,10 +98,15 @@ public class CourseUpdateInteractorImpl implements CourseUpdateInteractor {
         unsubscribeCourse.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onUnSubscribed();
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onUnSubscribed();
+                    } else {
+                        listener.onAPIError("Failed to unsubscribe.");
+                    }
                 } else {
-                    listener.onError();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 
@@ -113,10 +130,15 @@ public class CourseUpdateInteractorImpl implements CourseUpdateInteractor {
         unsubscribeCourse.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                if(response.body().isSuccess()){
-                    listener.onDeleted();
+                if(response.isSuccessful()) {
+                    if(response.body().isSuccess()){
+                        listener.onDeleted();
+                    } else {
+                        listener.onAPIError("Cannot delete last book.");
+                    }
                 } else {
-                    listener.onCantDelete();
+                    APIError error = ErrorUtils.parseError(response);
+                    listener.onAPIError(error.getMessage());
                 }
             }
 

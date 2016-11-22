@@ -14,6 +14,8 @@ public interface CourseSettingsInteractor {
         void onSaved();
 
         void onError();
+
+        void onAPIError(String message);
     }
     void fetchCourseSettings(Credentials credentials, long courseId,
                              CourseSettingsInteractor.OnFinishedListener listener);

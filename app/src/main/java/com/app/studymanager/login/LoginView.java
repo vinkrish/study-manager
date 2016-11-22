@@ -15,6 +15,8 @@ public interface LoginView {
 
     void setError();
 
+    void showAPIError(String message);
+
     void pwdRecovered();
 
     void noUserError();
