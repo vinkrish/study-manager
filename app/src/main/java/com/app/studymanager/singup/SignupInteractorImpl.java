@@ -34,7 +34,7 @@ public class SignupInteractorImpl implements SignupInteractor {
                     if(response.body().isSuccess()){
                         listener.onSuccess();
                     } else {
-                        listener.onEmailExist();
+                        listener.onAPIError(response.body().getMessage());
                     }
                 } else {
                     APIError error = ErrorUtils.parseError(response);

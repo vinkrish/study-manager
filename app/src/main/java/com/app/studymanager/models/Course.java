@@ -19,6 +19,7 @@ public class Course implements Serializable{
     @SerializedName("bookList")
     private List<Book> bookList;
     private Integer preparationTimeInWeeks;
+    private float preparationTimeInMonths;
     private String startDate;
     private String endDate;
     private String currentStatus;
@@ -80,6 +81,14 @@ public class Course implements Serializable{
 
     public void setPreparationTimeInWeeks(Integer preparationTimeInWeeks) {
         this.preparationTimeInWeeks = preparationTimeInWeeks;
+    }
+
+    public float getPreparationTimeInMonths() {
+        return preparationTimeInMonths;
+    }
+
+    public void setPreparationTimeInMonths(float preparationTimeInMonths) {
+        this.preparationTimeInMonths = preparationTimeInMonths;
     }
 
     public String getStartDate() {

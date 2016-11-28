@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
@@ -35,7 +37,7 @@ public class Circle extends View {
     private static float DEFAULT_SUBTITLE_SIZE = 12f;
     private static float DEFAULT_TITLE_SUBTITLE_SPACE = 10f;
 
-    private static int DEFAULT_STROKE_COLOR = R.color.colorPrimary;
+    private static int DEFAULT_STROKE_COLOR = R.color.light_green;
     private static int DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 
     private static float DEFAULT_STROKE_WIDTH = 10f;
@@ -44,7 +46,6 @@ public class Circle extends View {
 
     private Paint paint;
     private Paint defaultPaint;
-    private RectF rect;
 
     private float angle;
 
@@ -78,6 +79,8 @@ public class Circle extends View {
 
     private Context context;
 
+    private int circleColor;
+
     public Circle(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
@@ -91,7 +94,8 @@ public class Circle extends View {
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(mStrokeWidth);
-        paint.setColor(ContextCompat.getColor(context, R.color.light_green));
+        //paint.setColor(ContextCompat.getColor(context, R.color.light_green));
+        //paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
 
         defaultPaint = new Paint();
         defaultPaint.setAntiAlias(true);
@@ -100,9 +104,6 @@ public class Circle extends View {
         defaultPaint.setColor(Color.LTGRAY);
 
         mInnerRectF = new RectF();
-
-        //size 200x200 example
-        rect = new RectF(mStrokeWidth, mStrokeWidth, 200 + mStrokeWidth, 200 + mStrokeWidth);
 
         //Initial Angle (optional, it can be zero)
         angle = 0;
@@ -128,7 +129,7 @@ public class Circle extends View {
         mStrokePaint = new Paint();
         mStrokePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         mStrokePaint.setStyle(Paint.Style.STROKE);
-        mStrokePaint.setColor(ContextCompat.getColor(context, R.color.light_green));
+        mStrokePaint.setColor(mStrokeColor);
         mStrokePaint.setStrokeWidth(mStrokeWidth);
 
         bitmap = BitmapFactory.decodeResource(getResources(),
@@ -152,6 +153,7 @@ public class Circle extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        paint.setColor(mStrokeColor);
 
         mInnerRectF.set(0, 0, mViewSize, mViewSize);
         mInnerRectF.offset((getWidth() - mViewSize) / 2, (getHeight() - mViewSize) / 2);
@@ -197,7 +199,7 @@ public class Circle extends View {
     }
 
     private void invalidatePaints(){
-        mBackgroundPaint.setColor(mBackgroundColor);
+        //mBackgroundPaint.setColor(mBackgroundColor);
         mStrokePaint.setColor(mStrokeColor);
         invalidate();
     }

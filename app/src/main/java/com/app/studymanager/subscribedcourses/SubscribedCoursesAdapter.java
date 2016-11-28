@@ -1,6 +1,7 @@
 package com.app.studymanager.subscribedcourses;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import com.app.studymanager.models.Course;
 import com.app.studymanager.util.AdapterCallback;
 import com.app.studymanager.util.Circle;
 import com.app.studymanager.util.CircleAnimation;
-import com.app.studymanager.util.DisplayUtil;
 
 import java.math.RoundingMode;
 import java.text.ParseException;
@@ -27,11 +27,13 @@ import java.util.Locale;
  */
 
 public class SubscribedCoursesAdapter extends RecyclerView.Adapter<SubscribedCoursesAdapter.ViewHolder> {
+    private Context context;
     private List<Course> items;
-    private float mTitleSize, mSubTitleSize, titleSubtitleSpace, circleStrokeWidth;
+    private float mTitleSize, mSubTitleSize, titleSubtitleSpace;
     private AdapterCallback adapterCallback;
 
-    public SubscribedCoursesAdapter(Context context, List<Course> items, AdapterCallback adapterCallback){
+     SubscribedCoursesAdapter(Context context, List<Course> items, AdapterCallback adapterCallback){
+        this.context = context;
         this.items = items;
         mTitleSize = context.getResources().getDimensionPixelSize(R.dimen.mTitleSize);
         mSubTitleSize = context.getResources().getDimensionPixelSize(R.dimen.mSubTitleSize);
@@ -48,18 +50,29 @@ public class SubscribedCoursesAdapter extends RecyclerView.Adapter<SubscribedCou
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Course course = items.get(position);
+
         holder.courseName.setText(course.getTitle());
         holder.date.setText(getDate(course.getEndDate()));
         holder.status.setText(course.getCurrentStatus());
+        if(course.getCurrentStatus().equals("BEHIND_SCHEDULE")) {
+            holder.status.setTextColor(ContextCompat.getColor(context, R.color.alert_red));
+            holder.circle.setmTitleColor(ContextCompat.getColor(context, R.color.alert_red));
+            holder.circle.setmSubtitleColor(ContextCompat.getColor(context, R.color.alert_red));
+            holder.circle.setmStrokeColor(ContextCompat.getColor(context, R.color.alert_red));
+        } else {
+            holder.circle.setmStrokeColor(ContextCompat.getColor(context, R.color.light_green));
+        }
         holder.circle.setmTitleSize(mTitleSize);
         holder.circle.setmSubtitleSize(mSubTitleSize);
         holder.circle.setmTitleSubtitleSpace(titleSubtitleSpace);
+
         int progress = course.getCompletionRate().setScale(0, RoundingMode.DOWN).intValueExact();
         int circularProgress = (int)((progress/100.00)*360);
         holder.circle.setmTitleText(String.format(Locale.ENGLISH, "%s%%", Integer.toString(progress)));
         CircleAnimation animation = new CircleAnimation(holder.circle, circularProgress);
         animation.setDuration(1000);
         holder.circle.startAnimation(animation);
+
         holder.update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +93,7 @@ public class SubscribedCoursesAdapter extends RecyclerView.Adapter<SubscribedCou
          Circle circle;
          Button update;
 
-        public ViewHolder(View view) {
+         ViewHolder(View view) {
             super(view);
             this.courseName = (TextView) view.findViewById(R.id.course_name);
             this.date = (TextView) view.findViewById(R.id.date);

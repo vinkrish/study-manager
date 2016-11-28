@@ -32,6 +32,8 @@ import butterknife.ButterKnife;
 public class SubscribedCoursesFragment extends Fragment
         implements SubscribedCoursesView, AdapterCallback {
 
+    @BindView(R.id.username_empty) TextView usernameEmpty;
+    @BindView(R.id.username) TextView username;
     @BindView(R.id.welcome_msg) TextView welcomeMsg;
     @BindView(R.id.progress) ProgressBar progressBar;
     @BindView(R.id.view_list) LinearLayout viewList;
@@ -65,7 +67,10 @@ public class SubscribedCoursesFragment extends Fragment
             userId = getArguments().getInt(ARG_PARAM1);
             authToken = getArguments().getString(ARG_PARAM2);
         }
-        name = (SharedPreferenceUtil.getEmail(getActivity()).split("@"))[0];
+        name = SharedPreferenceUtil.getUsername(getActivity());
+        if(name.equals("")){
+            name = (SharedPreferenceUtil.getEmail(getActivity()).split("@"))[0];
+        }
     }
 
     @Override
@@ -73,10 +78,18 @@ public class SubscribedCoursesFragment extends Fragment
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_subscribed_courses, container, false);
         ButterKnife.bind(this, view);
+        usernameEmpty.setText(name);
         presenter = new SubscribedCoursesPresenterImpl(this, new SubscribedCoursesInteractorImpl());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setNestedScrollingEnabled(false);
         adapterCallback = this;
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroy();
     }
 
     @Override
@@ -105,10 +118,11 @@ public class SubscribedCoursesFragment extends Fragment
             viewEmpty.setVisibility(View.VISIBLE);
         } else {
             viewList.setVisibility(View.VISIBLE);
+            username.setText(name);
             recyclerView.setAdapter(new SubscribedCoursesAdapter(getActivity(), subscribedCourses.getCourses(), adapterCallback));
             welcomeMsg.setText(String.format(Locale.ENGLISH,
-                    "Welcome %s, You had last updated your progress in StudyManager on %s.",
-                    name, getDate(subscribedCourses.getLastUpdatedDate())));
+                    "You had last updated your progress in StudyManager on %s.",
+                    getDate(subscribedCourses.getLastUpdatedDate())));
         }
     }
 

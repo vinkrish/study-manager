@@ -70,11 +70,6 @@ public class SignupActivity extends AppCompatActivity implements SignupView {
     }
 
     @Override
-    public void setEmailExist() {
-        showSnackbar(getString(R.string.email_exist));
-    }
-
-    @Override
     public void showAPIError(String message) {
         showSnackbar(message);
     }

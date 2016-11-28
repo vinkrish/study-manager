@@ -14,14 +14,6 @@ public class SignupPresenterImpl implements SignupPresenter, SignupInteractor.On
     }
 
     @Override
-    public void onEmailExist() {
-        if(signupView != null) {
-            signupView.hideProgress();
-            signupView.setEmailExist();
-        }
-    }
-
-    @Override
     public void onSuccess() {
         if(signupView != null){
             signupView.hideProgress();

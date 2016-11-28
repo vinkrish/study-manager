@@ -50,6 +50,7 @@ public class CustomCourseActivity extends AppCompatActivity
     @BindView(R.id.progress) ProgressBar progressBar;
     @BindView(R.id.coordinatorLayout) CoordinatorLayout coordinatorLayout;
     @BindView(R.id.title_et) EditText title;
+    @BindView(R.id.description_et) EditText description;
     @BindView(R.id.start_tv) TextView startDate;
     @BindView(R.id.title) TextInputLayout titleInputLayout;
     @BindView(R.id.title_book_et) EditText titleBook;
@@ -107,6 +108,7 @@ public class CustomCourseActivity extends AppCompatActivity
         if(validate()) {
             Course course = new Course();
             course.setTitle(title.getText().toString());
+            course.setDescription(description.getText().toString());
             course.setType("CUSTOM");
             course.setCompletionRate(new java.math.BigDecimal(0));
             course.setTodayGoal(0);

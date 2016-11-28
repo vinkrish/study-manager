@@ -11,17 +11,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <TextView
             fontPath="fonts/Asap-Bold.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:text="@string/update_progress"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_small" />
@@ -31,9 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:src="@drawable/delete"
             android:clickable="true"
-            android:contentDescription="@string/app_name"/>
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/delete" />
 
     </LinearLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.6"
                 android:lineSpacingExtra="3dp"
-                android:text="@string/page_no"
+                android:text="@string/page_no_read"
                 android:textColor="@color/default_tv_color"
                 android:textSize="@dimen/text_xsmall" />
 
@@ -120,7 +120,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.6"
                 android:lineSpacingExtra="3dp"
-                android:text="@string/total_pages"
+                android:text="@string/pages_com"
                 android:textColor="@color/default_tv_color"
                 android:textSize="@dimen/text_xsmall" />
 
@@ -157,8 +157,8 @@
             fontPath="fonts/Asap-Regular.ttf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:text="@string/rev_completed"
             android:textColor="@color/default_tv_color"
             android:textSize="@dimen/text_xsmall" />
@@ -169,6 +169,18 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/completed_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:drawableRight="@drawable/subscribed"
+        android:text="@string/completed"
+        android:textColor="@color/default_tv_color"
+        android:textSize="@dimen/text_xsmall"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/save_btn"

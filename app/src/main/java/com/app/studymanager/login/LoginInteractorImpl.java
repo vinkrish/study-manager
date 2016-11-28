@@ -35,7 +35,7 @@ public class LoginInteractorImpl implements LoginInteractor {
                     if(response.body().isSuccess()){
                         listener.onSuccess(response.body());
                     } else {
-                        listener.onLoginFailed();
+                        listener.onAPIError(response.body().getMessage());
                     }
                 } else {
                     APIError error = ErrorUtils.parseError(response);

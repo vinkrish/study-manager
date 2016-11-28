@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.app.studymanager.R;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.CourseSettings;
+import com.app.studymanager.util.DateUtil;
+import com.app.studymanager.util.SharedPreferenceUtil;
 
 import org.w3c.dom.Text;
 
@@ -24,10 +26,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TargetDateFragment extends Fragment {
-    @BindView(R.id.title_tv) TextView title;
+    @BindView(R.id.target_date_tv) TextView targetDateStatus;
     @BindView(R.id.description_tv) TextView description;
     @BindView(R.id.target_tv) TextView target;
+    @BindView(R.id.min_target_date) TextView validTargetDate;
 
+    private View view;
     private Course course;
     private CourseSettings courseSettings;
 
@@ -55,24 +59,37 @@ public class TargetDateFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_target_date, container, false);
+        view = inflater.inflate(R.layout.fragment_target_date, container, false);
         ButterKnife.bind(this, view);
-        title.setText(course.getTitle());
-        description.setText(course.getDescription());
-        target.setText(getTargetDate(courseSettings.getTargetDate()));
+
+        if(course.getDescription() == null || course.getDescription().equals("")){
+            description.setText("Not Available");
+        } else description.setText(course.getDescription());
+
+        target.setText(DateUtil.getDisplayTargetDate(courseSettings.getTargetDate()));
+        if(courseSettings.getDefaultView()!=null && courseSettings.getDefaultView().equals("TARGET_DATE")){
+            targetDateStatus.setText(getString(R.string.target_date_on));
+        } else {
+            targetDateStatus.setText(getString(R.string.target_date_off));
+        }
+
+        if(SharedPreferenceUtil.getTargetDateVisibility(getActivity())) {
+            isValidTargetDate(true, SharedPreferenceUtil.getTargetDate(getActivity()));
+        }
+
         return view;
     }
 
-    private String getTargetDate(String dateString) {
-        SimpleDateFormat displayFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
-        SimpleDateFormat defaultFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        Date date = new Date();
-        try {
-            date = defaultFormat.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public void isValidTargetDate(boolean visibile, String date){
+        if(visibile){
+            validTargetDate.setVisibility(View.VISIBLE);
+            validTargetDate.setText(String.format(Locale.ENGLISH,
+                    "Cannot complete the course by %s as per your settings", date));
+        } else {
+            if (validTargetDate != null && validTargetDate.getVisibility() == View.VISIBLE) {
+                validTargetDate.setVisibility(View.GONE);
+            }
         }
-        return displayFormat.format(date);
     }
 
 }

@@ -104,6 +104,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.course_settings:
+                SharedPreferenceUtil.saveTargetDateSettings(this, false, "");
                 Intent intent = new Intent(this, CourseSettingsActivity.class);
                 Bundle args = new Bundle();
                 if(course != null){
@@ -208,13 +209,15 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
             }
         });
 
+        //pages = book.getNoOfPagesRead();
         pages = 0;
 
         final EditText pagesRead = (EditText) dialog.findViewById(R.id.pages_et);
         pagesRead.addTextChangedListener(new PagesTextWatcher());
         ((TextView) dialog.findViewById(R.id.book_tv)).setText(book.getTitle());
         pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
-        ((TextView) dialog.findViewById(R.id.total_pages_tv)).setText(String.format("%s", book.getNoOfPages()));
+        ((TextView) dialog.findViewById(R.id.total_pages_tv))
+                .setText(String.format("%s/%s", book.getNoOfPagesRead(), book.getNoOfPages()));
 
         ImageView decrement = (ImageView) dialog.findViewById(R.id.decrement);
         ImageView increment = (ImageView) dialog.findViewById(R.id.increment);
@@ -223,15 +226,18 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
 
         LinearLayout revisionLayout = (LinearLayout) dialog.findViewById(R.id.revision_layout);
 
-        if(book.getNoOfPages() == book.getNoOfPagesRead()){
+        if(book.isRevisionCompleted()) {
+            (dialog.findViewById(R.id.completed_tv)).setVisibility(View.VISIBLE);
+            pagesRead.setKeyListener(null);
+            pagesRead.setEnabled(false);
+            decrement.setClickable(false);
+            increment.setClickable(false);
+        } else if(book.getNoOfPages() == book.getNoOfPagesRead()){
             pagesRead.setKeyListener(null);
             pagesRead.setEnabled(false);
             decrement.setClickable(false);
             increment.setClickable(false);
             revisionLayout.setVisibility(View.VISIBLE);
-            if(book.isRevisionCompleted()){
-                revisionBox.setChecked(true);
-            }
         } else {
             (dialog.findViewById(R.id.decrement)).setOnClickListener(new View.OnClickListener() {
                 @Override

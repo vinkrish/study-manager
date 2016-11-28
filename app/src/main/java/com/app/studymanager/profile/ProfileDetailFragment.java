@@ -1,13 +1,11 @@
 package com.app.studymanager.profile;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +18,11 @@ import android.widget.Toast;
 
 import com.app.studymanager.R;
 import com.app.studymanager.bottombar.BottomBarActivity;
-import com.app.studymanager.models.Course;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.Profile;
 import com.app.studymanager.models.SubscribedCourses;
-import com.app.studymanager.subscribedcourses.SubscribedCoursesAdapter;
 import com.app.studymanager.util.EditTextWatcher;
 import com.app.studymanager.util.SharedPreferenceUtil;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,6 +74,12 @@ public class ProfileDetailFragment extends Fragment implements ProfileView {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroy();
+    }
+
+    @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -108,6 +108,7 @@ public class ProfileDetailFragment extends Fragment implements ProfileView {
     public void setProfile(Profile profile) {
         profileName.setText(profile.getName());
         emailId.setText(profile.getEmail());
+        SharedPreferenceUtil.saveUsername(getActivity(), profile.getName());
     }
 
     @Override

@@ -74,11 +74,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void setLoginFailed() {
-        showSnackbar(getString(R.string.login_failed));
-    }
-
-    @Override
     public void setError() {
         showSnackbar(getString(R.string.request_error));
     }

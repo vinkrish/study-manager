@@ -10,8 +10,17 @@ public class CourseSettings implements Serializable {
     private WeeklyHours weeklyHours;
     private String proficiency;
     private String targetDate;
+    private String nearestTargetDate;
     private String defaultView;
     private ProficiencyValue proficiencyValue;
+
+    public String getNearestTargetDate() {
+        return nearestTargetDate;
+    }
+
+    public void setNearestTargetDate(String nearestTargetDate) {
+        this.nearestTargetDate = nearestTargetDate;
+    }
 
     public WeeklyHours getWeeklyHours() {
         return weeklyHours;

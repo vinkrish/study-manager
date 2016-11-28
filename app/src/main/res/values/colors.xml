@@ -13,4 +13,5 @@
     <color name="bottom_bar">#FAFAFA</color>
     <color name="light_green">#8BC34A</color>
     <color name="inactive">#8006B089</color>
+    <color name="alert_red">#F44336</color>
 </resources>

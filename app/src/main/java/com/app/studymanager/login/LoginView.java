@@ -11,8 +11,6 @@ public interface LoginView {
 
     void hideProgress();
 
-    void setLoginFailed();
-
     void setError();
 
     void showAPIError(String message);

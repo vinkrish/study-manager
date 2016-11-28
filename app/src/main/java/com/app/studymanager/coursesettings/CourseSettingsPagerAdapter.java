@@ -10,17 +10,20 @@ import com.app.studymanager.models.Course;
 import com.app.studymanager.models.CourseSettings;
 import com.app.studymanager.models.Credentials;
 
+import java.util.HashMap;
+
 /**
  * Created by Vinay on 31-10-2016.
  */
 
-public class CourseSettingsPagerAdapter extends FragmentPagerAdapter {
+class CourseSettingsPagerAdapter extends FragmentPagerAdapter {
+    Fragment targetDate;
     private Course course;
     private CourseSettings courseSettings;
-    final int PAGE_COUNT = 2;
-    private String tabTitles[] = new String[] { "TARGET DATE", "DIFFICULTY" };
+    private final int PAGE_COUNT = 2;
+    private String tabTitles[] = new String[] { "SET TARGET DATE", "SET READING SPEED" };
 
-    public CourseSettingsPagerAdapter(FragmentManager fm, Course course,
+    CourseSettingsPagerAdapter(FragmentManager fm, Course course,
                                       CourseSettings courseSettings) {
         super(fm);
         this.course = course;
@@ -29,15 +32,18 @@ public class CourseSettingsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+
         switch (position) {
             case 0:
-                TargetDateFragment tab1 = TargetDateFragment.newInstance(course ,courseSettings);
-                return tab1;
+                if(targetDate == null){
+                    targetDate = TargetDateFragment.newInstance(course, courseSettings);
+                }
+                return targetDate;
             case 1:
-                DifficultyFragment tab2 = DifficultyFragment.newInstance(course, courseSettings);
-                return tab2;
+                return DifficultyFragment.newInstance(course, courseSettings);
             default:
                 return null;
+
         }
     }
 

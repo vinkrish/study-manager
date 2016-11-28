@@ -33,6 +33,7 @@ public class SharedPreferenceUtil {
         SharedPreferences sharedPref = context.getSharedPreferences("user_token", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("authToken", "");
+        editor.putString("username", "");
         editor.apply();
     }
 
@@ -48,6 +49,18 @@ public class SharedPreferenceUtil {
         return sharedPref.getString("email", "");
     }
 
+    public static void saveUsername(Context context, String username) {
+        SharedPreferences sharedPref = context.getSharedPreferences("user_token", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("username", username);
+        editor.apply();
+    }
+
+    public static String getUsername(Context context){
+        SharedPreferences sharedPref = context.getSharedPreferences("user_token", Context.MODE_PRIVATE);
+        return sharedPref.getString("username", "");
+    }
+
     public static void saveCourse(Context context, Course course) {
         SharedPreferences sharedPref = context.getSharedPreferences("course", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -60,6 +73,24 @@ public class SharedPreferenceUtil {
         Course response = new Course();
         response.setId(sharedPref.getLong("id", 0));
         return response;
+    }
+
+    public static void saveTargetDateSettings(Context context, boolean visible, String date) {
+        SharedPreferences sharedPref = context.getSharedPreferences("target_date", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("visible", visible);
+        editor.putString("date", date);
+        editor.apply();
+    }
+
+    public static boolean getTargetDateVisibility(Context context){
+        SharedPreferences sharedPref = context.getSharedPreferences("target_date", Context.MODE_PRIVATE);
+        return sharedPref.getBoolean("visible", false);
+    }
+
+    public static String getTargetDate(Context context){
+        SharedPreferences sharedPref = context.getSharedPreferences("target_date", Context.MODE_PRIVATE);
+        return sharedPref.getString("date", "");
     }
 
 }

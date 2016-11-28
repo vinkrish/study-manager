@@ -21,14 +21,14 @@
             fontPath="fonts/Asap-Bold.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/title"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/course_settings"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_small" />
 
         <TextView
-            android:id="@+id/title_tv"
+            android:id="@+id/target_date_tv"
             fontPath="fonts/Asap-Regular.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -90,9 +90,19 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/min_target_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="gone"
+            android:textSize="@dimen/text_small" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginTop="5dp"
             android:background="@color/gray_light" />
 
         <TextView

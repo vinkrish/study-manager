@@ -22,6 +22,7 @@ import com.app.studymanager.models.Course;
 import com.app.studymanager.models.CourseSettings;
 import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.WeeklyHours;
+import com.app.studymanager.util.AnimationUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,7 +33,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DifficultyFragment extends Fragment {
-    @BindView(R.id.title_tv) TextView title;
+    @BindView(R.id.reading_speed_tv) TextView readingSpeedStatus;
+    @BindView(R.id.pages_per_day) TextView pagesPerDay;
     @BindView(R.id.description_tv) TextView description;
     @BindView(R.id.radio_easy) RadioButton radioEasy;
     @BindView(R.id.radio_moderate) RadioButton radioModerate;
@@ -76,11 +78,22 @@ public class DifficultyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_difficulty, container, false);
         ButterKnife.bind(this, view);
-        title.setText(course.getTitle());
-        description.setText(course.getDescription());
+
+        if(course.getDescription() == null || course.getDescription().equals("")){
+            description.setText("Not Available");
+        } else description.setText(course.getDescription());
+
         setInputHours(courseSettings.getWeeklyHours());
         setPrepTime(courseSettings.getProficiency());
+
         setHoursWatcher();
+
+        if(courseSettings.getDefaultView()!=null && courseSettings.getDefaultView().equals("DIFFICULTY")){
+            readingSpeedStatus.setText(getString(R.string.reading_speed_on));
+        } else {
+            readingSpeedStatus.setText(getString(R.string.reading_speed_off));
+        }
+
         //plannedDate.setText(getTargetDate(courseSettings.getTargetDate()));
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -138,30 +151,30 @@ public class DifficultyFragment extends Fragment {
 
     private void setPrepTime(String preparation){
         switch(preparation){
-            case "EASY":
+            case "BEGINNER":
                 radioEasy.setChecked(true);
+                pagesPerDay.setText(String.format(Locale.ENGLISH, "%d",
+                        courseSettings.getProficiencyValue().getBeginner()));
+                pagesPerDay.setVisibility(View.INVISIBLE);
+                AnimationUtil.alphaTranslate(pagesPerDay, getActivity());
                 break;
-            case "MODERATE":
+            case "NORMAL":
                 radioModerate.setChecked(true);
+                pagesPerDay.setText(String.format(Locale.ENGLISH, "%d",
+                        courseSettings.getProficiencyValue().getNormal()));
+                pagesPerDay.setVisibility(View.INVISIBLE);
+                AnimationUtil.alphaTranslate(pagesPerDay, getActivity());
                 break;
-            case "DIFFICULT":
+            case "EXPERT":
                 radioAggressive.setChecked(true);
+                pagesPerDay.setText(String.format(Locale.ENGLISH, "%d",
+                        courseSettings.getProficiencyValue().getExpert()));
+                pagesPerDay.setVisibility(View.INVISIBLE);
+                AnimationUtil.alphaTranslate(pagesPerDay, getActivity());
                 break;
             default:
                 break;
         }
-    }
-
-    private String getTargetDate(String dateString) {
-        SimpleDateFormat displayFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
-        SimpleDateFormat defaultFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        Date date = new Date();
-        try {
-            date = defaultFormat.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return displayFormat.format(date);
     }
 
     class HoursTextWatcher implements TextWatcher {
@@ -178,9 +191,9 @@ public class DifficultyFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            if(!editable.toString().equals("") && Integer.parseInt(editable.toString()) > 16){
+            if(!editable.toString().equals("") && Integer.parseInt(editable.toString()) > 12){
                 maxHours.setVisibility(View.VISIBLE);
-                editable.replace(0, editable.length(), 16+"");
+                editable.replace(0, editable.length(), 12+"");
             } else {
                 //maxHours.setVisibility(View.GONE);
             }

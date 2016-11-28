@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.app.studymanager.R;
 import com.app.studymanager.models.Course;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -23,12 +24,14 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         void onItemClick(Course item);
     }
 
+    private DecimalFormat df;
     private final List<Course> items;
     private final OnItemClickListener listener;
 
-    public CoursesAdapter(List<Course> items, OnItemClickListener listener) {
+    CoursesAdapter(List<Course> items, OnItemClickListener listener) {
         this.items = items;
         this.listener = listener;
+        df = new DecimalFormat("#.#");
     }
 
     @Override
@@ -48,11 +51,11 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        protected TextView courseName;
-        protected TextView time;
-        protected ImageView subscribed;
+        TextView courseName;
+        TextView time;
+        ImageView subscribed;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             this.courseName = (TextView) view.findViewById(R.id.course_name);
             this.time = (TextView) view.findViewById(R.id.time_tv);
@@ -61,8 +64,13 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
 
         public void bind(final Course item, final OnItemClickListener listener) {
             courseName.setText(item.getTitle());
-            time.setText(String.format(Locale.US, "%d weeks", item.getPreparationTimeInWeeks()));
-            if(item.getSubscribed()){
+            if(item.getPreparationTimeInMonths() < 1) {
+                time.setText(String.format(Locale.US, "%d weeks", item.getPreparationTimeInWeeks()));
+            } else {
+                time.setText(String.format(Locale.US, "%s months", df.format(item.getPreparationTimeInMonths())));
+            }
+
+            if(item.getSubscribed()) {
                 subscribed.setVisibility(View.VISIBLE);
             }
             itemView.setOnClickListener(new View.OnClickListener() {

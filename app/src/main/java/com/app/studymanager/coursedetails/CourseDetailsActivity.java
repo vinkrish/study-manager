@@ -24,6 +24,8 @@ import com.app.studymanager.models.Credentials;
 import com.app.studymanager.util.GridSpacingItemDecoration;
 import com.app.studymanager.util.SharedPreferenceUtil;
 
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -91,7 +93,9 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
     public void setCourse(Course course) {
         this.course = course;
         toolbar.setTitle(course.getTitle());
-        description.setText(course.getDescription());
+        if(course.getDescription() == null || course.getDescription().equals("")){
+            description.setText("Not Available");
+        } else description.setText(course.getDescription());
         recyclerView.setAdapter(new CourseDetailsAdapter(this, course.getBookList()));
     }
 
@@ -148,6 +152,7 @@ public class CourseDetailsActivity extends AppCompatActivity implements CourseDe
     }
 
     public void courseSettings(View view) {
+        SharedPreferenceUtil.saveTargetDateSettings(this, false, "");
         Intent intent = new Intent(this, CourseSettingsActivity.class);
         Bundle args = new Bundle();
         if(course != null){

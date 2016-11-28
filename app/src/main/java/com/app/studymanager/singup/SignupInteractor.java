@@ -7,9 +7,6 @@ package com.app.studymanager.singup;
 public interface SignupInteractor {
 
     interface OnSignupFinishedListener{
-
-        void onEmailExist();
-
         void onSuccess();
 
         void onFailure();

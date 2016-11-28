@@ -10,8 +10,6 @@ public interface LoginInteractor {
 
     interface OnLoginFinishedListener{
 
-        void onLoginFailed();
-
         void onSuccess(Credentials credentials);
 
         void onPwdRecovered();

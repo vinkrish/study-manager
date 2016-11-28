@@ -15,7 +15,7 @@ public class ProfilePresenterImpl implements ProfilePresenter, ProfileInteractor
     private ProfileView profileView;
     private ProfileInteractorImpl interactor;
 
-    public ProfilePresenterImpl(ProfileView profileView, ProfileInteractorImpl interactor) {
+    ProfilePresenterImpl(ProfileView profileView, ProfileInteractorImpl interactor) {
         this.profileView = profileView;
         this.interactor = interactor;
     }

@@ -114,16 +114,6 @@
 
         </LinearLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/top_layout"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="-28dp"
-            app:srcCompat="@android:drawable/ic_input_add" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -148,6 +138,16 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/top_layout"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="-28dp"
+            app:srcCompat="@android:drawable/ic_input_add" />
 
         <ProgressBar
             android:id="@+id/progress"

@@ -21,14 +21,14 @@
             fontPath="fonts/Asap-Bold.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/title"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/course_settings"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_small" />
 
         <TextView
-            android:id="@+id/title_tv"
+            android:id="@+id/reading_speed_tv"
             fontPath="fonts/Asap-Regular.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +53,6 @@
             android:textSize="@dimen/text_small" />
 
         <TextView
-            fontPath="fonts/Asap-Regular.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -247,7 +246,7 @@
         <RadioGroup
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <RadioButton
@@ -256,7 +255,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:paddingLeft="5dp"
-                android:text="@string/easy"
+                android:text="@string/beginner"
                 android:textColor="@color/default_tv_color"
                 android:textSize="@dimen/text_xsmall" />
 
@@ -266,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:paddingLeft="5dp"
-                android:text="@string/moderate"
+                android:text="@string/normal"
                 android:textColor="@color/default_tv_color"
                 android:textSize="@dimen/text_xsmall" />
 
@@ -276,10 +275,45 @@
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:paddingLeft="5dp"
-                android:text="@string/difficult"
+                android:text="@string/expert"
                 android:textColor="@color/default_tv_color"
                 android:textSize="@dimen/text_xsmall" />
         </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/hoursperday_pre"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+
+            <TextView
+                android:id="@+id/pages_per_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/hoursperday_post"
+                android:textColor="@color/default_tv_color"
+                android:textSize="@dimen/text_xsmall" />
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

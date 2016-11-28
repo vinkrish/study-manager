@@ -9,8 +9,6 @@ public interface SignupView {
 
     void hideProgress();
 
-    void setEmailExist();
-
     void showAPIError(String message);
 
     void showSignupSuccessful();

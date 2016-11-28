@@ -58,7 +58,14 @@ public class CoursesFragment extends Fragment implements CoursesView {
         ButterKnife.bind(this, view);
         presenter = new CoursesPresenterImpl(this, new CoursesInteractorImpl());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setNestedScrollingEnabled(false);
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroy();
     }
 
     @Override

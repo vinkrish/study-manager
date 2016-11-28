@@ -38,14 +38,6 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     }
 
     @Override
-    public void onLoginFailed() {
-        if(loginView != null) {
-            loginView.hideProgress();
-            loginView.setLoginFailed();;
-        }
-    }
-
-    @Override
     public void onSuccess(Credentials credentials) {
         if(loginView != null) {
             loginView.saveUserToken(credentials);
