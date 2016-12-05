@@ -63,7 +63,6 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
     private Course course;
     private int pages;
     private boolean revision;
-    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,7 +185,7 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
 
     @Override
     public void showAPIError(String message) {
-        snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
         View snackBarView = snackbar.getView();
         snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.bottom_bar));
         TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
@@ -228,35 +227,36 @@ public class CourseUpdateActivity extends AppCompatActivity implements CourseUpd
 
         if(book.isRevisionCompleted()) {
             (dialog.findViewById(R.id.completed_tv)).setVisibility(View.VISIBLE);
-            pagesRead.setKeyListener(null);
+            /*pagesRead.setKeyListener(null);
             pagesRead.setEnabled(false);
             decrement.setClickable(false);
-            increment.setClickable(false);
+            increment.setClickable(false);*/
         } else if(book.getNoOfPages() == book.getNoOfPagesRead()){
-            pagesRead.setKeyListener(null);
+            /*pagesRead.setKeyListener(null);
             pagesRead.setEnabled(false);
             decrement.setClickable(false);
-            increment.setClickable(false);
+            increment.setClickable(false);*/
             revisionLayout.setVisibility(View.VISIBLE);
-        } else {
-            (dialog.findViewById(R.id.decrement)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(pages>0){
-                        pages -= 1;
-                        pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
-                    }
-                }
-            });
+        }
 
-            (dialog.findViewById(R.id.increment)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    pages += 1;
+        decrement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pages>0){
+                    pages -= 1;
                     pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
                 }
-            });
-        }
+            }
+        });
+
+        increment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pages += 1;
+                pagesRead.setText(String.format(Locale.ENGLISH, "%d", pages));
+            }
+        });
+
         revisionBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

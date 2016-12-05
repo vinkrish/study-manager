@@ -1,39 +1,32 @@
 package com.app.studymanager.coursesettings.fragment.difficulty;
 
-
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Switch;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.app.studymanager.R;
 import com.app.studymanager.coursesettings.CourseSettingsActivity;
 import com.app.studymanager.models.Course;
 import com.app.studymanager.models.CourseSettings;
-import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.WeeklyHours;
 import com.app.studymanager.util.AnimationUtil;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DifficultyFragment extends Fragment {
-    @BindView(R.id.reading_speed_tv) TextView readingSpeedStatus;
+    @BindView(R.id.title) TextView title;
     @BindView(R.id.pages_per_day) TextView pagesPerDay;
     @BindView(R.id.description_tv) TextView description;
     @BindView(R.id.radio_easy) RadioButton radioEasy;
@@ -47,6 +40,7 @@ public class DifficultyFragment extends Fragment {
     @BindView(R.id.sat) EditText sat;
     @BindView(R.id.sun) EditText sun;
     @BindView(R.id.max_hours) TextView maxHours;
+    @BindView(R.id.proficiency_level) RadioGroup proficiencyLevel;
     @BindView(R.id.save_btn) Button save;
 
     private Course course;
@@ -79,6 +73,8 @@ public class DifficultyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_difficulty, container, false);
         ButterKnife.bind(this, view);
 
+        title.setText(course.getTitle());
+
         if(course.getDescription() == null || course.getDescription().equals("")){
             description.setText("Not Available");
         } else description.setText(course.getDescription());
@@ -87,12 +83,6 @@ public class DifficultyFragment extends Fragment {
         setPrepTime(courseSettings.getProficiency());
 
         setHoursWatcher();
-
-        if(courseSettings.getDefaultView()!=null && courseSettings.getDefaultView().equals("DIFFICULTY")){
-            readingSpeedStatus.setText(getString(R.string.reading_speed_on));
-        } else {
-            readingSpeedStatus.setText(getString(R.string.reading_speed_off));
-        }
 
         //plannedDate.setText(getTargetDate(courseSettings.getTargetDate()));
 
@@ -123,6 +113,35 @@ public class DifficultyFragment extends Fragment {
                     ((CourseSettingsActivity)getActivity()).showInputError();
                 }
 
+            }
+        });
+
+        proficiencyLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                switch (checkedId) {
+                    case R.id.radio_easy:
+                        courseSettings.setProficiency("BEGINNER");
+                        pagesPerDay.setText(String.format(Locale.ENGLISH, "%d",
+                                courseSettings.getProficiencyValue().getBeginner()));
+                        pagesPerDay.setVisibility(View.INVISIBLE);
+                        AnimationUtil.alphaTranslate(pagesPerDay, getActivity());
+                        break;
+                    case R.id.radio_moderate:
+                        courseSettings.setProficiency("NORMAL");
+                        pagesPerDay.setText(String.format(Locale.ENGLISH, "%d",
+                                courseSettings.getProficiencyValue().getNormal()));
+                        pagesPerDay.setVisibility(View.INVISIBLE);
+                        AnimationUtil.alphaTranslate(pagesPerDay, getActivity());
+                        break;
+                    case R.id.radio_aggressive:
+                        courseSettings.setProficiency("EXPERT");
+                        pagesPerDay.setText(String.format(Locale.ENGLISH, "%d",
+                                courseSettings.getProficiencyValue().getExpert()));
+                        pagesPerDay.setVisibility(View.INVISIBLE);
+                        AnimationUtil.alphaTranslate(pagesPerDay, getActivity());
+                        break;
+                }
             }
         });
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +16,12 @@ import android.widget.TextView;
 import com.app.studymanager.R;
 import com.app.studymanager.bottombar.BottomBarActivity;
 import com.app.studymanager.courseupdate.CourseUpdateActivity;
+import com.app.studymanager.models.Book;
 import com.app.studymanager.models.Course;
+import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.SubscribedCourses;
 import com.app.studymanager.util.AdapterCallback;
 import com.app.studymanager.util.SharedPreferenceUtil;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +31,6 @@ public class SubscribedCoursesFragment extends Fragment
 
     @BindView(R.id.username_empty) TextView usernameEmpty;
     @BindView(R.id.username) TextView username;
-    @BindView(R.id.welcome_msg) TextView welcomeMsg;
     @BindView(R.id.progress) ProgressBar progressBar;
     @BindView(R.id.view_list) LinearLayout viewList;
     @BindView(R.id.view_empty) LinearLayout viewEmpty;
@@ -46,6 +42,7 @@ public class SubscribedCoursesFragment extends Fragment
     private String name;
     private String authToken;
     private AdapterCallback adapterCallback;
+    private Credentials credentials;
 
     private SubscribedCoursesPresenter presenter;
 
@@ -67,6 +64,7 @@ public class SubscribedCoursesFragment extends Fragment
             userId = getArguments().getInt(ARG_PARAM1);
             authToken = getArguments().getString(ARG_PARAM2);
         }
+        credentials = SharedPreferenceUtil.getUserToken(getActivity());
         name = SharedPreferenceUtil.getUsername(getActivity());
         if(name.equals("")){
             name = (SharedPreferenceUtil.getEmail(getActivity()).split("@"))[0];
@@ -120,22 +118,12 @@ public class SubscribedCoursesFragment extends Fragment
             viewList.setVisibility(View.VISIBLE);
             username.setText(name);
             recyclerView.setAdapter(new SubscribedCoursesAdapter(getActivity(), subscribedCourses.getCourses(), adapterCallback));
-            welcomeMsg.setText(String.format(Locale.ENGLISH,
-                    "You had last updated your progress in StudyManager on %s.",
-                    getDate(subscribedCourses.getLastUpdatedDate())));
         }
     }
 
-    private String getDate(String dateString) {
-        SimpleDateFormat displayFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
-        SimpleDateFormat defaultFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        Date date = new Date();
-        try {
-            date = defaultFormat.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return displayFormat.format(date);
+    @Override
+    public void setSaved() {
+        onResume();
     }
 
     @Override
@@ -145,10 +133,15 @@ public class SubscribedCoursesFragment extends Fragment
     }
 
     @Override
-    public void onMethodCallback(long id, String date) {
+    public void onMoreCallback(long id, String date) {
         Course course = new Course();
         course.setId(id);
         SharedPreferenceUtil.saveCourse(getActivity(), course);
         startActivity(new Intent(getActivity(), CourseUpdateActivity.class));
+    }
+
+    @Override
+    public void onSaveCallback(long id, Book book) {
+        presenter.onSave(credentials, id, book);
     }
 }

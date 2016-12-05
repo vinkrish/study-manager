@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
 import com.app.studymanager.coursesettings.CourseSettingsActivity;
+import com.app.studymanager.coursesettings.fragment.targetdate.TargetDateFragment;
 
 import java.util.Calendar;
 
@@ -15,6 +16,11 @@ import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment {
     private int year, month, day;
+    DatePickerDialog.OnDateSetListener onDateSet;
+
+    public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
+        onDateSet = ondate;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -30,7 +36,7 @@ public class DatePickerFragment extends DialogFragment {
             day = c.get(Calendar.DAY_OF_MONTH);
         }
 
-        return new DatePickerDialog(getActivity(), (CourseSettingsActivity)getActivity(), year, month, day);
+        return new DatePickerDialog(getActivity(), onDateSet, year, month, day);
     }
 
 }

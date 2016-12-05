@@ -23,12 +23,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
-            android:text="@string/course_settings"
+            android:text="@string/title"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_small" />
 
         <TextView
-            android:id="@+id/reading_speed_tv"
+            android:id="@+id/title"
             fontPath="fonts/Asap-Regular.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -244,6 +244,7 @@
             android:textSize="@dimen/text_small" />
 
         <RadioGroup
+            android:id="@+id/proficiency_level"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -253,7 +254,6 @@
                 android:id="@+id/radio_easy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:paddingLeft="5dp"
                 android:text="@string/beginner"
                 android:textColor="@color/default_tv_color"
@@ -263,7 +263,6 @@
                 android:id="@+id/radio_moderate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:paddingLeft="5dp"
                 android:text="@string/normal"
                 android:textColor="@color/default_tv_color"
@@ -273,7 +272,6 @@
                 android:id="@+id/radio_aggressive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:paddingLeft="5dp"
                 android:text="@string/expert"
                 android:textColor="@color/default_tv_color"

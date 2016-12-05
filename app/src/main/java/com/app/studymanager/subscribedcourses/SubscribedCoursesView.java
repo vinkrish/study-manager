@@ -20,4 +20,5 @@ public interface SubscribedCoursesView {
 
     void setSubscribedCourses(SubscribedCourses subscribedCourses);
 
+    void setSaved();
 }

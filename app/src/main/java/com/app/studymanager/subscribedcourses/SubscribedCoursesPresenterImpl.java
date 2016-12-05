@@ -1,6 +1,8 @@
 package com.app.studymanager.subscribedcourses;
 
+import com.app.studymanager.models.Book;
 import com.app.studymanager.models.Course;
+import com.app.studymanager.models.Credentials;
 import com.app.studymanager.models.SubscribedCourses;
 
 import java.util.List;
@@ -32,6 +34,14 @@ public class SubscribedCoursesPresenterImpl implements
     }
 
     @Override
+    public void onSave(Credentials credentials, long courseId, Book book) {
+        if(subscribedCoursesView != null) {
+            subscribedCoursesView.showProgress();
+            subscribedCoursesInteractor.saveBookRead(credentials, courseId, book, this);
+        }
+    }
+
+    @Override
     public void onDestroy() {
         subscribedCoursesView = null;
     }
@@ -57,6 +67,14 @@ public class SubscribedCoursesPresenterImpl implements
         if(subscribedCoursesView != null) {
             subscribedCoursesView.setSubscribedCourses(courses);
             subscribedCoursesView.hideProgess();
+        }
+    }
+
+    @Override
+    public void onSaved() {
+        if(subscribedCoursesView != null) {
+            subscribedCoursesView.hideProgess();
+            subscribedCoursesView.setSaved();
         }
     }
 }

@@ -83,14 +83,4 @@ public class SharedPreferenceUtil {
         editor.apply();
     }
 
-    public static boolean getTargetDateVisibility(Context context){
-        SharedPreferences sharedPref = context.getSharedPreferences("target_date", Context.MODE_PRIVATE);
-        return sharedPref.getBoolean("visible", false);
-    }
-
-    public static String getTargetDate(Context context){
-        SharedPreferences sharedPref = context.getSharedPreferences("target_date", Context.MODE_PRIVATE);
-        return sharedPref.getString("date", "");
-    }
-
 }

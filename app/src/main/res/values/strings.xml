@@ -35,9 +35,7 @@
     <string name="title_activity_bottom_bar">BottomBarActivity</string>
     <string name="welcome">Welcome</string>
     <string name="subscribed_empty">
-        StudyManager is now successfully installed.\n
-        You are now one step closer in acheiving your goal.\n
-        You can always create a Custom Course if you do not find what you are looking for :-)
+        StudyManager is now successfully installed.
     </string>
     <string name="available_courses">AVAILABLE COURSES</string>
     <string name="custom_course">Add Custom Course</string>
@@ -47,6 +45,7 @@
     <string name="subscribed">Successfully subscribed to course.</string>
     <string name="unsubscribed">Unsubscribed from course.</string>
     <string name="update">UPDATE</string>
+    <string name="more">MORE</string>
     <string name="recommended">RECOMMENDED BOOKS</string>
     <string name="title">TITLE</string>
     <string name="start_date">START DATE</string>
@@ -54,6 +53,10 @@
     <string name="setting_saved">Successfully saved settings</string>
     <string name="change">Change</string>
     <string name="save">save</string>
+    <string name="save_vertical">s\na\nv\ne</string>
+    <string name="course_start">Course set to start on </string>
+    <string name="set_target_date">Set Target Date</string>
+    <string name="set_reading_speed">Set Reading Speed</string>
     <string name="course_settings">Course-Settings details</string>
     <string name="reading_speed_on">Course settings has been caliberated based on your reading speed.</string>
     <string name="reading_speed_off">Course settings has been caliberated based on a Target-Date.\n

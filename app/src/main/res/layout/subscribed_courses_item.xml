@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
@@ -15,65 +16,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.75">
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/course_name"
                 fontPath="fonts/Asap-Regular.ttf"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
                 android:lineSpacingExtra="3dp"
                 android:textColor="@color/default_tv_color"
                 android:textSize="@dimen/text_medium" />
 
-            <LinearLayout
-                android:id="@+id/layout_1"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/more"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/course_name"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:layout_gravity="center_vertical"
+                android:text="@string/more"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_xsmall" />
 
-                <ImageView
-                    android:id="@+id/cal_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/cal" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/date"
-                    fontPath="fonts/Asap-Regular.ttf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/default_tv_color"
-                    android:textSize="@dimen/text_small" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_light" />
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/layout_2"
-                android:layout_width="match_parent"
+                android:id="@+id/left"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_1"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/progress_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/progress" />
+                android:layout_weight="0.45"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/status"
@@ -81,36 +73,231 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/default_tv_color"
+                    android:textSize="@dimen/text_small" />
+
+                <com.app.studymanager.util.Circle
+                    android:id="@+id/circle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="25dp" />
+
+                <TextView
+                    android:id="@+id/goal"
+                    fontPath="fonts/Asap-Regular.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/default_tv_color"
                     android:textSize="@dimen/text_small" />
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/update"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_2"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:text="@string/update"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text_xsmall" />
+                android:layout_weight="0.45"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/book_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="0.8"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bookcover" />
+
+                <LinearLayout
+                    android:id="@+id/pages_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/decrement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:clickable="true"
+                        android:contentDescription="@string/app_name"
+                        android:padding="10dp"
+                        android:src="@drawable/subtraction" />
+
+                    <EditText
+                        android:id="@+id/pages_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/edittext_bottom_line"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:minWidth="25dp"
+                        android:padding="10dp"
+                        android:textColor="@color/default_tv_color"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:id="@+id/total_pages_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:maxLines="1"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textColor="@color/default_tv_color"
+                        android:textSize="@dimen/text_small" />
+
+                    <ImageView
+                        android:id="@+id/increment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:clickable="true"
+                        android:contentDescription="@string/app_name"
+                        android:padding="10dp"
+                        android:src="@drawable/addition" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/revision_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        fontPath="fonts/Asap-Regular.ttf"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="@string/rev_completed"
+                        android:textColor="@color/default_tv_color"
+                        android:textSize="@dimen/text_small" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_revision"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/completed_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="0.2"
+                    android:drawableRight="@drawable/subscribed"
+                    android:gravity="center_vertical"
+                    android:text="@string/completed"
+                    android:textColor="@color/default_tv_color"
+                    android:textSize="@dimen/text_small"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"
+                android:background="@drawable/verticle_btn_ripple"
+                android:text="@string/save_vertical"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_medium" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_light" />
 
 
-        </RelativeLayout>
-
-        <com.app.studymanager.util.Circle
-            android:id="@+id/circle"
-            android:layout_width="0dp"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="3dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginStart="5dp"
-            android:layout_weight="0.25" />
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp">
+
+            <LinearLayout
+                android:id="@+id/behind_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/catchup_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:textColor="@color/alert_red"
+                    android:textSize="@dimen/text_small"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/not_started_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right"
+                    android:text="@string/course_start"
+                    android:textColor="@color/default_tv_color"
+                    android:textSize="@dimen/text_small" />
+
+                <TextView
+                    android:id="@+id/start_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.5"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
+
+        </FrameLayout>
 
     </LinearLayout>
 
